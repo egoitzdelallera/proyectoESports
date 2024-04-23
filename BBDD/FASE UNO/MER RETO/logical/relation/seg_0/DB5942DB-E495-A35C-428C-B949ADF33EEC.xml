@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_3" directorySegmentName="seg_0" id="DB5942DB-E495-A35C-428C-B949ADF33EEC">
+<createdBy>1gdaw03</createdBy>
+<createdTime>2024-04-23 08:19:28 UTC</createdTime>
+<ownerDesignName>MER RETO</ownerDesignName>
+<engineerTo>
+<item key="1DE8E9BE-AAB6-9B0B-CD23-E6DF8AC594DC" value="true"/>
+</engineerTo>
+<sourcePk>F854FF1B-F5E6-4CAD-DA05-886D1AB337F2</sourcePk>
+<targetPk>C98A0D68-CC49-4980-4192-1D1B34DECFFC</targetPk>
+<identifying>false</identifying>
+<nameOnSource>se juega</nameOnSource>
+<nameOnTarget>tiene</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>DB29A340-9E38-04B0-1032-CB6BAAB9EE6A</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>1BD0AF2C-15C5-FB8F-F24A-8BF8EC89EF9A</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

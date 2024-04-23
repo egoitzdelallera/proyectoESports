@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_11" directorySegmentName="seg_0" id="E406DAAD-7CB4-6B81-3ABF-68B0EFBB5E94">
+<createdBy>1gdaw03</createdBy>
+<createdTime>2024-04-23 10:29:23 UTC</createdTime>
+<ownerDesignName>MER RETO</ownerDesignName>
+<engineerTo>
+<item key="1DE8E9BE-AAB6-9B0B-CD23-E6DF8AC594DC" value="true"/>
+</engineerTo>
+<targetPk>B5F86DE4-DEB9-5E6A-728C-8D8B30785AC0</targetPk>
+<identifying>false</identifying>
+<nameOnSource>es parte</nameOnSource>
+<nameOnTarget>tiene</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>B2233898-E8E3-6772-D5DD-F9F065D3A3CB</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>BEB972AA-FF3B-EDAC-4601-CB12CDC35AE3</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
