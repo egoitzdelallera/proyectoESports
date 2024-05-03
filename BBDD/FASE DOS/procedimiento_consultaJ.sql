@@ -22,9 +22,11 @@ BEGIN
         enfrentamiento.hora || CHR(10);
         v_resultado := v_resultado || '-------------------------' || CHR(10);
     END LOOP;
-    
-    p_resultado := v_resultado;
-END obtener_enfrentamientos_texto;
+     p_resultado := v_resultado;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No se encontraron datos.');
+END consultar_jornada;
 
 
 
