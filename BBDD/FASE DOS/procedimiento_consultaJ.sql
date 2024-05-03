@@ -9,9 +9,9 @@ BEGIN
     FOR enfrentamiento IN (
         SELECT e1.nombre AS equipo_local, e2.nombre AS equipo_visitante, f.hora
         FROM enfrentamientos f
-        INNER JOIN equipos e1 ON f.id_equipo_local = e1.id_equipo
-        INNER JOIN equipos e2 ON f.id_equipo_visitante = e2.id_equipo
-        INNER JOIN jornadas j ON f.id_jornada = j.id_jornada
+        JOIN equipos e1 ON f.id_equipo_local = e1.id_equipo
+        JOIN equipos e2 ON f.id_equipo_visitante = e2.id_equipo
+        JOIN jornadas j ON f.id_jornada = j.id_jornada
         WHERE j.n_jornada = p_n_jornada AND j.id_competicion = p_id_competicion
     ) LOOP
         v_resultado := v_resultado || 'Equipo Local: ' ||
@@ -26,6 +26,8 @@ BEGIN
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
         DBMS_OUTPUT.PUT_LINE('No se encontraron datos.');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
 END consultar_jornada;
 
 
