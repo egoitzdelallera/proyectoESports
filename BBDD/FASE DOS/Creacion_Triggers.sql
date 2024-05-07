@@ -1,4 +1,4 @@
--- CONTROLAR QUE EL NUMERO DE JUGADORES ESTÁ ENTRE 2 Y 6
+-- CONTROLAR QUE EL NUMERO DE JUGADORES ESTï¿½ ENTRE 2 Y 6
 
 CREATE OR REPLACE TRIGGER controlar_max_jugadores
 BEFORE INSERT OR UPDATE ON jugadores
@@ -6,15 +6,15 @@ FOR EACH ROW
 DECLARE
     v_cantidad_jugadores NUMBER;
 BEGIN
-    -- Hacemos el select para saber cuántos jugadores hay de cada equipo
+    -- Hacemos el select para saber cuï¿½ntos jugadores hay de cada equipo
     SELECT COUNT(*)
     INTO v_cantidad_jugadores
     FROM jugadores
     WHERE id_equipo = :new.id_equipo;
 
-    -- Verificar si la cantidad de jugadores supera el límite
+    -- Verificar si la cantidad de jugadores supera el lï¿½mite
     IF v_cantidad_jugadores >= 6 THEN
-        RAISE_APPLICATION_ERROR(-20011, 'No se pueden agregar más de 6 jugadores
+        RAISE_APPLICATION_ERROR(-20011, 'No se pueden agregar mï¿½s de 6 jugadores
         en un equipo');
     END IF;
 END;
@@ -28,14 +28,14 @@ FOR EACH ROW
 DECLARE
     v_num_entrenadores NUMBER;
 BEGIN
-    -- Contar el número de entrenadores del equipo en la competición
+    -- Contar el nï¿½mero de entrenadores del equipo en la competiciï¿½n
     SELECT COUNT(*)
     INTO v_num_entrenadores
     FROM staff
     WHERE id_equipo = :NEW.id_equipo
     AND puesto = 'Entrenador';
 
-    -- Excepción en caso de que el número de entrenadores sea 0
+    -- Excepciï¿½n en caso de que el nï¿½mero de entrenadores sea 0
     IF v_num_entrenadores = 0 THEN
         RAISE_APPLICATION_ERROR(-20014, 'Debe haber al menos un entrenador en 
         cada equipo');
@@ -51,21 +51,21 @@ FOR EACH ROW
 DECLARE
     v_num_equipos NUMBER;
 BEGIN
-    -- Contar el número de equipos participantes en la competición
+    -- Contar el nï¿½mero de equipos participantes en la competiciï¿½n
     SELECT COUNT(*)
     INTO v_num_equipos
     FROM participaciones
     WHERE id_competicion = :NEW.id_competicion;
 
-    -- Excepción en caso de que el número de equipos sea impar
+    -- Excepciï¿½n en caso de que el nï¿½mero de equipos sea impar
     IF MOD(v_num_equipos, 2) <> 0 THEN
-        RAISE_APPLICATION_ERROR(-20016, 'El número de equipos en una competición
+        RAISE_APPLICATION_ERROR(-20016, 'El nï¿½mero de equipos en una competiciï¿½n
         debe ser par');
     END IF;
 END;
 /
 
--- CONTROLAR QUE LA SUMA DE SUELDOS DE UN EQUIPO NO SUPERE LOS 20000€
+-- CONTROLAR QUE LA SUMA DE SUELDOS DE UN EQUIPO NO SUPERE LOS 20000ï¿½
 
 CREATE OR REPLACE TRIGGER controlar_sueldo_equipo
 BEFORE INSERT OR UPDATE ON jugadores
@@ -79,7 +79,7 @@ BEGIN
     FROM jugadores
     WHERE id_equipo = :NEW.id_equipo;
 
-    -- Excepción en caso de que la suma de sueldos supere los 20000€
+    -- Excepciï¿½n en caso de que la suma de sueldos supere los 20000ï¿½
     IF v_sueldo_total + NVL(:NEW.sueldo, 0) > 20000 THEN
         RAISE_APPLICATION_ERROR(-20015, 'La suma de los sueldos de los jugadores
         no puede superar los 20.000 euros');
@@ -95,17 +95,12 @@ FOR EACH ROW
 DECLARE
     v_estado competiciones.estado%TYPE;
 BEGIN
-    -- Obtener el estado de la competición
-    SELECT estado INTO v_estado
-    FROM competiciones
-    WHERE id_competicion = 
-    (SELECT id_competicion FROM participaciones 
-    WHERE id_equipo = :NEW.id_equipo);
-
-    -- Excepción en caso de que la competición esté cerrada
+    -- Verificar si la competiciÃ³n estÃ¡ abierta o cerrada
+    verificar_competicion(:NEW.id_equipo, v_estado);
+    
+    -- ExcepciÃ³n en caso de que la competiciÃ³n estÃ© cerrada
     IF v_estado = 1 THEN
-        RAISE_APPLICATION_ERROR(-20001, 'No se puede realizar esta operación 
-        porque la competición está cerrada.');
+        RAISE_APPLICATION_ERROR(-20001, 'No se puede realizar esta operaciÃ³n porque la competiciÃ³n estÃ¡ cerrada.');
     END IF;
 END;
 /
@@ -116,61 +111,44 @@ FOR EACH ROW
 DECLARE
     v_estado competiciones.estado%TYPE;
 BEGIN
-    -- Obtener el estado de la competición
-    SELECT estado INTO v_estado
-    FROM competiciones
-    WHERE id_competicion = 
-    (SELECT id_competicion FROM participaciones
-    WHERE id_equipo = :OLD.id_equipo);
+    -- Obtener el estado de la competiciÃ³n
+    verificar_competicion(:OLD.id_equipo, v_estado);
 
-    -- Excepción en caso de que la competición esté cerrada
+    -- ExcepciÃ³n en caso de que la competiciÃ³n estÃ© cerrada
     IF v_estado = 1 THEN
-        RAISE_APPLICATION_ERROR(-20002, 'No se puede eliminar este registro 
-        porque la competición está cerrada.');
+        RAISE_APPLICATION_ERROR(-20002, 'No se puede eliminar este registro porque la competiciÃ³n estÃ¡ cerrada.');
     END IF;
 END;
 /
+
 CREATE OR REPLACE TRIGGER competicion_cerrada_insert_ju
 BEFORE INSERT OR UPDATE ON jugadores
 FOR EACH ROW
 DECLARE
     v_estado competiciones.estado%TYPE;
 BEGIN
-    -- Obtener el estado de la competición
-    SELECT estado INTO v_estado
-    FROM competiciones
-    WHERE id_competicion = 
-    (SELECT id_competicion FROM participaciones 
-    WHERE id_equipo =
-    (SELECT id_equipo FROM jugadores WHERE id_equipo = :NEW.id_equipo));
-
-    -- Excepción en caso de que la competición esté cerrada
+    -- Obtener el estado de la competiciÃ³n
+    verificar_competicion(:NEW.id_equipo, v_estado);
+    
+    -- ExcepciÃ³n en caso de que la competiciÃ³n estÃ© cerrada
     IF v_estado = 1 THEN
-        RAISE_APPLICATION_ERROR(-20001, 'No se puede realizar esta operación 
-        porque la competición está cerrada.');
+        RAISE_APPLICATION_ERROR(-20003, 'No se puede realizar esta operaciÃ³n porque la competiciÃ³n estÃ¡ cerrada.');
     END IF;
 END;
 /
 
 CREATE OR REPLACE TRIGGER competicion_cerrada_delete_ju
-BEFORE DELETE ON equipos
+BEFORE DELETE ON jugadores
 FOR EACH ROW
 DECLARE
     v_estado competiciones.estado%TYPE;
 BEGIN
-    -- Obtener el estado de la competición
-    SELECT estado INTO v_estado
-    FROM competiciones
-    WHERE id_competicion = 
-    (SELECT id_competicion FROM participaciones
-    WHERE id_equipo = 
-    (SELECT id_equipo FROM jugadores WHERE id_equipo = :NEW.id_equipo));
+    -- Obtener el estado de la competiciÃ³n
+    verificar_competicion(:OLD.id_equipo, v_estado);
 
-    -- Excepción en caso de que la competición esté cerrada
+    -- ExcepciÃ³n en caso de que la competiciÃ³n estÃ© cerrada
     IF v_estado = 1 THEN
-        RAISE_APPLICATION_ERROR(-20002, 'No se puede eliminar este registro 
-        porque la competición está cerrada.');
+        RAISE_APPLICATION_ERROR(-20004, 'No se puede eliminar este registro porque la competiciÃ³n estÃ¡ cerrada.');
     END IF;
 END;
-
-    
+/
