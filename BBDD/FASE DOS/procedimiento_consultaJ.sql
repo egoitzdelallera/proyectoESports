@@ -29,8 +29,27 @@ EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
 END consultar_jornada;
+/
 
-
+CREATE OR REPLACE PROCEDURE verificar_competicion (
+    p_id_equipo equipos.id_equipo%TYPE,
+    p_estado OUT competiciones.estado%TYPE
+)
+IS
+BEGIN
+    -- Obtener el estado de la competición
+    SELECT estado INTO p_estado
+    FROM competiciones
+    WHERE id_competicion IN (
+        SELECT id_competicion
+        FROM participaciones 
+        WHERE id_equipo = p_id_equipo
+    );
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        p_estado := NULL; -- No hacemos nada si no se encuentra la competición
+END verificar_competicion;
+/
 
 
 
