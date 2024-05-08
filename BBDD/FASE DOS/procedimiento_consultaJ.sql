@@ -50,21 +50,3 @@ EXCEPTION
         p_estado := NULL; -- No hacemos nada si no se encuentra la competición
 END verificar_competicion;
 /
-
-
-
-
---PROCEDIMIENTO ANONIMO
-
-DECLARE
-    comprobacion VARCHAR2(4000); 
-BEGIN
-    
-    consultar_jornada(1, 1, comprobacion); 
-
-    DBMS_OUTPUT.PUT_LINE('Resultado de los enfrentamientos:');
-    DBMS_OUTPUT.PUT_LINE(v_texto_enfrentamientos);
-END;
-
-
-
