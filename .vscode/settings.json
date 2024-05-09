@@ -1,0 +1,21 @@
+{
+    "sqltools.connections": [
+        {
+            "oracleOptions": {
+                "privilege": "Normal",
+                "thickMode": false,
+                "autoCommit": true,
+                "lowerCase": false,
+                "limitPrefetchRows": false
+            },
+            "previewLimit": 50,
+            "server": "172.20.225.114",
+            "port": 1521,
+            "driver": "Oracle",
+            "name": "eqdaw02",
+            "database": "eqdaw02",
+            "username": "eqdaw02",
+            "password": "eqdaw02"
+        }
+    ]
+}
