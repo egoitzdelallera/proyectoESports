@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<jornadas>
+ <jornada>
+  <N_JORNADA>1</N_JORNADA>
+  <EQUIPO_LOCAL>Team Alpha</EQUIPO_LOCAL>
+  <EQUIPO_VISITANTE>Team Beta</EQUIPO_VISITANTE>
+  <RESULTADO>Sin Resultado</RESULTADO>
+ </jornada>
+</jornadas>
