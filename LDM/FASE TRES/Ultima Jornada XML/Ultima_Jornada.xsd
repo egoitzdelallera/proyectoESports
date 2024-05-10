@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Definición del elemento clasificacion -->
+  <xs:element name="clasificacion">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- Definición del elemento jornada -->
+        <xs:element name="jornada" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="N_JORNADA" type="xs:integer"/>
+              <xs:element name="EQUIPO_LOCAL" type="xs:string"/>
+              <xs:element name="EQUIPO_VISITANTE" type="xs:string"/>
+              <xs:element name="RESULTADO" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
