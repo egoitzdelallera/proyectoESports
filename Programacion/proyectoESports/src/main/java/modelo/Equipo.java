@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 
+@SuppressWarnings("JpaAttributeTypeInspection")
 @Entity
 @Table(name = "EQUIPOS", schema = "EQDAW02", catalog = "")
 public class Equipo {
@@ -18,6 +20,7 @@ public class Equipo {
     @Basic
     @Column(name = "FECHA_FUNDACION", nullable = true)
     private Date fechaFundacion;
+    private List<Patrocinador> listaPatrocinadores;
     @OneToMany(mappedBy = "equiposByIdEquipoLocal")
     private Collection<Enfrentamiento> enfrentamientosByIdEquipo;
     @OneToMany(mappedBy = "equiposByIdEquipoVisitante")
@@ -28,8 +31,6 @@ public class Equipo {
     private Collection<Jugador> jugadoresByIdEquipo;
     @OneToMany(mappedBy = "equiposByIdEquipo")
     private Collection<Participacion> participacionesByIdEquipo;
-    @OneToMany(mappedBy = "equiposByIdEquipo")
-    private Collection<Patrocinio> patrociniosByIdEquipo;
     @OneToMany(mappedBy = "equiposByIdEquipo")
     private Collection<Staff> staffByIdEquipo;
 
@@ -118,14 +119,6 @@ public class Equipo {
 
     public void setParticipacionesByIdEquipo(Collection<Participacion> participacionesByIdEquipo) {
         this.participacionesByIdEquipo = participacionesByIdEquipo;
-    }
-
-    public Collection<Patrocinio> getPatrociniosByIdEquipo() {
-        return patrociniosByIdEquipo;
-    }
-
-    public void setPatrociniosByIdEquipo(Collection<Patrocinio> patrociniosByIdEquipo) {
-        this.patrociniosByIdEquipo = patrociniosByIdEquipo;
     }
 
     public Collection<Staff> getStaffByIdEquipo() {
