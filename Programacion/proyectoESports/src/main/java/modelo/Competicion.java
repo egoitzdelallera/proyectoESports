@@ -8,7 +8,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "COMPETICIONES", schema = "EQDAW02", catalog = "")
 public class Competicion {
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID_COMPETICION", nullable = false, precision = 0)
     private byte idCompeticion;
@@ -24,9 +24,6 @@ public class Competicion {
     @Basic
     @Column(name = "ESTADO", nullable = true, precision = 0)
     private Boolean estado;
-    @Basic
-    @Column(name = "ID_JUEGO", nullable = true, precision = 0)
-    private Byte idJuego;
     @ManyToOne
     @JoinColumn(name = "ID_JUEGO", referencedColumnName = "ID_JUEGO")
     private Juego juegosByIdJuego;
@@ -75,14 +72,6 @@ public class Competicion {
         this.estado = estado;
     }
 
-    public Byte getIdJuego() {
-        return idJuego;
-    }
-
-    public void setIdJuego(Byte idJuego) {
-        this.idJuego = idJuego;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,7 +84,6 @@ public class Competicion {
         if (fechaInicio != null ? !fechaInicio.equals(that.fechaInicio) : that.fechaInicio != null) return false;
         if (fechaFin != null ? !fechaFin.equals(that.fechaFin) : that.fechaFin != null) return false;
         if (estado != null ? !estado.equals(that.estado) : that.estado != null) return false;
-        if (idJuego != null ? !idJuego.equals(that.idJuego) : that.idJuego != null) return false;
 
         return true;
     }
@@ -107,7 +95,6 @@ public class Competicion {
         result = 31 * result + (fechaInicio != null ? fechaInicio.hashCode() : 0);
         result = 31 * result + (fechaFin != null ? fechaFin.hashCode() : 0);
         result = 31 * result + (estado != null ? estado.hashCode() : 0);
-        result = 31 * result + (idJuego != null ? idJuego.hashCode() : 0);
         return result;
     }
 
