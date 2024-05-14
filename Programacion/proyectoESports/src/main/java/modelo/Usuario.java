@@ -3,7 +3,7 @@ package modelo;
 import jakarta.persistence.*;
 
 @Entity
-public class Usuarios {
+public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID_USUARIO", nullable = false, precision = 0)
@@ -55,7 +55,7 @@ public class Usuarios {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Usuarios usuarios = (Usuarios) o;
+        Usuario usuarios = (Usuario) o;
 
         if (idUsuario != usuarios.idUsuario) return false;
         if (nombre != null ? !nombre.equals(usuarios.nombre) : usuarios.nombre != null) return false;
