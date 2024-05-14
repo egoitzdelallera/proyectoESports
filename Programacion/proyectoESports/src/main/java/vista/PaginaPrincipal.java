@@ -12,7 +12,7 @@ public class PaginaPrincipal extends JFrame {
     private JButton bPatrocinadores;
     private JButton bEquipos;
     private JButton bCompeticiones;
-    private JButton salirButton;
+    private JButton bSalir;
     private JButton bClasificacion;
     private JButton bResultados;
 
@@ -48,6 +48,9 @@ public class PaginaPrincipal extends JFrame {
     }
     public void addBResultadosAl (ActionListener al){
         bResultados.addActionListener(al);
+    }
+    public void addBSalirAl (ActionListener al){
+        bSalir.addActionListener(al);
     }
 
 

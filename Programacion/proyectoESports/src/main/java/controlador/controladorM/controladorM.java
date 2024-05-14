@@ -1,4 +1,4 @@
 package controlador.controladorM;
 
-public class controladorM {
+public class ControladorM {
 }
