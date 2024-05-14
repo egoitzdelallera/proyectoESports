@@ -16,16 +16,15 @@ public class ControladorPPrincipal {
         // Crea, muestra y pone a escuchar la ventana principal.
         pp = new PaginaPrincipal();
 
-        pp.addBCompeticionesAl(new BCompeticionesAl());
+       // pp.addBCompeticionesAl(new BCompeticionesAl());
         pp.addBEquiposAl(new BEquiposAl());
-        pp.addBJuegosAl(new BJuegosAl());
-        pp.addBPatrocinadoresAl(new BPatrocinadoresAl());
-        pp.addBJugadoresAl(new BJugadoresAl());
-        pp.addBUsuariosAl(new BUsuariosAl());
-        pp.addBStaffAl(new BStaffAl());
-        pp.addBClasificacionAl(new BClasificacionAl());
-        pp.addBResultadosAl(new BResultadosAl());
-
+       // pp.addBJuegosAl(new BJuegosAl());
+       // pp.addBPatrocinadoresAl(new BPatrocinadoresAl());
+       // pp.addBJugadoresAl(new BJugadoresAl());
+       // pp.addBUsuariosAl(new BUsuariosAl());
+       // pp.addBStaffAl(new BStaffAl());
+        /*pp.addBClasificacionAl(new BClasificacionAl());
+        pp.addBResultadosAl(new BResultadosAl());*/
         pp.addBSalirAl(new BSalirAl());
 
         pp.setVisible(true);
@@ -37,7 +36,7 @@ public class ControladorPPrincipal {
             cv.mostrarEquipos();
         }
     }
-    public class BCompeticionesAl implements ActionListener {
+   /* public class BCompeticionesAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -78,12 +77,15 @@ public class ControladorPPrincipal {
 
             cv.mostrarPatrocinadores();
         }
-    }
+    }*/
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
-           System.exit(0);
+            try {
+                cv.terminar();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 }
