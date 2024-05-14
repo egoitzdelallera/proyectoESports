@@ -20,16 +20,16 @@ public class VistaJugadores extends JFrame{
     private JTextField tfNickname;
     private JTextField tfRol;
     private JTextField tfSueldo;
-    private JComboBox cbEquipo;
-    private JCalendar cFecha;
+    private JComboBox cbEquipos;
+    //private JCalendar cFecha;
 
     public VistaJugadores() {
         super("Jugadores");
         setContentPane(panelPrincipal);
         setSize(500,1000);
         setLocationRelativeTo(null);
-        cFecha = new JCalendar();
-        pFecha.add(cFecha);
+        //cFecha = new JCalendar();
+        //pFecha.add(cFecha);
     }
 
     public void addBEditarAl (ActionListener al){
@@ -47,7 +47,8 @@ public class VistaJugadores extends JFrame{
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
     }
-    public void addCBEquipoAl(ActionListener al) {cbEquipo.addActionListener(al);}
+    public void addCBEquipoAl(ActionListener al) {
+        cbEquipos.addActionListener(al);}
 
     public JPanel getPanelPrincipal() {
         return panelPrincipal;
@@ -146,13 +147,14 @@ public class VistaJugadores extends JFrame{
     }
 
     public JComboBox getCbEquipo() {
-        return cbEquipo;
+        return cbEquipos;
     }
 
     public void setCbEquipo(JComboBox cbEquipo) {
-        this.cbEquipo = cbEquipo;
+        this.cbEquipos = cbEquipo;
     }
 
+    /*
     public JCalendar getcFecha() {
         return cFecha;
     }
@@ -160,4 +162,6 @@ public class VistaJugadores extends JFrame{
     public void setcFecha(JCalendar cFecha) {
         this.cFecha = cFecha;
     }
+
+     */
 }
