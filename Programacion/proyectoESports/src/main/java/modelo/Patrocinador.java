@@ -3,9 +3,7 @@ package modelo;
 import jakarta.persistence.*;
 
 import java.util.Collection;
-import java.util.List;
 
-@SuppressWarnings("JpaAttributeTypeInspection")
 @Entity
 @Table(name = "PATROCINADORES", schema = "EQDAW02", catalog = "")
 public class Patrocinador {
@@ -16,8 +14,8 @@ public class Patrocinador {
     @Basic
     @Column(name = "NOMBRE", nullable = true, length = 50)
     private String nombre;
-
-    private List<Equipo> listaEquipos;
+    @OneToMany(mappedBy = "patrocinadoresByIdPatrocinador")
+    private Collection<Patrocinio> patrociniosByIdPatrocinador;
 
     public byte getIdPatrocinador() {
         return idPatrocinador;
@@ -53,5 +51,13 @@ public class Patrocinador {
         int result = (int) idPatrocinador;
         result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
         return result;
+    }
+
+    public Collection<Patrocinio> getPatrociniosByIdPatrocinador() {
+        return patrociniosByIdPatrocinador;
+    }
+
+    public void setPatrociniosByIdPatrocinador(Collection<Patrocinio> patrociniosByIdPatrocinador) {
+        this.patrociniosByIdPatrocinador = patrociniosByIdPatrocinador;
     }
 }
