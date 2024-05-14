@@ -18,6 +18,7 @@ public class VistaLogin extends JDialog {
         setLocationRelativeTo(null);
     }
 
+
     public JButton getbEntrar() {
         return bEntrar;
     }

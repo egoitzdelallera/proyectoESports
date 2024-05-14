@@ -1,26 +1,28 @@
 package controlador.controladorV;
 
-import vista.VistaEquipos;
+
+import vista.VistaJugadores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControladorVJugadores {
-    private VistaEquipos ve;
+    private VistaJugadores vjd;
     private ControladorV cv;
     public ControladorVJugadores(ControladorV cv) {
         this.cv = cv;
     }
     public void mostrarJugadores() {
-        ve = new VistaJugadores();
+        vjd = new VistaJugadores();
 
-        ve.addBAceptarAl(new BAceptarAl());
-        ve.addBBorrarAl(new BBorrarAl());
-        ve.addBEditarAl(new BEditarAl());
-        ve.addCbEquiposAl(new CbEquiposAl());
-        ve.addBSalirAl(new BSalirAl());
+       // vjd.addBAceptarAl(new BAceptarAl());
+       // vjd.addBBorrarAl(new BBorrarAl());
+       // vjd.addBEditarAl(new BEditarAl());
+       // vjd.addCbJugadoresAl(new CbJugadoresAl());
+       // vjd.addCBEquiposAl(new CbEquiposAl());
+       // vjd.addBSalirAl(new BSalirAl());
 
-        ve.getPanelComboBox().setVisible(true);
+        vjd.getPanelComboBox().setVisible(true);
     }
 
     public class BSalirAl implements ActionListener {
