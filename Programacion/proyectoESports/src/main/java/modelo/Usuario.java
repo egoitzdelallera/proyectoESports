@@ -3,10 +3,9 @@ package modelo;
 import jakarta.persistence.*;
 
 @Entity
-<<<<<<< HEAD
-=======
+
 @Table(name = "USUARIOS", schema = "EQDAW02", catalog = "")
->>>>>>> develop
+
 public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -59,11 +58,11 @@ public class Usuario {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-<<<<<<< HEAD
+
         Usuario usuarios = (Usuario) o;
-=======
+
         Usuario usuario = (Usuario) o;
->>>>>>> develop
+
 
         if (idUsuario != usuario.idUsuario) return false;
         if (nombre != null ? !nombre.equals(usuario.nombre) : usuario.nombre != null) return false;
