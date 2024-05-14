@@ -1,0 +1,13 @@
+<!ELEMENT competiciones (competicion+)>
+<!ELEMENT competicion (id_competicion, nombre, juego, equipos, fecha)>
+
+<!ELEMENT id_competicion (#PCDATA)>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT fecha (#PCDATA)>
+
+<!ELEMENT juego (id, nombre)>
+<!ELEMENT id (#PCDATA)>
+
+<!ELEMENT equipos (equipo+)>
+<!ELEMENT equipo (id, nombre, puntos_totales)>
+<!ELEMENT puntos_totales (#PCDATA)>
