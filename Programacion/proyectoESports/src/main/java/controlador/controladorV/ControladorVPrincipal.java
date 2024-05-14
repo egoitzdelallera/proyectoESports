@@ -5,11 +5,11 @@ import vista.PaginaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ControladorPPrincipal {
+public class ControladorVPrincipal {
 
     private PaginaPrincipal pp;
     private ControladorV cv;
-    public ControladorPPrincipal(ControladorV cv) {
+    public ControladorVPrincipal(ControladorV cv) {
         this.cv = cv;
     }
     public void mostrarPrincipal() {
@@ -20,7 +20,7 @@ public class ControladorPPrincipal {
         pp.addBEquiposAl(new BEquiposAl());
        // pp.addBJuegosAl(new BJuegosAl());
        // pp.addBPatrocinadoresAl(new BPatrocinadoresAl());
-       // pp.addBJugadoresAl(new BJugadoresAl());
+        pp.addBJugadoresAl(new BJugadoresAl());
        // pp.addBUsuariosAl(new BUsuariosAl());
        // pp.addBStaffAl(new BStaffAl());
         /*pp.addBClasificacionAl(new BClasificacionAl());
@@ -49,7 +49,7 @@ public class ControladorPPrincipal {
 
             cv.mostrarJuegos();
         }
-    }
+    }*/
     public class BJugadoresAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -57,6 +57,7 @@ public class ControladorPPrincipal {
             cv.mostrarJugadores();
         }
     }
+    /*
     public class BUsuariosAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

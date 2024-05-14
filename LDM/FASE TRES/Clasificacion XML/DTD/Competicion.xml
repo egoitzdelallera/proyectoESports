@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE competiciones SYSTEM "Competicion.dtd">
+<competiciones>
+    <competicion>
+        <id_competicion>1</id_competicion>
+        <nombre>Campeonato Internacional</nombre>
+        <juego>
+            <id>1</id>
+            <nombre>League of Legends</nombre>
+        </juego>
+        <equipos>
+            <equipo>
+                <id>1</id>
+                <nombre>Equipo Alpha</nombre>
+                <puntos_totales>30</puntos_totales>
+            </equipo>
+            <equipo>
+                <id>2</id>
+                <nombre>Equipo Beta</nombre>
+                <puntos_totales>28</puntos_totales>
+            </equipo>
+            <equipo>
+                <id>3</id>
+                <nombre>Equipo Gamma</nombre>
+                <puntos_totales>25</puntos_totales>
+            </equipo>
+        </equipos>
+        <fecha>2024-05-14</fecha>
+    </competicion>
+    <competicion>
+        <id_competicion>2</id_competicion>
+        <nombre>Torneo Nacional</nombre>
+        <juego>
+            <id>2</id>
+            <nombre>Counter-Strike: Global Offensive</nombre>
+        </juego>
+        <equipos>
+            <equipo>
+                <id>4</id>
+                <nombre>Equipo Delta</nombre>
+                <puntos_totales>35</puntos_totales>
+            </equipo>
+            <equipo>
+                <id>5</id>
+                <nombre>Equipo Epsilon</nombre>
+                <puntos_totales>32</puntos_totales>
+            </equipo>
+            <equipo>
+                <id>6</id>
+                <nombre>Equipo Zeta</nombre>
+                <puntos_totales>29</puntos_totales>
+            </equipo>
+        </equipos>
+        <fecha>2024-06-20</fecha>
+    </competicion>
+</competiciones>

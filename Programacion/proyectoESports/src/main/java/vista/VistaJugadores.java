@@ -1,5 +1,7 @@
 package vista;
 
+import com.toedter.calendar.JCalendar;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
@@ -21,7 +23,10 @@ public class VistaJugadores extends JFrame{
     private JTextField tfRol;
     private JTextField tfSueldo;
     private JComboBox cbEquipos;
+
     //private JCalendar cFecha;
+
+
 
     public VistaJugadores() {
         super("Jugadores");
@@ -47,8 +52,10 @@ public class VistaJugadores extends JFrame{
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
     }
+
     public void addCBEquipoAl(ActionListener al) {
         cbEquipos.addActionListener(al);}
+
 
     public JPanel getPanelPrincipal() {
         return panelPrincipal;
@@ -146,11 +153,12 @@ public class VistaJugadores extends JFrame{
         this.tfSueldo = tfSueldo;
     }
 
-    public JComboBox getCbEquipo() {
+   
+
+    public JComboBox getCbEquipos() {
         return cbEquipos;
     }
-
-    public void setCbEquipo(JComboBox cbEquipo) {
+    public void setCbEquipos(JComboBox cbEquipo) {
         this.cbEquipos = cbEquipo;
     }
 
@@ -165,3 +173,4 @@ public class VistaJugadores extends JFrame{
 
      */
 }
+

@@ -8,7 +8,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "JUEGOS", schema = "EQDAW02", catalog = "")
 public class Juego {
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID_JUEGO", nullable = false, precision = 0)
     private byte idJuego;

@@ -1,21 +1,31 @@
+
 package controlador.controladorV;
 
 import controlador.ControladorPrincipal;
 
 public class ControladorV{
     private ControladorPrincipal cp;
-    private ControladorPPrincipal cpp;
+    private ControladorVPrincipal cpp;
     private ControladorVEquipos cve;
+    private ControladorVJugadores cvjd;
+    private ControladorVLogin cvp;
 
     public ControladorV(ControladorPrincipal cp) {
         this.cp = cp;
+        cvp = new ControladorVLogin(this);
+        cpp = new ControladorVPrincipal(this);
+        cve = new ControladorVEquipos(this);
+        cvjd = new ControladorVJugadores(this);
+
+        cvp.mostrarVentanaPrincipal();
     }
     public void mostrarEquipos(){
         cve.mostrarEquipos();
     }
-   /* public void mostrarJugadores(){
+    public void mostrarJugadores(){
         cvjd.mostrarJugadores();
     }
+    /*
     public void mostrarCompeticiones(){
         cvc.mostrarCompeticiones();
     }
@@ -41,3 +51,4 @@ public class ControladorV{
         cp.terminar();
     }
 }
+

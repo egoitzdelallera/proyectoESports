@@ -16,10 +16,10 @@ public class ControladorVEquipos {
     public void mostrarEquipos() {
         ve = new VistaEquipos();
 
-        ve.addBAceptarAl(new BAceptarAl());
-        ve.addBBorrarAl(new BBorrarAl());
-        ve.addBEditarAl(new BEditarAl());
-        ve.addCbEquiposAl(new CbEquiposAl());
+       // ve.addBAceptarAl(new BAceptarAl());
+       // ve.addBBorrarAl(new BBorrarAl());
+       // ve.addBEditarAl(new BEditarAl());
+       // ve.addCbEquiposAl(new CbEquiposAl());
         ve.addBSalirAl(new BSalirAl());
 
         ve.getPanelComboBox().setVisible(true);
