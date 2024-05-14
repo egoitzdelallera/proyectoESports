@@ -15,7 +15,7 @@
       <class>modelo.Patrocinador</class>
       <class>modelo.Patrocinio</class>
       <class>modelo.Staff</class>
-      <class>modelo.Usuarios</class>
+      <class>modelo.Usuario</class>
       <properties>
           <property name="toplink.jdbc.url" value="jdbc:oracle:thin:@172.20.225.114:1521:orcl"/>
           <property name="toplink.jdbc.driver" value="oracle.jdbc.OracleDriver"/>

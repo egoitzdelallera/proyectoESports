@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "PARTICIPACIONES", schema = "EQDAW02", catalog = "")
-@IdClass(modelo.ParticipacionPK.class)
 public class Participacion {
     @Basic
     @Column(name = "PUNTUACION", nullable = true, precision = 0)
@@ -55,31 +54,5 @@ public class Participacion {
 
     public void setCompeticionesByIdCompeticion(Competicion competicionesByIdCompeticion) {
         this.competicionesByIdCompeticion = competicionesByIdCompeticion;
-    }
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "ID_EQUIPO", nullable = false, precision = 0)
-    private byte idEquipo;
-
-    public byte getIdEquipo() {
-        return idEquipo;
-    }
-
-    public void setIdEquipo(byte idEquipo) {
-        this.idEquipo = idEquipo;
-    }
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "ID_COMPETICION", nullable = false, precision = 0)
-    private byte idCompeticion;
-
-    public byte getIdCompeticion() {
-        return idCompeticion;
-    }
-
-    public void setIdCompeticion(byte idCompeticion) {
-        this.idCompeticion = idCompeticion;
     }
 }
