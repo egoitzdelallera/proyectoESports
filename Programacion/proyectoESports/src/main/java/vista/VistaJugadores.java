@@ -1,15 +1,3 @@
-<<<<<<< main
-package vista;
-
-import javax.swing.*;
-
-public class VistaJugadores {
-    private JComboBox comboBox1;
-    private JTextArea textArea1;
-    private JButton editarButton;
-    private JButton borrarButton;
-}
-=======
 package vista;
 
 import com.toedter.calendar.JCalendar;
@@ -35,15 +23,18 @@ public class VistaJugadores extends JFrame{
     private JTextField tfRol;
     private JTextField tfSueldo;
     private JComboBox cbEquipos;
-    private JCalendar cFecha;
+
+    //private JCalendar cFecha;
+
+
 
     public VistaJugadores() {
         super("Jugadores");
         setContentPane(panelPrincipal);
         setSize(500,1000);
         setLocationRelativeTo(null);
-        cFecha = new JCalendar();
-        pFecha.add(cFecha);
+        //cFecha = new JCalendar();
+        //pFecha.add(cFecha);
     }
 
     public void addBEditarAl (ActionListener al){
@@ -61,7 +52,10 @@ public class VistaJugadores extends JFrame{
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
     }
-    public void addCBEquiposAl(ActionListener al) {cbEquipos.addActionListener(al);}
+
+    public void addCBEquipoAl(ActionListener al) {
+        cbEquipos.addActionListener(al);}
+
 
     public JPanel getPanelPrincipal() {
         return panelPrincipal;
@@ -159,14 +153,16 @@ public class VistaJugadores extends JFrame{
         this.tfSueldo = tfSueldo;
     }
 
+   
+
     public JComboBox getCbEquipos() {
         return cbEquipos;
     }
-
     public void setCbEquipos(JComboBox cbEquipo) {
         this.cbEquipos = cbEquipo;
     }
 
+    /*
     public JCalendar getcFecha() {
         return cFecha;
     }
@@ -174,5 +170,7 @@ public class VistaJugadores extends JFrame{
     public void setcFecha(JCalendar cFecha) {
         this.cFecha = cFecha;
     }
+
+     */
 }
->>>>>>> main
+
