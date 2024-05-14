@@ -7,7 +7,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "JUGADORES", schema = "EQDAW02", catalog = "")
 public class Jugador {
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID_JUGADOR", nullable = false, precision = 0)
     private byte idJugador;

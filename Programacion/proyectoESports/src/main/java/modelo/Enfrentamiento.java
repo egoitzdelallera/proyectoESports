@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "ENFRENTAMIENTOS", schema = "EQDAW02", catalog = "")
 public class Enfrentamiento {
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID_ENFRENTAMIENTO", nullable = false, precision = 0)
     private byte idEnfrentamiento;
