@@ -9,10 +9,11 @@ public class ControladorVLogin {
     private ControladorV cv;
     private VistaLogin vl;
 
+
     public ControladorVLogin(ControladorV cv){
         this.cv = cv;
     }
-    public void mostrarVentanaPrincipal()
+    public void mostrarLogin()
     {
         // Area De login
         vl = new VistaLogin();
@@ -29,7 +30,7 @@ public class ControladorVLogin {
             var nombreUsuario = vl.getTfUsuario().getText();
             var contrasenaUsuario = vl.getTfContrasena().getText();
 
-
+            cv.mostrarPrincipal();
         }
     }
 
