@@ -5,27 +5,40 @@ import controlador.ControladorPrincipal;
 
 public class ControladorV{
     private ControladorPrincipal cp;
-    private ControladorVPrincipal cpp;
+    private ControladorVPrincipal cvpc;
     private ControladorVEquipos cve;
     private ControladorVJugadores cvjd;
-    private ControladorVLogin cvp;
+    private ControladorVLogin cl;
+    private ControladorVUsuarios cvu;
+    private ControladorVStaff cvs;
+    private ControladorVJuegos cvjg;
+    private ControladorVPatrocinadores cvpt;
+    private ControladorVCompeticiones cvc;
 
     public ControladorV(ControladorPrincipal cp) {
         this.cp = cp;
-        cvp = new ControladorVLogin(this);
-        cpp = new ControladorVPrincipal(this);
+        cl = new ControladorVLogin(this);
+        cvpc = new ControladorVPrincipal(this);
         cve = new ControladorVEquipos(this);
         cvjd = new ControladorVJugadores(this);
+        cvu = new ControladorVUsuarios(this);
+        cvs = new ControladorVStaff(this);
+        cvjg = new ControladorVJuegos(this);
+        cvpt = new ControladorVPatrocinadores(this);
+        cvc = new ControladorVCompeticiones(this);
 
-        cvp.mostrarVentanaPrincipal();
+        cl.mostrarLogin();
     }
     public void mostrarEquipos(){
         cve.mostrarEquipos();
     }
+    public void mostrarPrincipal(){
+        cvpc.mostrarPrincipal();
+    }
     public void mostrarJugadores(){
         cvjd.mostrarJugadores();
     }
-    /*
+
     public void mostrarCompeticiones(){
         cvc.mostrarCompeticiones();
     }
@@ -36,14 +49,12 @@ public class ControladorV{
         cvs.mostrarStaff();
     }
     public void mostrarPatrocinadores(){
-        cvp.mostrarPatrocinadores();
+        cvpt.mostrarPatrocinadores();
     }
     public void mostrarUsuarios(){
         cvu.mostrarUsuarios();
     }
-    public void mostrarPrincipal(){
-        cpp.mostrarPrincipal();
-    }*/
+
 
     public void terminar() throws Exception
     {

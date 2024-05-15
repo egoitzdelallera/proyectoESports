@@ -20,7 +20,7 @@ public class ControladorVJugadores {
        // vjd.addBEditarAl(new BEditarAl());
        // vjd.addCbJugadoresAl(new CbJugadoresAl());
        // vjd.addCBEquiposAl(new CbEquiposAl());
-       // vjd.addBSalirAl(new BSalirAl());
+        vjd.addBSalirAl(new BSalirAl());
 
         vjd.getPanelComboBox().setVisible(true);
     }
