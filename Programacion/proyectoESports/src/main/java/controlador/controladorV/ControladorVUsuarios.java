@@ -27,11 +27,7 @@ public class ControladorVUsuarios {
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-                cv.terminar();
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
+            vu.dispose();
         }
     }
 }

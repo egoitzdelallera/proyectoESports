@@ -28,11 +28,7 @@ public class ControladorVJugadores {
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-                cv.terminar();
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
+            vjd.dispose();
         }
     }
 }

@@ -18,7 +18,7 @@ public class ControladorVEquipos {
 
        // ve.addBAceptarAl(new BAceptarAl());
        // ve.addBBorrarAl(new BBorrarAl());
-       // ve.addBEditarAl(new BEditarAl());
+        ve.addBEditarAl(new BEditarAl());
        // ve.addCbEquiposAl(new CbEquiposAl());
         ve.addBSalirAl(new BSalirAl());
 
@@ -28,11 +28,13 @@ public class ControladorVEquipos {
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-                cv.terminar();
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
+            ve.dispose();
+        }
+    }
+    public class BEditarAl implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
         }
     }
 }

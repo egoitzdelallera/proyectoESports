@@ -16,13 +16,13 @@ public class ControladorVPrincipal {
         // Crea, muestra y pone a escuchar la ventana principal.
         pp = new PaginaPrincipal();
 
-       // pp.addBCompeticionesAl(new BCompeticionesAl());
+        pp.addBCompeticionesAl(new BCompeticionesAl());
         pp.addBEquiposAl(new BEquiposAl());
-       // pp.addBJuegosAl(new BJuegosAl());
-       // pp.addBPatrocinadoresAl(new BPatrocinadoresAl());
+        pp.addBJuegosAl(new BJuegosAl());
+        pp.addBPatrocinadoresAl(new BPatrocinadoresAl());
         pp.addBJugadoresAl(new BJugadoresAl());
-       // pp.addBUsuariosAl(new BUsuariosAl());
-       // pp.addBStaffAl(new BStaffAl());
+        pp.addBUsuariosAl(new BUsuariosAl());
+        pp.addBStaffAl(new BStaffAl());
         /*pp.addBClasificacionAl(new BClasificacionAl());
         pp.addBResultadosAl(new BResultadosAl());*/
         pp.addBSalirAl(new BSalirAl());
@@ -36,7 +36,7 @@ public class ControladorVPrincipal {
             cv.mostrarEquipos();
         }
     }
-   /* public class BCompeticionesAl implements ActionListener {
+    public class BCompeticionesAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -49,7 +49,7 @@ public class ControladorVPrincipal {
 
             cv.mostrarJuegos();
         }
-    }*/
+    }
     public class BJugadoresAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -57,7 +57,7 @@ public class ControladorVPrincipal {
             cv.mostrarJugadores();
         }
     }
-    /*
+
     public class BUsuariosAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -78,7 +78,7 @@ public class ControladorVPrincipal {
 
             cv.mostrarPatrocinadores();
         }
-    }*/
+    }
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
