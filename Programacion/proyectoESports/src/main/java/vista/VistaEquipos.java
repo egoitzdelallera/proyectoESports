@@ -1,6 +1,6 @@
 package vista;
 
-//import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JCalendar;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -18,15 +18,15 @@ public class VistaEquipos extends JFrame{
     private JPanel panelCrear;
     private JButton bAceptar;
     private JButton bSalir;
-    //private JCalendar cFecha;
+    private JCalendar cFecha;
 
     public VistaEquipos() {
         super("Equipos");
         setContentPane(panelPrincipal);
         setSize(500,500);
         setLocationRelativeTo(null);
-        //cFecha = new JCalendar();
-        //pFecha.add(cFecha);
+        cFecha = new JCalendar();
+        pFecha.add(cFecha);
     }
     public void addBEditarAl (ActionListener al){
         bEditar.addActionListener(al);
@@ -100,7 +100,7 @@ public class VistaEquipos extends JFrame{
         this.panelCrear = panelCrear;
     }
 
-    /*
+
     public JCalendar getcFecha() {
         return cFecha;
     }
@@ -108,5 +108,11 @@ public class VistaEquipos extends JFrame{
     public void setcFecha(JCalendar cFecha) {
         this.cFecha = cFecha;
     }
-    */
+
+    public void limpiar()
+    {
+        tfNombre.setText("");
+        tfNombre.requestFocus();
+    }
+
 }
