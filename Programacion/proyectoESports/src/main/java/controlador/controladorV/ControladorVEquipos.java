@@ -6,6 +6,7 @@ import vista.VistaEquipos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 public class ControladorVEquipos {
 
@@ -53,7 +54,13 @@ public class ControladorVEquipos {
         public void actionPerformed(ActionEvent e) {
             ve.getPanelCrear().setVisible(true);
             ve.getTfNombre().setText(eq.getNombre());
-            ve.getcFecha().setCalendar(eq.getFechaFundacion());
+
+            //Hay que cambiar el tipo de dato
+            java.util.Date fechaFundacion = eq.getFechaFundacion();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(fechaFundacion);
+            ve.getcFecha().setCalendar(calendar);
+
         }
     }
 
