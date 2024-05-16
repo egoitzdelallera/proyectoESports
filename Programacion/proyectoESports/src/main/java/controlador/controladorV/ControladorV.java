@@ -56,6 +56,13 @@ public class ControladorV{
     }
 
 
+    //Parte del Usuario
+    public Usuario buscarUsuario(String nombre) throws Exception
+    {
+        return cp.buscarUsuario(nombre);
+    }
+
+
     public void terminar() throws Exception
     {
         // Han hecho clic en el botón salir.

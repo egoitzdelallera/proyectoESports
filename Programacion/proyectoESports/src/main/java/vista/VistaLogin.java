@@ -58,4 +58,7 @@ public class VistaLogin extends JDialog {
     public void addBSalirAl(ActionListener al){
         bSalir.addActionListener(al);
     }
+    public void muestra(String mensaje){
+        JOptionPane.showMessageDialog(contentPane, mensaje);
+    }
 }
