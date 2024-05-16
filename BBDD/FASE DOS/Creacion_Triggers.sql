@@ -1,23 +1,29 @@
 -- CONTROLAR QUE EL NUMERO DE JUGADORES EST� ENTRE 2 Y 6
 
 CREATE OR REPLACE TRIGGER controlar_max_jugadores
-BEFORE INSERT OR UPDATE ON jugadores
-FOR EACH ROW
-DECLARE
+FOR INSERT OR UPDATE ON JUGADORES
+COMPOUND TRIGGER
     v_cantidad_jugadores NUMBER;
-BEGIN
-    -- Hacemos el select para saber cu�ntos jugadores hay de cada equipo
-    SELECT COUNT(*)
-    INTO v_cantidad_jugadores
-    FROM jugadores
-    WHERE id_equipo = :new.id_equipo;
+    v_id_equipo number(2);
 
-    -- Verificar si la cantidad de jugadores supera el l�mite
-    IF v_cantidad_jugadores >= 6 THEN
-        RAISE_APPLICATION_ERROR(-20011, 'No se pueden agregar m�s de 6 jugadores
-        en un equipo');
-    END IF;
-END;
+    BEFORE EACH ROW IS
+    begin
+      v_id_equipo := :new.id_equipo;
+    end before each row;
+    
+    after statement is
+    begin
+        SELECT COUNT(*)
+        INTO v_cantidad_jugadores
+        FROM jugadores
+        WHERE id_equipo = v_id_equipo;
+
+        IF v_cantidad_jugadores >= 6 THEN
+            RAISE_APPLICATION_ERROR(-20011, 'No se pueden agregar m�s de 6 jugadores en un equipo');
+        END IF;
+    end after statement;
+    
+END controlar_max_jugadores;
 /
 
 -- CONTROLAR QUE HAYA POR LO MENOS UN ENTRENADOR POR EQUIPO
@@ -67,25 +73,32 @@ END;
 
 -- CONTROLAR QUE LA SUMA DE SUELDOS DE UN EQUIPO NO SUPERE LOS 20000�
 
-CREATE OR REPLACE TRIGGER controlar_sueldo_equipo
-BEFORE INSERT OR UPDATE ON jugadores
-FOR EACH ROW
-DECLARE
+CREATE OR REPLACE TRIGGER CONTROLAR_SUELDO_EQUIPO
+FOR INSERT OR UPDATE ON JUGADORES
+COMPOUND TRIGGER
     v_sueldo_total NUMBER;
-BEGIN
-    -- Calculo de la suma de sueldos de los jugadores del equipo
-    SELECT SUM(sueldo)
-    INTO v_sueldo_total
-    FROM jugadores
-    WHERE id_equipo = :NEW.id_equipo;
+	v_new_equipo number(2);
 
-    -- Excepci�n en caso de que la suma de sueldos supere los 20000�
-    IF v_sueldo_total + NVL(:NEW.sueldo, 0) > 200000 THEN
-        RAISE_APPLICATION_ERROR(-20015, 'La suma de los sueldos de los jugadores
-        no puede superar los 20.000 euros');
-    END IF;
-END;
+    BEFORE EACH ROW IS
+    BEGIN
+        v_new_equipo := :new.id_equipo;
+    END BEFORE EACH ROW;
+
+    AFTER STATEMENT IS
+    BEGIN
+        SELECT SUM(sueldo)
+        INTO v_sueldo_total
+        FROM JUGADORES
+        WHERE ID_EQUIPO = v_new_equipo;
+
+        IF v_sueldo_total > 200000 THEN
+            RAISE_APPLICATION_ERROR(-20002, 'El sueldo total del equipo no puede superar los 200000');
+        END IF;
+    END AFTER STATEMENT;
+END CONTROLAR_SUELDO_EQUIPO;
 /
+
+
 
 -- CONTROLAR CAMBIOS CUANDO LA COMPETICION ESTE CERRADA
 
@@ -149,6 +162,82 @@ BEGIN
     -- Excepción en caso de que la competición esté cerrada
     IF v_estado = 1 THEN
         RAISE_APPLICATION_ERROR(-20004, 'No se puede eliminar este registro porque la competición está cerrada.');
+    END IF;
+END;
+/
+
+-- Los enfrentamientos los crea todos, en la misma jornada, por mas que intento no consigo hacer que cambien de jornada.
+CREATE OR REPLACE PROCEDURE crear_jornadas_competicion 
+    (p_id_competicion IN COMPETICIONES.ID_COMPETICION%TYPE)
+AS
+    v_total_equipos INTEGER;
+    v_total_jornadas INTEGER;
+    v_enfrentamientos_por_jornada INTEGER;
+    v_jornada INTEGER;
+    v_enfrentamiento_existe INTEGER;
+BEGIN
+    -- Contar los equipos
+    SELECT COUNT(*) INTO v_total_equipos
+    FROM PARTICIPACIONES
+    WHERE ID_COMPETICION = p_id_competicion;
+
+    -- Calcular el total de jornadas necesarias
+    v_total_jornadas := v_total_equipos - 1;
+
+    -- Calcular el total de enfrentamientos por jornada
+    v_enfrentamientos_por_jornada := CEIL(v_total_equipos / 2);
+
+    -- Crear jornadas
+    FOR i IN 1..v_total_jornadas LOOP
+        -- Crear una nueva jornada
+        INSERT INTO JORNADAS (ID_JORNADA, N_JORNADA, FECHA_JORNADA, ID_COMPETICION)
+        VALUES (JORNADAS_SEQ.NEXTVAL, i, SYSDATE + i, p_id_competicion);
+        
+        v_jornada := JORNADAS_SEQ.CURRVAL;
+        
+        -- Obtener los equipos para esta jornada
+        FOR e1 IN (SELECT ID_EQUIPO
+                   FROM PARTICIPACIONES
+                   WHERE ID_COMPETICION = p_id_competicion) LOOP
+            FOR e2 IN (SELECT ID_EQUIPO
+                       FROM PARTICIPACIONES
+                       WHERE ID_COMPETICION = p_id_competicion
+                         AND ID_EQUIPO > e1.ID_EQUIPO) LOOP
+                -- Verificar si el enfrentamiento ya existe
+                SELECT COUNT(*) INTO v_enfrentamiento_existe
+                FROM ENFRENTAMIENTOS
+                WHERE (ID_EQUIPO_LOCAL = e1.ID_EQUIPO AND ID_EQUIPO_VISITANTE = e2.ID_EQUIPO)
+                   OR (ID_EQUIPO_LOCAL = e2.ID_EQUIPO AND ID_EQUIPO_VISITANTE = e1.ID_EQUIPO);
+
+                -- Insertar el enfrentamiento si no se ha jugado antes
+                IF v_enfrentamiento_existe = 0 THEN
+                    INSERT INTO ENFRENTAMIENTOS (ID_ENFRENTAMIENTO, HORA, ID_JORNADA, ID_EQUIPO_LOCAL, ID_EQUIPO_VISITANTE)
+                    VALUES (ENFRENTAMIENTOS_SEQ.NEXTVAL, SYSTIMESTAMP, v_jornada, e1.ID_EQUIPO, e2.ID_EQUIPO);
+                    
+                    -- Salir del bucle si se alcanza el número de enfrentamientos por jornada
+                    IF SQL%ROWCOUNT = v_enfrentamientos_por_jornada THEN
+                        EXIT;
+                    END IF;
+                END IF;
+            END LOOP;
+            -- Salir del bucle externo si se alcanza el número de enfrentamientos por jornada
+            EXIT WHEN SQL%ROWCOUNT = v_enfrentamientos_por_jornada;
+        END LOOP;
+    END LOOP;
+    
+    DBMS_OUTPUT.PUT_LINE('Jornadas creadas para la competición ' || p_id_competicion || '.');
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error al crear las jornadas: ' || SQLERRM);
+END;
+/
+
+CREATE OR REPLACE TRIGGER cambiar_estado_competicion
+AFTER UPDATE OF ESTADO ON COMPETICIONES
+FOR EACH ROW
+BEGIN
+    IF :NEW.ESTADO = 1 AND :OLD.ESTADO = 0 THEN
+        crear_jornadas_competicion(:NEW.ID_COMPETICION);
     END IF;
 END;
 /

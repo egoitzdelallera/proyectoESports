@@ -38,15 +38,20 @@ CREATE OR REPLACE PROCEDURE verificar_competicion (
 IS
 BEGIN
     -- Obtener el estado de la competición
-    SELECT estado INTO p_estado
-    FROM competiciones
-    WHERE id_competicion IN (
-        SELECT id_competicion
-        FROM participaciones 
-        WHERE id_equipo = p_id_equipo
-    );
-EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-        p_estado := NULL; -- No hacemos nada si no se encuentra la competición
+    BEGIN
+        SELECT estado INTO p_estado
+        FROM competiciones
+        WHERE id_competicion = (
+            SELECT id_competicion
+            FROM participaciones 
+            WHERE id_equipo = p_id_equipo
+            AND ROWNUM = 1 
+        );
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            p_estado := NULL; -- No hacemos nada si no se encuentra la competición
+        WHEN TOO_MANY_ROWS THEN
+            p_estado := NULL; -- O manejar de otra forma
+    END;
 END verificar_competicion;
 /

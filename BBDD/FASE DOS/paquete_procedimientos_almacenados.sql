@@ -68,6 +68,88 @@ CREATE OR REPLACE PACKAGE BODY paquete_esports as
 end paquete_esports;
 /
 
+CREATE OR REPLACE PACKAGE equipo_pkg AS
+    PROCEDURE crear_equipo(
+        p_id IN equipos.id_equipo%TYPE,
+        p_nombre IN equipos.nombre%TYPE,
+        p_fecha_fundacion IN equipos.fecha_fundacion%TYPE
+    );
+
+    PROCEDURE leer_equipo(
+        p_id IN equipos.id_equipo%TYPE,
+        p_nombre OUT equipos.nombre%TYPE,
+        p_fecha_fundacion OUT equipos.fecha_fundacion%TYPE
+    );
+
+    PROCEDURE actualizar_equipo(
+        p_id IN equipos.id_equipo%TYPE,
+        p_nombre IN equipos.nombre%TYPE,
+        p_fecha_fundacion IN equipos.fecha_fundacion%TYPE
+    );
+
+    PROCEDURE eliminar_equipo(
+        p_id IN equipos.id_equipo%TYPE
+    );
+END equipo_pkg;
+/
+
+CREATE OR REPLACE PACKAGE BODY equipo_pkg AS
+
+    PROCEDURE crear_equipo(
+        p_id IN equipos.id_equipo%TYPE,
+        p_nombre IN equipos.nombre%TYPE,
+        p_fecha_fundacion IN equipos.fecha_fundacion%TYPE
+    )
+    AS
+    BEGIN
+        INSERT INTO equipos (id_equipo, nombre, fecha_fundacion)
+        VALUES (p_id, p_nombre, p_fecha_fundacion);
+        
+        COMMIT;
+    END crear_equipo;
+
+    PROCEDURE leer_equipo(
+        p_id IN equipos.id_equipo%TYPE,
+        p_nombre OUT equipos.nombre%TYPE,
+        p_fecha_fundacion OUT equipos.fecha_fundacion%TYPE
+    )
+    AS
+    BEGIN
+        SELECT nombre, fecha_fundacion
+        INTO p_nombre, p_fecha_fundacion
+        FROM equipos
+        WHERE id_equipo = p_id;
+    END leer_equipo;
+
+    PROCEDURE actualizar_equipo(
+        p_id IN equipos.id_equipo%TYPE,
+        p_nombre IN equipos.nombre%TYPE,
+        p_fecha_fundacion IN equipos.fecha_fundacion%TYPE
+    )
+    AS
+    BEGIN
+        UPDATE equipos
+        SET nombre = p_nombre,
+            fecha_fundacion = p_fecha_fundacion
+        WHERE id_equipo = p_id;
+        
+        COMMIT;
+    END actualizar_equipo;
+
+    PROCEDURE eliminar_equipo(
+        p_id IN equipos.id_equipo%TYPE
+    )
+    AS
+    BEGIN
+        DELETE FROM equipos
+        WHERE id_equipo = p_id;
+        
+        COMMIT;
+    END eliminar_equipo;
+
+END equipo_pkg;
+/
+
 CREATE OR REPLACE PROCEDURE informe_competicion 
         (p_id_competicion in competiciones.id_competicion%type)
     AS
