@@ -11,7 +11,7 @@ public class ControladorVJuegos {
     public ControladorVJuegos(ControladorV cv) {
         this.cv = cv;
     }
-    public void mostrarUsuarios() {
+    public void mostrarJuegos() {
         vjg = new VistaJuegos();
 
         // vjd.addBAceptarAl(new BAceptarAl());

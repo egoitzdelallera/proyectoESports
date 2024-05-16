@@ -11,7 +11,7 @@ public class ControladorVPatrocinadores {
     public ControladorVPatrocinadores(ControladorV cv) {
         this.cv = cv;
     }
-    public void mostrarUsuarios() {
+    public void mostrarPatrocinadores() {
         vpt = new VistaPatrocinadores();
 
         // vjd.addBAceptarAl(new BAceptarAl());

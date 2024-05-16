@@ -11,7 +11,7 @@ public class ControladorVStaff {
     public ControladorVStaff(ControladorV cv) {
         this.cv = cv;
     }
-    public void mostrarUsuarios() {
+    public void mostrarStaff() {
         vs = new VistaStaff();
 
         // vjd.addBAceptarAl(new BAceptarAl());
