@@ -7,12 +7,14 @@ import vista.VistaEquipos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
+import java.util.List;
 
 public class ControladorVEquipos {
 
     private VistaEquipos ve;
     private ControladorV cv;
     private Equipo eq;
+    private List<Equipo> lista;
     private int combo = 0;
     public ControladorVEquipos(ControladorV cv) {
         this.cv = cv;
@@ -27,6 +29,9 @@ public class ControladorVEquipos {
         ve.addBSalirAl(new BSalirAl());
 
         ve.getPanelComboBox().setVisible(true);
+        lista = cv.comboEquipos();
+        lista.forEach(o->ve.getCbEquipos().addItem(o.getNombre()));
+
     }
 
 
@@ -60,6 +65,7 @@ public class ControladorVEquipos {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(fechaFundacion);
             ve.getcFecha().setCalendar(calendar);
+
 
         }
     }

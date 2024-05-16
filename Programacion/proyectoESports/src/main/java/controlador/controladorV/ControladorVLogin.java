@@ -30,7 +30,6 @@ public class ControladorVLogin {
             var nombreUsuario = vl.getTfUsuario().getText();
             var contrasenaUsuario = vl.getTfContrasena().getText();
 
-            cv.mostrarPrincipal();
         }
     }
 

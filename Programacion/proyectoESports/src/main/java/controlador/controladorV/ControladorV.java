@@ -4,6 +4,8 @@ package controlador.controladorV;
 import controlador.ControladorPrincipal;
 import modelo.Equipo;
 
+import java.util.List;
+
 public class ControladorV{
     private ControladorPrincipal cp;
     private ControladorVPrincipal cvpc;
@@ -66,6 +68,9 @@ public class ControladorV{
     }
     public void borrarEquipo() throws Exception{
         cp.borrarEquipo();
+    }
+    public List<Equipo> comboEquipos() {
+        return cp.comboEquipos();
     }
     public void terminar() throws Exception
     {

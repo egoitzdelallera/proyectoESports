@@ -3,6 +3,8 @@ package controlador.controladorM;
 import jakarta.persistence.*;
 import modelo.Equipo;
 
+import java.util.List;
+
 public class ControladorMEquipo {
     private Equipo eq;
     private EntityManagerFactory emf;
@@ -15,10 +17,6 @@ public class ControladorMEquipo {
         emf = Persistence.createEntityManagerFactory ("default");
         em = emf. createEntityManager ();
         transaction = em. getTransaction ();
-    }
-    public void terminar(){
-        emf.close();
-        em.close();
     }
     public void insertarEquipo (Equipo eq) throws Exception {
         // Insertar
@@ -39,5 +37,13 @@ public class ControladorMEquipo {
         eq = query.getSingleResult();
         transaction.commit();
         return eq;
+    }
+
+    public List<Equipo> comboEquipos(){
+        transaction.begin();
+        List<Equipo> lista =
+                em.createQuery("SELECT eq FROM Equipo eq", Equipo.class).getResultList();
+        transaction.commit();
+        return lista;
     }
 }

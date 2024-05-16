@@ -11,7 +11,7 @@ public class ControladorVCompeticiones {
     public ControladorVCompeticiones(ControladorV cv) {
         this.cv = cv;
     }
-    public void mostrarUsuarios() {
+    public void mostrarCompeticiones() {
         vc = new VistaCompeticiones();
 
         // vjd.addBAceptarAl(new BAceptarAl());

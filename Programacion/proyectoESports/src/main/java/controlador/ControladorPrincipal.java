@@ -5,6 +5,8 @@ import controlador.controladorM.ControladorM;
 import controlador.controladorV.ControladorV;
 import modelo.Equipo;
 
+import java.util.List;
+
 public class ControladorPrincipal {
     private ControladorV cv;
     private ControladorM cm;
@@ -30,6 +32,9 @@ public class ControladorPrincipal {
     }
     public void borrarEquipo() throws Exception{
         cm.borrarEquipo();
+    }
+    public List<Equipo> comboEquipos() {
+        return cm.comboEquipos();
     }
 
 }
