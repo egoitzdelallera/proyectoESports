@@ -3,6 +3,7 @@ package modelo;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.Collection;
 
 @Entity
@@ -49,7 +50,7 @@ public class Equipo {
         this.nombre = nombre;
     }
 
-    public Date getFechaFundacion() {
+    public Calendar getFechaFundacion() {
         return fechaFundacion;
     }
 

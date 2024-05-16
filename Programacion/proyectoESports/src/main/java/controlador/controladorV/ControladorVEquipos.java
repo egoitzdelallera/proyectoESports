@@ -1,5 +1,6 @@
 package controlador.controladorV;
 
+import modelo.Equipo;
 import vista.PaginaPrincipal;
 import vista.VistaEquipos;
 
@@ -10,31 +11,86 @@ public class ControladorVEquipos {
 
     private VistaEquipos ve;
     private ControladorV cv;
+    private Equipo eq;
+    private int combo = 0;
     public ControladorVEquipos(ControladorV cv) {
         this.cv = cv;
     }
     public void mostrarEquipos() {
         ve = new VistaEquipos();
 
-       // ve.addBAceptarAl(new BAceptarAl());
-       // ve.addBBorrarAl(new BBorrarAl());
+        ve.addBAceptarAl(new BAceptarAl());
+        ve.addBBorrarAl(new BBorrarAl());
         ve.addBEditarAl(new BEditarAl());
-       // ve.addCbEquiposAl(new CbEquiposAl());
+        ve.addCbEquiposAl(new CbEquiposAl());
         ve.addBSalirAl(new BSalirAl());
 
         ve.getPanelComboBox().setVisible(true);
     }
 
-    public class BSalirAl implements ActionListener {
+
+    public class CbEquiposAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            ve.dispose();
+             combo = ve.getCbEquipos().getSelectedIndex();
+            if (combo == 0){
+                ve.getPanelCrear().setVisible(true);
+            }else{
+                ve.getPanelDatos().setVisible(true);
+
+                try {
+                    eq = cv.buscarEquipo(ve.getCbEquipos().getItemAt(combo).toString());
+                    ve.getTaDatos().setText(eq.getNombre()+eq.getFechaFundacion()+eq.getJugadoresByIdEquipo());
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+
+            }
         }
     }
     public class BEditarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            ve.getPanelCrear().setVisible(true);
+            ve.getTfNombre().setText(eq.getNombre());
+            ve.getcFecha().setCalendar(eq.getFechaFundacion());
+        }
+    }
+
+    public class BAceptarAl implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            try {
+                eq = new Equipo();
+                eq.setNombre(ve.getTfNombre().getText());
+                java.sql.Date fecha = new java.sql.Date(ve.getcFecha().getDate().getTime());
+                eq.setFechaFundacion(fecha);
+                cv.insertarEquipo(eq);
+                System.out.println("Equipo insertado");
+                ve.limpiar();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
 
         }
     }
+    public class BBorrarAl implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                cv.borrarEquipo();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
+
+    public class BSalirAl implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ve.dispose();
+        }
+    }
+
 }

@@ -2,6 +2,7 @@
 package controlador.controladorV;
 
 import controlador.ControladorPrincipal;
+import modelo.Equipo;
 
 public class ControladorV{
     private ControladorPrincipal cp;
@@ -13,7 +14,8 @@ public class ControladorV{
     private ControladorVStaff cvs;
     private ControladorVJuegos cvjg;
     private ControladorVPatrocinadores cvpt;
-    private ControladorVCompeticiones cvc; 
+    private ControladorVCompeticiones cvc;
+    private Equipo eq;
 
     public ControladorV(ControladorPrincipal cp) {
         this.cp = cp;
@@ -55,7 +57,16 @@ public class ControladorV{
         cvu.mostrarUsuarios();
     }
 
+    public Equipo buscarEquipo(String nombre) throws Exception {
+        return cp.buscarEquipo(nombre);
+    }
 
+    public void insertarEquipo(Equipo eq) throws Exception{
+        cp.insertarEquipo(eq);
+    }
+    public void borrarEquipo() throws Exception{
+        cp.borrarEquipo();
+    }
     public void terminar() throws Exception
     {
         // Han hecho clic en el botón salir.
