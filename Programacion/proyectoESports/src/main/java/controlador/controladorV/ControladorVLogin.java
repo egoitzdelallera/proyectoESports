@@ -35,10 +35,13 @@ public class ControladorVLogin {
     }
 
     public class BSalirAl implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.exit(1);
+            try {
+                cv.terminar();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 }

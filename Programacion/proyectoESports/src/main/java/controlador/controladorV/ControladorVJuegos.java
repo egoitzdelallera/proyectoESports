@@ -1,5 +1,7 @@
 package controlador.controladorV;
 
+import vista.VistaJuegos;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,11 +27,7 @@ public class ControladorVJuegos {
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-                cv.terminar();
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
+            vjg.dispose();
         }
     }
 }
