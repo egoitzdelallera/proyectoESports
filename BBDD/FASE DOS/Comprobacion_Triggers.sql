@@ -1,4 +1,4 @@
--- Inserciones que deberían funcionar correctamente
+-- Inserciones que deberï¿½an funcionar correctamente
 INSERT INTO equipos (nombre, fecha_fundacion) VALUES ('Equipo A', TO_DATE('01-01-2000', 'DD-MM-YYYY'));
 INSERT INTO equipos (nombre, fecha_fundacion) VALUES ('Equipo B', TO_DATE('01-01-2005', 'DD-MM-YYYY'));
 
@@ -11,23 +11,23 @@ INSERT INTO usuarios (nombre, contrasena, rol) VALUES ('Usuario 2', 'password2',
 INSERT INTO juegos (nombre, empresa, fecha_lanzamiento) VALUES ('Juego A', 'Empresa A', TO_DATE('01-01-2010', 'DD-MM-YYYY'));
 INSERT INTO juegos (nombre, empresa, fecha_lanzamiento) VALUES ('Juego B', 'Empresa B', TO_DATE('01-01-2015', 'DD-MM-YYYY'));
 
-INSERT INTO competiciones (nombre, fecha_inicio, fecha_fin, estado, id_juego) VALUES ('Competición 1', TO_DATE('01-01-2022', 'DD-MM-YYYY'), TO_DATE('01-02-2022', 'DD-MM-YYYY'), 0, 1);
-INSERT INTO competiciones (nombre, fecha_inicio, fecha_fin, estado, id_juego) VALUES ('Competición 2', TO_DATE('01-03-2022', 'DD-MM-YYYY'), TO_DATE('01-04-2022', 'DD-MM-YYYY'), 0, 2);
+INSERT INTO competiciones (nombre, fecha_inicio, fecha_fin, estado, id_juego) VALUES ('Competiciï¿½n 1', TO_DATE('01-01-2022', 'DD-MM-YYYY'), TO_DATE('01-02-2022', 'DD-MM-YYYY'), 0, 1);
+INSERT INTO competiciones (nombre, fecha_inicio, fecha_fin, estado, id_juego) VALUES ('Competiciï¿½n 2', TO_DATE('01-03-2022', 'DD-MM-YYYY'), TO_DATE('01-04-2022', 'DD-MM-YYYY'), 0, 2);
 
 
 INSERT INTO patrocinadores (nombre) VALUES ('Patrocinador A');
 INSERT INTO patrocinadores (nombre) VALUES ('Patrocinador B');
 
--- Inserciones que deberían hacer saltar únicamente los disparadores y los controles de integridad definidos por restricciones de verificación (checks)
--- Intentar insertar un usuario con un rol inválido
+-- Inserciones que deberï¿½an hacer saltar ï¿½nicamente los disparadores y los controles de integridad definidos por restricciones de verificaciï¿½n (checks)
+-- Intentar insertar un usuario con un rol invï¿½lido
 INSERT INTO usuarios (nombre, contrasena, rol) VALUES ('Usuario 3', 'password3', 'INVALIDO');
 
--- Intentar insertar jugadores con un sueldo menor al mínimo permitido
+-- Intentar insertar jugadores con un sueldo menor al mï¿½nimo permitido
 INSERT INTO jugadores (nombre, nacionalidad, fecha_nacimiento, nickname, rol, sueldo, id_equipo) VALUES ('Jugador 3', 'Nacionalidad 3', TO_DATE('1995-05-05', 'YYYY-MM-DD'), 'Nick3', 'Portero', 1000, 1);
 INSERT INTO jugadores (nombre, nacionalidad, fecha_nacimiento, nickname, rol, sueldo, id_equipo) VALUES ('Jugador 4', 'Nacionalidad 4', TO_DATE('1997-07-07', 'YYYY-MM-DD'), 'Nick4', 'Centrocampista', 500, 2);
 
--- Intentar insertar staff con un puesto inválido
-INSERT INTO staff (puesto, nombre, sueldo, id_equipo) VALUES ('Puesto Inválido', 'Nombre 3', 2000, 1);
+-- Intentar insertar staff con un puesto invï¿½lido
+INSERT INTO staff (puesto, nombre, sueldo, id_equipo) VALUES ('Puesto Invï¿½lido', 'Nombre 3', 2000, 1);
 INSERT INTO staff (puesto, nombre, sueldo, id_equipo) VALUES ('Entrenador', 'Nombre 4', 2500, 2);
 
 -- Intentar insertar un patrocinio con un patrocinador o equipo que no existe
@@ -46,8 +46,39 @@ INSERT INTO jugadores (nombre, nacionalidad, fecha_nacimiento, nickname, rol, su
 -- Intentar insertar un enfrentamiento con un equipo local que no tiene al menos dos jugadores
 INSERT INTO enfrentamientos (hora, id_jornada, id_equipo_local, id_equipo_visitante) VALUES (TO_TIMESTAMP('2024-05-01 14:00:00', 'YYYY-MM-DD HH24:MI:SS'), 1, 1, 2);
 
--- Intentar insertar una competición con un número impar de equipos
-INSERT INTO competiciones (nombre, fecha_inicio, fecha_fin, estado, id_juego) VALUES ('Competición 3', TO_DATE('01-01-2022', 'DD-MM-YYYY'), TO_DATE('01-02-2022', 'DD-MM-YYYY'), 0, 1);
+-- Intentar insertar una competiciï¿½n con un nï¿½mero impar de equipos
+INSERT INTO competiciones (nombre, fecha_inicio, fecha_fin, estado, id_juego) VALUES ('Competiciï¿½n 3', TO_DATE('01-01-2022', 'DD-MM-YYYY'), TO_DATE('01-02-2022', 'DD-MM-YYYY'), 0, 1);
 
 INSERT INTO participaciones (id_equipo, id_competicion, puntuacion) VALUES (1, 1, '10');
 INSERT INTO participaciones (id_equipo, id_competicion, puntuacion) VALUES (2, 1, '8');
+
+    -- Crear un nuevo equipo
+BEGIN
+    equipo_pkg.crear_equipo(1, 'Equipo Alpha', 30);
+    DBMS_OUTPUT.PUT_LINE('Equipo creado correctamente.');
+END;
+/
+
+-- Leer informaciÃ³n de un equipo
+DECLARE
+    v_nombre equipos.nombre%TYPE;
+    v_puntos_totales equipos.puntos_totales%TYPE;
+BEGIN
+    equipo_pkg.leer_equipo(1, v_nombre, v_puntos_totales);
+    DBMS_OUTPUT.PUT_LINE('Nombre: ' || v_nombre || ', Puntos Totales: ' || v_puntos_totales);
+END;
+/
+
+-- Actualizar un equipo
+BEGIN
+    equipo_pkg.actualizar_equipo(1, 'Equipo Beta', 35);
+    DBMS_OUTPUT.PUT_LINE('Equipo actualizado correctamente.');
+END;
+/
+
+-- Eliminar un equipo
+BEGIN
+    equipo_pkg.eliminar_equipo(1);
+    DBMS_OUTPUT.PUT_LINE('Equipo eliminado correctamente.');
+END;
+/
