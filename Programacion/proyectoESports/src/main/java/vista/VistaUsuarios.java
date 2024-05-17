@@ -1,39 +1,30 @@
-
-
 package vista;
 
-import com.toedter.calendar.JCalendar;
-
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class VistaJugadores extends JFrame{
+public class VistaUsuarios extends JFrame {
     private JPanel panelPrincipal;
     private JPanel panelComboBox;
-    private JComboBox cbJugadores;
+    private JComboBox cbUsuarios;
     private JPanel panelDatos;
     private JTextArea taDatos;
     private JButton bEditar;
     private JButton bBorrar;
     private JPanel panelCrear;
     private JTextField tfNombre;
-    private JPanel pFecha;
     private JButton bAceptar;
     private JButton bSalir;
-    private JTextField tfNacionalidad;
-    private JTextField tfNickname;
-    private JTextField tfRol;
-    private JTextField tfSueldo;
-    private JComboBox cbEquipos;
-    private JCalendar cFecha;
+    private JTextField tfContrasena;
+    private JRadioButton rbAdministrador;
+    private JRadioButton rbUsuario;
 
-    public VistaJugadores() {
-        super("Jugadores");
+    public VistaUsuarios() {
+        super("Usuarios");
         setContentPane(panelPrincipal);
-        setSize(500,1000);
+        setSize(500,500);
         setLocationRelativeTo(null);
-        cFecha = new JCalendar();
-        pFecha.add(cFecha);
     }
 
     public void addBEditarAl (ActionListener al){
@@ -45,13 +36,12 @@ public class VistaJugadores extends JFrame{
     public void addBAceptarAl (ActionListener al){
         bAceptar.addActionListener(al);
     }
-    public void addCbJugadoresAl (ActionListener al){
-        cbJugadores.addActionListener(al);
+    public void addCbUsuariosAl (ActionListener al){
+        cbUsuarios.addActionListener(al);
     }
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
     }
-    public void addCBEquiposAl(ActionListener al) {cbEquipos.addActionListener(al);}
 
     public JPanel getPanelPrincipal() {
         return panelPrincipal;
@@ -69,12 +59,12 @@ public class VistaJugadores extends JFrame{
         this.panelComboBox = panelComboBox;
     }
 
-    public JComboBox getCbJugadores() {
-        return cbJugadores;
+    public JComboBox getCbUsuarios() {
+        return cbUsuarios;
     }
 
-    public void setCbJugadores(JComboBox cbJugadores) {
-        this.cbJugadores = cbJugadores;
+    public void setCbUsuarios(JComboBox cbUsuarios) {
+        this.cbUsuarios = cbUsuarios;
     }
 
     public JPanel getPanelDatos() {
@@ -109,62 +99,27 @@ public class VistaJugadores extends JFrame{
         this.tfNombre = tfNombre;
     }
 
-    public JPanel getpFecha() {
-        return pFecha;
+    public JTextField getTfContrasena() {
+        return tfContrasena;
     }
 
-    public void setpFecha(JPanel pFecha) {
-        this.pFecha = pFecha;
+    public void setTfContrasena(JTextField tfContrasena) {
+        this.tfContrasena = tfContrasena;
     }
 
-    public JTextField getTfNacionalidad() {
-        return tfNacionalidad;
+    public JRadioButton getRbAdministrador() {
+        return rbAdministrador;
     }
 
-    public void setTfNacionalidad(JTextField tfNacionalidad) {
-        this.tfNacionalidad = tfNacionalidad;
+    public void setRbAdministrador(JRadioButton rbAdministrador) {
+        this.rbAdministrador = rbAdministrador;
     }
 
-    public JTextField getTfNickname() {
-        return tfNickname;
+    public JRadioButton getRbUsuario() {
+        return rbUsuario;
     }
 
-    public void setTfNickname(JTextField tfNickname) {
-        this.tfNickname = tfNickname;
+    public void setRbUsuario(JRadioButton rbUsuario) {
+        this.rbUsuario = rbUsuario;
     }
-
-    public JTextField getTfRol() {
-        return tfRol;
-    }
-
-    public void setTfRol(JTextField tfRol) {
-        this.tfRol = tfRol;
-    }
-
-    public JTextField getTfSueldo() {
-        return tfSueldo;
-    }
-
-    public void setTfSueldo(JTextField tfSueldo) {
-        this.tfSueldo = tfSueldo;
-    }
-
-    public JComboBox getCbEquipos() {
-        return cbEquipos;
-    }
-
-    public void setCbEquipos(JComboBox cbEquipo) {
-        this.cbEquipos = cbEquipo;
-    }
-
-
-    public JCalendar getcFecha() {
-        return cFecha;
-    }
-
-    public void setcFecha(JCalendar cFecha) {
-        this.cFecha = cFecha;
-    }
-
-
 }
