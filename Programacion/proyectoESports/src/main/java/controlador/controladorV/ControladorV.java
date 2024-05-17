@@ -82,6 +82,9 @@ public class ControladorV{
     public void borrarEquipo() throws Exception{
         cp.borrarEquipo();
     }
+    public void modificarEquipo(Equipo eq) throws Exception{
+        cp.modificarEquipo(eq);
+    }
     public List<Equipo> comboEquipos() {
         return cp.comboEquipos();
     }

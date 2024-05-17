@@ -45,6 +45,9 @@ public class ControladorPrincipal {
     public void borrarEquipo() throws Exception{
         cm.borrarEquipo();
     }
+    public void modificarEquipo(Equipo eq) throws Exception{
+        cm.modificarEquipo(eq);
+    }
     public List<Equipo> comboEquipos() {
         return cm.comboEquipos();
     }
