@@ -7,17 +7,18 @@ import java.util.Collection;
 @Entity
 @Table(name = "PATROCINADORES", schema = "EQDAW02", catalog = "")
 public class Patrocinador {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen")
+    @SequenceGenerator(name = "seq_gen", sequenceName = "patrocinadores_seq", allocationSize = 1)
     @Id
     @Column(name = "ID_PATROCINADOR", nullable = false, precision = 0)
-    private byte idPatrocinador;
+    private int idPatrocinador;
     @Basic
     @Column(name = "NOMBRE", nullable = true, length = 50)
     private String nombre;
     @OneToMany(mappedBy = "patrocinadoresByIdPatrocinador")
     private Collection<Patrocinio> patrociniosByIdPatrocinador;
 
-    public byte getIdPatrocinador() {
+    public int getIdPatrocinador() {
         return idPatrocinador;
     }
 

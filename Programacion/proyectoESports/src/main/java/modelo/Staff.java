@@ -3,11 +3,13 @@ package modelo;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "STAFF", schema = "EQDAW02", catalog = "")
 public class Staff {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen")
+    @SequenceGenerator(name = "seq_gen", sequenceName = "staff_seq", allocationSize = 1)
     @Id
     @Column(name = "ID_STAFF", nullable = false, precision = 0)
-    private byte idStaff;
+    private int idStaff;
     @Basic
     @Column(name = "PUESTO", nullable = true, length = 50)
     private String puesto;
@@ -24,7 +26,7 @@ public class Staff {
     @JoinColumn(name = "ID_EQUIPO", referencedColumnName = "ID_EQUIPO", insertable = false, updatable = false)
     private Equipo equiposByIdEquipo;
 
-    public byte getIdStaff() {
+    public int getIdStaff() {
         return idStaff;
     }
 
