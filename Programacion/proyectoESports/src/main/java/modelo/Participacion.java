@@ -4,16 +4,41 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "PARTICIPACIONES", schema = "EQDAW02", catalog = "")
+@IdClass(ParticipacionPK.class)
 public class Participacion {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "ID_EQUIPO", nullable = false, precision = 0)
+    private byte idEquipo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "ID_COMPETICION", nullable = false, precision = 0)
+    private byte idCompeticion;
     @Basic
     @Column(name = "PUNTUACION", nullable = true, precision = 0)
     private Byte puntuacion;
     @ManyToOne
-    @JoinColumn(name = "ID_EQUIPO", referencedColumnName = "ID_EQUIPO", nullable = false)
+    @JoinColumn(name = "ID_EQUIPO", referencedColumnName = "ID_EQUIPO", nullable = false, insertable = false, updatable = false)
     private Equipo equiposByIdEquipo;
     @ManyToOne
-    @JoinColumn(name = "ID_COMPETICION", referencedColumnName = "ID_COMPETICION", nullable = false)
+    @JoinColumn(name = "ID_COMPETICION", referencedColumnName = "ID_COMPETICION", nullable = false, insertable = false, updatable = false)
     private Competicion competicionesByIdCompeticion;
+
+    public byte getIdEquipo() {
+        return idEquipo;
+    }
+
+    public void setIdEquipo(byte idEquipo) {
+        this.idEquipo = idEquipo;
+    }
+
+    public byte getIdCompeticion() {
+        return idCompeticion;
+    }
+
+    public void setIdCompeticion(byte idCompeticion) {
+        this.idCompeticion = idCompeticion;
+    }
 
     public Byte getPuntuacion() {
         return puntuacion;
@@ -30,6 +55,8 @@ public class Participacion {
 
         Participacion that = (Participacion) o;
 
+        if (idEquipo != that.idEquipo) return false;
+        if (idCompeticion != that.idCompeticion) return false;
         if (puntuacion != null ? !puntuacion.equals(that.puntuacion) : that.puntuacion != null) return false;
 
         return true;
@@ -37,7 +64,10 @@ public class Participacion {
 
     @Override
     public int hashCode() {
-        return puntuacion != null ? puntuacion.hashCode() : 0;
+        int result = (int) idEquipo;
+        result = 31 * result + (int) idCompeticion;
+        result = 31 * result + (puntuacion != null ? puntuacion.hashCode() : 0);
+        return result;
     }
 
     public Equipo getEquiposByIdEquipo() {
