@@ -1,6 +1,3 @@
-
-
-
 package controlador.controladorM;
 
 import controlador.ControladorPrincipal;

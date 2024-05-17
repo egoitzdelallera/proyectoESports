@@ -1,7 +1,6 @@
 package controlador.controladorM;
 
 import jakarta.persistence.*;
-
 import modelo.Jugador;
 
 public class ControladorMJugador {
