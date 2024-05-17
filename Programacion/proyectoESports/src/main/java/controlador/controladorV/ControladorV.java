@@ -3,6 +3,8 @@ package controlador.controladorV;
 
 import controlador.ControladorPrincipal;
 import modelo.Equipo;
+import modelo.Jugador;
+import modelo.Usuario;
 
 import java.util.List;
 
@@ -59,14 +61,17 @@ public class ControladorV{
         cvu.mostrarUsuarios();
     }
 
-    public Equipo buscarEquipo(String nombre) throws Exception {
-        return cp.buscarEquipo(nombre);
-    }
 
     //Parte del Usuario
     public Usuario buscarUsuario(String nombre) throws Exception
     {
         return cp.buscarUsuario(nombre);
+    }
+
+
+    //Parte del Equipo
+    public Equipo buscarEquipo(String nombre) throws Exception {
+        return cp.buscarEquipo(nombre);
     }
 
 
@@ -79,6 +84,13 @@ public class ControladorV{
     public List<Equipo> comboEquipos() {
         return cp.comboEquipos();
     }
+
+    //Parte del Jugador
+    public Jugador buscarJugador(String nickname) throws Exception {
+        return cp.buscarJugador(nickname);
+    }
+
+
     public void terminar() throws Exception
     {
         // Han hecho clic en el botón salir.
