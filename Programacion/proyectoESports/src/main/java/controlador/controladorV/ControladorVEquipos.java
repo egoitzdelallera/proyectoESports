@@ -1,7 +1,6 @@
 package controlador.controladorV;
 
 import modelo.Equipo;
-import vista.PaginaPrincipal;
 import vista.VistaEquipos;
 
 import java.awt.event.ActionEvent;
@@ -28,7 +27,11 @@ public class ControladorVEquipos {
         ve.addCbEquiposAl(new CbEquiposAl());
         ve.addBSalirAl(new BSalirAl());
 
+        ve.setVisible(true);
         ve.getPanelComboBox().setVisible(true);
+        ve.getPanelCrear().setVisible(false);
+        ve.getPanelDatos().setVisible(false);
+
         lista = cv.comboEquipos();
         lista.forEach(o->ve.getCbEquipos().addItem(o.getNombre()));
 
@@ -46,7 +49,14 @@ public class ControladorVEquipos {
 
                 try {
                     eq = cv.buscarEquipo(ve.getCbEquipos().getItemAt(combo).toString());
-                    ve.getTaDatos().setText(eq.getNombre()+eq.getFechaFundacion()+eq.getJugadoresByIdEquipo());
+                    ve.getTaDatos().setText(eq.getNombre()+"\n"+eq.getFechaFundacion()+"\n"+eq.getJugadoresByIdEquipo());
+                    ve.getTfNombre().setText(eq.getNombre());
+
+                    //Hay que cambiar el tipo de dato
+                    java.util.Date fechaFundacion = eq.getFechaFundacion();
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(fechaFundacion);
+                    ve.getcFecha().setCalendar(calendar);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }

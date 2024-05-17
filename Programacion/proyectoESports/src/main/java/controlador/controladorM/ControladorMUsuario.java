@@ -1,39 +1,34 @@
 package controlador.controladorM;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.*;
+import modelo.Equipo;
 import modelo.Usuario;
 
 public class ControladorMUsuario {
 
-    private ControladorM cm;
+    private EntityManagerFactory emf;
     private EntityManager em;
-    private EntityTransaction t;
+    private EntityTransaction transaction ;
+    private ControladorM cm;
     private Usuario u;
 
-    public ControladorMUsuario(ControladorM cm, EntityTransaction t, EntityManager em) {
+    public ControladorMUsuario(ControladorM cm) {
         this.cm = cm;
-        this.t = t;
-        this.em = em;
 
+        emf = Persistence.createEntityManagerFactory("default");
+        em = emf.createEntityManager();
+        transaction = em.getTransaction();
 
+        System.out.println("Controlador Modelo Usuario");
     }
 
     // Prueba para buscar usuario con el nombre del usuario
     public Usuario buscarUsuario(String nombre) throws Exception {
-        Usuario usuario = null;
-        try {
-            t.begin();
-            String sentencia = "SELECT u from Usuario u where u.nombre = '" + nombre + "'";
-            usuario = (Usuario) em.createQuery(sentencia).getSingleResult();
-            t.commit();
-        } catch (Exception ex) {
-            if (t.isActive()) {
-                t.rollback();
-                throw new Exception("Usuario o contraseña no valida.");
-            }
-
-        }
-        return usuario;
+        transaction.begin();
+        TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.nombre = :nombre", Usuario.class);
+        query.setParameter("nombre", nombre);
+        u = query.getSingleResult();
+        transaction.commit();
+        return u;
     }
 }
