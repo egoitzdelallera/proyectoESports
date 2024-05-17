@@ -12,7 +12,7 @@ public class Equipo {
     @SequenceGenerator(name = "seq_gen", sequenceName = "equipos_seq", allocationSize = 1)
     @Id
     @Column(name = "ID_EQUIPO", nullable = false, precision = 0)
-    private byte idEquipo;
+    private int idEquipo;
     @Basic
     @Column(name = "NOMBRE", nullable = true, length = 25)
     private String nombre;
@@ -37,7 +37,7 @@ public class Equipo {
     public Equipo() {
     }
 
-    public byte getIdEquipo() {
+    public int getIdEquipo() {
         return idEquipo;
     }
 
