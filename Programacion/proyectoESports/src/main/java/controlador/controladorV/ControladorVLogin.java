@@ -15,7 +15,7 @@ public class ControladorVLogin {
     private ControladorV cv;
     private VistaLogin vl;
     private Usuario u;
-    private boolean usuarioCorrecto;
+    private boolean usuarioCorrecto = false;
 
 
     public ControladorVLogin(ControladorV cv){
@@ -29,8 +29,6 @@ public class ControladorVLogin {
         vl.addBEntrarAl(new BLoginAl());
         vl.addBSalirAl(new BSalirAl());
 
-        usuarioCorrecto =false;
-
         vl.setVisible(true);
     }
 
@@ -41,34 +39,30 @@ public class ControladorVLogin {
             var nombreUsuario = vl.getTfUsuario().getText();
             var contrasenaUsuario = vl.getTfContrasena().getText();
 
-            int intentos = 0;
 
-            while (intentos < 5) {
-                try {
-                    u = cv.buscarUsuario(nombreUsuario);
+            try {
+                u = cv.buscarUsuario(nombreUsuario);
+
+                if (u == null){
+                    throw new Exception("Nombre o Contraseña invalida");
+                }else {
                     if (u != null && u.getContrasena().equals(contrasenaUsuario)) {
                         usuarioCorrecto = true;
-                        break;
                     } else {
                         vl.muestra("Usuario Incorrecto");
                     }
-                } catch (Exception ex) {
-                    vl.muestra(ex.getMessage());
                 }
-                intentos++;
+
+            }catch (Exception ex){
+                vl.muestra(ex.getMessage());
             }
 
             if (usuarioCorrecto) {
                 vl.dispose();
-                cv.mostrarPrincipal();
-            } else if (intentos == 5) {
-                vl.muestra("Demasiados Intentos");
-                try {
-                    cv.terminar();
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
+                var rolUsuario = u.getRol();
+                cv.mostrarPrincipal(rolUsuario);
             }
+
         }
     }
 

@@ -39,8 +39,8 @@ public class ControladorV{
     public void mostrarEquipos(){
         cve.mostrarEquipos();
     }
-    public void mostrarPrincipal(){
-        cvpc.mostrarPrincipal();
+    public void mostrarPrincipal(String rolusuario){
+        cvpc.mostrarPrincipal(rolusuario);
     }
     public void mostrarJugadores(){
         cvjd.mostrarJugadores();

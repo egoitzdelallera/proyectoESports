@@ -54,4 +54,83 @@ public class PaginaPrincipal extends JFrame {
     }
 
 
+    public JButton getbJugadores() {
+        return bJugadores;
+    }
+
+    public void setbJugadores(JButton bJugadores) {
+        this.bJugadores = bJugadores;
+    }
+
+    public JButton getbStaff() {
+        return bStaff;
+    }
+
+    public void setbStaff(JButton bStaff) {
+        this.bStaff = bStaff;
+    }
+
+    public JButton getbJuegos() {
+        return bJuegos;
+    }
+
+    public void setbJuegos(JButton bJuegos) {
+        this.bJuegos = bJuegos;
+    }
+
+    public JButton getbUsuarios() {
+        return bUsuarios;
+    }
+
+    public void setbUsuarios(JButton bUsuarios) {
+        this.bUsuarios = bUsuarios;
+    }
+
+    public JButton getbPatrocinadores() {
+        return bPatrocinadores;
+    }
+
+    public void setbPatrocinadores(JButton bPatrocinadores) {
+        this.bPatrocinadores = bPatrocinadores;
+    }
+
+    public JButton getbEquipos() {
+        return bEquipos;
+    }
+
+    public void setbEquipos(JButton bEquipos) {
+        this.bEquipos = bEquipos;
+    }
+
+    public JButton getbCompeticiones() {
+        return bCompeticiones;
+    }
+
+    public void setbCompeticiones(JButton bCompeticiones) {
+        this.bCompeticiones = bCompeticiones;
+    }
+
+    public JButton getbSalir() {
+        return bSalir;
+    }
+
+    public void setbSalir(JButton bSalir) {
+        this.bSalir = bSalir;
+    }
+
+    public JButton getbClasificacion() {
+        return bClasificacion;
+    }
+
+    public void setbClasificacion(JButton bClasificacion) {
+        this.bClasificacion = bClasificacion;
+    }
+
+    public JButton getbResultados() {
+        return bResultados;
+    }
+
+    public void setbResultados(JButton bResultados) {
+        this.bResultados = bResultados;
+    }
 }

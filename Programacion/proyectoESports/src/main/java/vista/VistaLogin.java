@@ -3,7 +3,7 @@ package vista;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class VistaLogin extends JDialog {
+public class VistaLogin extends JFrame {
     private JPanel contentPane;
     private JButton bEntrar;
     private JButton bSalir;
@@ -12,8 +12,7 @@ public class VistaLogin extends JDialog {
 
     public VistaLogin() {
         setContentPane(contentPane);
-        setSize(400, 400);
-        setModal(true);
+        setSize(600, 200);
         getRootPane().setDefaultButton(bEntrar);
         setLocationRelativeTo(null);
     }
