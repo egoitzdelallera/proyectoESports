@@ -2,7 +2,10 @@ package controlador.controladorM;
 
 import jakarta.persistence.*;
 
+import modelo.Equipo;
 import modelo.Jugador;
+
+import java.util.List;
 
 public class ControladorMJugador {
     private Jugador jd;
@@ -37,5 +40,13 @@ public class ControladorMJugador {
         jd = query.getSingleResult();
         transaction.commit();
         return jd;
+    }
+
+    public List<Jugador> comboJugadores(){
+        transaction.begin();
+        List<Jugador> lista =
+                em.createQuery("SELECT jd FROM Jugador jd", Jugador.class).getResultList();
+        transaction.commit();
+        return lista;
     }
 }
