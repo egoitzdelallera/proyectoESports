@@ -8,7 +8,8 @@ import java.util.Collection;
 @Entity
 @Table(name = "EQUIPOS", schema = "EQDAW02", catalog = "")
 public class Equipo {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen")
+    @SequenceGenerator(name = "seq_gen", sequenceName = "equipos_seq", allocationSize = 1)
     @Id
     @Column(name = "ID_EQUIPO", nullable = false, precision = 0)
     private byte idEquipo;

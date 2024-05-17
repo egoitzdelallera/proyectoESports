@@ -5,10 +5,11 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "USUARIOS", schema = "EQDAW02", catalog = "")
 public class Usuario {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen")
+    @SequenceGenerator(name = "seq_gen", sequenceName = "usuarios_seq", allocationSize = 1)
     @Id
     @Column(name = "ID_USUARIO", nullable = false, precision = 0)
-    private byte idUsuario;
+    private int idUsuario;
     @Basic
     @Column(name = "NOMBRE", nullable = true, length = 50)
     private String nombre;
@@ -19,7 +20,7 @@ public class Usuario {
     @Column(name = "ROL", nullable = true, length = 50)
     private String rol;
 
-    public byte getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 

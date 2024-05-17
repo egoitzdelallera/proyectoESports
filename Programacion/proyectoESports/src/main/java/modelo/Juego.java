@@ -8,10 +8,10 @@ import java.util.Collection;
 @Entity
 @Table(name = "JUEGOS", schema = "EQDAW02", catalog = "")
 public class Juego {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen")
+    @SequenceGenerator(name = "seq_gen", sequenceName = "juegos_seq", allocationSize = 1)    @Id
     @Column(name = "ID_JUEGO", nullable = false, precision = 0)
-    private byte idJuego;
+    private int idJuego;
     @Basic
     @Column(name = "NOMBRE", nullable = true, length = 50)
     private String nombre;
@@ -24,7 +24,7 @@ public class Juego {
     @OneToMany(mappedBy = "juegosByIdJuego")
     private Collection<Competicion> competicionesByIdJuego;
 
-    public byte getIdJuego() {
+    public int getIdJuego() {
         return idJuego;
     }
 

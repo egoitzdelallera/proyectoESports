@@ -7,10 +7,11 @@ import java.sql.Date;
 @Entity
 @Table(name = "JUGADORES", schema = "EQDAW02", catalog = "")
 public class Jugador {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen")
+    @SequenceGenerator(name = "seq_gen", sequenceName = "jugadores_seq", allocationSize = 1)
     @Id
     @Column(name = "ID_JUGADOR", nullable = false, precision = 0)
-    private byte idJugador;
+    private int idJugador;
     @Basic
     @Column(name = "NOMBRE", nullable = true, length = 50)
     private String nombre;
@@ -33,7 +34,7 @@ public class Jugador {
     @JoinColumn(name = "ID_EQUIPO", referencedColumnName = "ID_EQUIPO")
     private Equipo equiposByIdEquipo;
 
-    public byte getIdJugador() {
+    public int getIdJugador() {
         return idJugador;
     }
 
