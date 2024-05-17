@@ -33,6 +33,9 @@ public class Equipo {
     @OneToMany(mappedBy = "equiposByIdEquipo")
     private Collection<Staff> staffByIdEquipo;
 
+    public Equipo() {
+    }
+
     public byte getIdEquipo() {
         return idEquipo;
     }
