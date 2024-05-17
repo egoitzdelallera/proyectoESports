@@ -14,6 +14,7 @@ import modelo.Usuario;
 import java.util.List;
 
 public class ControladorM {
+    private ControladorPrincipal cp;
     private ControladorMUsuario cmu;
     private ControladorMEquipo cme;
     private ControladorMJugador cmjd;
@@ -21,16 +22,13 @@ public class ControladorM {
     private EntityManager em;
     private EntityTransaction t;
 
-    public ControladorM(){
-
-        emf = Persistence.createEntityManagerFactory("default");
-        em = emf.createEntityManager();
-        t = em.getTransaction();
-
-        cmu = new ControladorMUsuario(this, t, em);
+    public ControladorM(ControladorPrincipal cp) {
+        this.cp = cp;
+        cmu = new ControladorMUsuario(this);
         cme = new ControladorMEquipo(this);
         cmjd = new ControladorMJugador(this);
     }
+
     public void terminar() throws Exception{
         em.close();
         emf.close();

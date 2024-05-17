@@ -11,12 +11,12 @@ import java.util.List;
 public class ControladorPrincipal {
     private ControladorV cv;
     private ControladorM cm;
-    private Equipo e;
-    private ControladorM cm;
+    private Equipo eq;
+
 
     public ControladorPrincipal() {
         cv = new ControladorV(this);
-        cm = new ControladorM();
+        cm = new ControladorM(this);
         System.out.println("Creados");
 
 

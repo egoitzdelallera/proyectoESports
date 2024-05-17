@@ -14,6 +14,7 @@ public class ControladorVLogin {
     private ControladorV cv;
     private VistaLogin vl;
     private Usuario u;
+    private boolean usuarioCorrecto;
 
 
     public ControladorVLogin(ControladorV cv){
@@ -27,6 +28,8 @@ public class ControladorVLogin {
         vl.addBEntrarAl(new BLoginAl());
         vl.addBSalirAl(new BSalirAl());
 
+        usuarioCorrecto =false;
+
         vl.setVisible(true);
     }
 
@@ -36,15 +39,28 @@ public class ControladorVLogin {
         public void actionPerformed(ActionEvent e) {
             var nombreUsuario = vl.getTfUsuario().getText();
             var contrasenaUsuario = vl.getTfContrasena().getText();
-
-            cv.mostrarPrincipal();
-            try {
-                u = cv.buscarUsuario(nombreUsuario);
-            } catch (Exception ex) {
-                vl.muestra(ex.getMessage());
+            int i;
+            for(i=0; i<5;i++) {
+                try {
+                    u = cv.buscarUsuario(nombreUsuario);
+                    if (u.getContrasena().equals(contrasenaUsuario)) {
+                        usuarioCorrecto = true;
+                    }
+                } catch (Exception ex) {
+                    vl.muestra(ex.getMessage());
+                }
+                if (usuarioCorrecto) {
+                    cv.mostrarPrincipal();
+                } else vl.muestra("Usuario Incorrecto");
             }
-
-
+            if(i==5){
+                vl.muestra("Demasiados Intentos");
+                try {
+                    cv.terminar();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
         }
     }
 
