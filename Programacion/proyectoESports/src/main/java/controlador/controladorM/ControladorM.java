@@ -1,5 +1,6 @@
 package controlador.controladorM;
 
+import controlador.ControladorPrincipal;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
