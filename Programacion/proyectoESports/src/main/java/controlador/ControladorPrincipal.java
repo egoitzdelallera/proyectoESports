@@ -4,6 +4,7 @@ package controlador;
 import controlador.controladorM.ControladorM;
 import controlador.controladorV.ControladorV;
 import modelo.Equipo;
+import modelo.Jugador;
 import modelo.Usuario;
 
 import java.util.List;
@@ -12,11 +13,12 @@ public class ControladorPrincipal {
     private ControladorV cv;
     private ControladorM cm;
     private Equipo eq;
+    private Jugador jd;
 
 
     public ControladorPrincipal() {
-        cv = new ControladorV(this);
         cm = new ControladorM(this);
+        cv = new ControladorV(this);
         System.out.println("Creados");
 
 
@@ -33,6 +35,7 @@ public class ControladorPrincipal {
         return cm.buscarUsuario(nombre);
     }
 
+    //Parte del Equipo
     public Equipo buscarEquipo(String nombre) throws Exception {
         return cm.buscarEquipo(nombre);
     }
@@ -44,6 +47,12 @@ public class ControladorPrincipal {
     }
     public List<Equipo> comboEquipos() {
         return cm.comboEquipos();
+    }
+
+    //Parte del Jugador
+
+    public Jugador buscarJugador(String nickname) throws Exception{
+        return cm.buscarJugador(nickname);
     }
 
 }

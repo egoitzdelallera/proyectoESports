@@ -1,7 +1,8 @@
 package controlador.controladorV;
 
-/**
- * Este es la Vista del login, es lo primero que aparece nada mas iniciamos el programa, damos usuario y contraseña, si lo busca entra en el ejercicio. si no, salta error diciendo que usuario o contraseña es incorrecto.
+/*
+  Este es la Vista del login, es lo primero que aparece nada mas iniciamos el programa, damos usuario y contraseña,
+   si lo busca entra en el ejercicio. si no, salta error diciendo que usuario o contraseña es incorrecto.
  */
 
 import modelo.Usuario;
@@ -39,21 +40,28 @@ public class ControladorVLogin {
         public void actionPerformed(ActionEvent e) {
             var nombreUsuario = vl.getTfUsuario().getText();
             var contrasenaUsuario = vl.getTfContrasena().getText();
-            int i;
-            for(i=0; i<5;i++) {
+
+            int intentos = 0;
+
+            while (intentos < 5) {
                 try {
                     u = cv.buscarUsuario(nombreUsuario);
-                    if (u.getContrasena().equals(contrasenaUsuario)) {
+                    if (u != null && u.getContrasena().equals(contrasenaUsuario)) {
                         usuarioCorrecto = true;
+                        break;
+                    } else {
+                        vl.muestra("Usuario Incorrecto");
                     }
                 } catch (Exception ex) {
                     vl.muestra(ex.getMessage());
                 }
-                if (usuarioCorrecto) {
-                    cv.mostrarPrincipal();
-                } else vl.muestra("Usuario Incorrecto");
+                intentos++;
             }
-            if(i==5){
+
+            if (usuarioCorrecto) {
+                vl.dispose();
+                cv.mostrarPrincipal();
+            } else if (intentos == 5) {
                 vl.muestra("Demasiados Intentos");
                 try {
                     cv.terminar();

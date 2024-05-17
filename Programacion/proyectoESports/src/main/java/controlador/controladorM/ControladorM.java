@@ -9,6 +9,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import modelo.Equipo;
+import modelo.Jugador;
 import modelo.Usuario;
 
 import java.util.List;
@@ -46,6 +47,12 @@ public class ControladorM {
     public List<Equipo> comboEquipos() {
         return cme.comboEquipos();
     }
+
+    //Parte del Jugador
+    public Jugador buscarJugador(String nickname) throws Exception{
+        return cmjd.buscarJugador(nickname);
+    }
+
 
     //Parte del Usuario
 

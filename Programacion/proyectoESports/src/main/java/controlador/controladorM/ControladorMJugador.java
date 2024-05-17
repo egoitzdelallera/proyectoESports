@@ -29,11 +29,11 @@ public class ControladorMJugador {
         em.remove(jd);
         transaction.commit();
     }
-    public Jugador buscarJugador(String nombre) throws Exception
+    public Jugador buscarJugador(String nickname) throws Exception
     {
         transaction.begin();
-        TypedQuery<Jugador> query = em.createQuery("SELECT j FROM Jugador j WHERE j.nombre = :nombre", Jugador.class);
-        query.setParameter("nombre", nombre);
+        TypedQuery<Jugador> query = em.createQuery("SELECT j FROM Jugador j WHERE j.nickname = :nickname", Jugador.class);
+        query.setParameter("nickname", nickname);
         jd = query.getSingleResult();
         transaction.commit();
         return jd;
