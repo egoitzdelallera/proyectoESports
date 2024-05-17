@@ -2,7 +2,6 @@ package controlador.controladorM;
 
 import jakarta.persistence.*;
 
-import modelo.Equipo;
 import modelo.Jugador;
 
 import java.util.List;

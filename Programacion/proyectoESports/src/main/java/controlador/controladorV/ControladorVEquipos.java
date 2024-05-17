@@ -1,7 +1,6 @@
 package controlador.controladorV;
 
 import modelo.Equipo;
-import vista.PaginaPrincipal;
 import vista.VistaEquipos;
 
 import java.awt.event.ActionEvent;

@@ -20,6 +20,7 @@ public class ControladorV{
     private ControladorVPatrocinadores cvpt;
     private ControladorVCompeticiones cvc;
     private Equipo eq;
+    private Usuario u;
 
     public ControladorV(ControladorPrincipal cp) {
         this.cp = cp;
