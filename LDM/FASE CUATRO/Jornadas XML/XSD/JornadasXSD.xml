@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<competiciones 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"       
+    xs:noNamespaceSchemaLocation="Jornadas.xsd">
+    <competicion id="c100">
+        <nombre>LaLiga</nombre>
+        <juego>Futbol</juego>
+        <jornadas>
+            <jornada id="j010">
+                <n_jornada>1</n_jornada>
+                <fecha_jornada>2024-01-10</fecha_jornada>
+                <enfrentamientos>
+                    <enfrentamiento id="e011">
+                        <hora>15:30</hora>
+                        <equipo_local>Team Alpha</equipo_local>
+                        <equipo_visitante>Team Beta</equipo_visitante>
+                        <resultado>Gana visitante</resultado>
+                    </enfrentamiento>
+                    <enfrentamiento id="e012">
+                        <hora>16:30</hora>
+                        <equipo_local>Team Barça</equipo_local>
+                        <equipo_visitante>Team Madrid</equipo_visitante>
+                        <resultado>Gana local</resultado>
+                    </enfrentamiento>
+                </enfrentamientos>
+            </jornada>
+            <jornada id="j020">
+                <n_jornada>2</n_jornada>
+                <fecha_jornada>2024-01-17</fecha_jornada>
+                <enfrentamientos>
+                    <enfrentamiento id="e021">
+                        <hora>15:30</hora>
+                        <equipo_local>Team Hola</equipo_local>
+                        <equipo_visitante>Team Adios</equipo_visitante>
+                        <resultado>Gana visitante</resultado>
+                    </enfrentamiento>
+                    <enfrentamiento id="e022">
+                        <hora>16:30</hora>
+                        <equipo_local>Team Rojo</equipo_local>
+                        <equipo_visitante>Team Azul</equipo_visitante>
+                        <resultado>Gana visitante</resultado>
+                    </enfrentamiento>
+                </enfrentamientos>
+            </jornada>
+        </jornadas>
+    </competicion>
+    <competicion id="c200">
+        <nombre>LigaBasket</nombre>
+        <juego>Baloncesto</juego>
+        <jornadas>
+            <jornada id="j110">
+                <n_jornada>1</n_jornada>
+                <fecha_jornada>2024-01-10</fecha_jornada>
+                <enfrentamientos>
+                    <enfrentamiento id="e031">
+                        <hora>17:30</hora>
+                        <equipo_local>Team Blanco</equipo_local>
+                        <equipo_visitante>Team Negro</equipo_visitante>
+                        <resultado>Gana visitante</resultado>
+                    </enfrentamiento>
+                    <enfrentamiento id="e032">
+                        <hora>18:30</hora>
+                        <equipo_local>Team Marron</equipo_local>
+                        <equipo_visitante>Team Alaves</equipo_visitante>
+                        <resultado>Gana local</resultado>
+                    </enfrentamiento>
+                </enfrentamientos>
+            </jornada>
+            <jornada id="j120">
+                <n_jornada>2</n_jornada>
+                <fecha_jornada>2024-01-17</fecha_jornada>
+                <enfrentamientos>
+                    <enfrentamiento id="e041">
+                        <hora>19:30</hora>
+                        <equipo_local>Team Amarillo</equipo_local>
+                        <equipo_visitante>Team Verde</equipo_visitante>
+                        <resultado>Gana visitante</resultado>
+                    </enfrentamiento>
+                    <enfrentamiento id="e042">
+                        <hora>20:30</hora>
+                        <equipo_local>Team Arriba</equipo_local>
+                        <equipo_visitante>Team Abajo</equipo_visitante>
+                        <resultado>Gana visitante</resultado>
+                    </enfrentamiento>
+                </enfrentamientos>
+            </jornada>
+        </jornadas>
+    </competicion>
+</competiciones>
