@@ -84,7 +84,7 @@ END;
 /
 
 -- Trigger para evitar nombres de patrocinadores duplicados
-CREATE OR REPLACE TRIGGER patrocinadores_nombre_duplicate
+CREATE OR REPLACE TRIGGER patrocinadores_duplicado
 BEFORE INSERT OR UPDATE ON patrocinadores
 FOR EACH ROW
 DECLARE

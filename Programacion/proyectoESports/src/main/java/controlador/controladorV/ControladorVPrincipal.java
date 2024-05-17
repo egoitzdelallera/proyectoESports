@@ -12,7 +12,7 @@ public class ControladorVPrincipal {
     public ControladorVPrincipal(ControladorV cv) {
         this.cv = cv;
     }
-    public void mostrarPrincipal() {
+    public void mostrarPrincipal(String rolusuario) {
         // Crea, muestra y pone a escuchar la ventana principal.
         pp = new PaginaPrincipal();
 
@@ -28,6 +28,38 @@ public class ControladorVPrincipal {
         pp.addBSalirAl(new BSalirAl());
 
         pp.setVisible(true);
+
+        switch (rolusuario){
+            case "ADMINISTRADOR":
+                pp.getbCompeticiones().setVisible(true);
+                pp.getbClasificacion().setVisible(true);
+                pp.getbEquipos().setVisible(true);
+                pp.getbJuegos().setVisible(true);
+                pp.getbPatrocinadores().setVisible(true);
+                pp.getbJugadores().setVisible(true);
+                pp.getbStaff().setVisible(true);
+                pp.getbUsuarios().setVisible(true);
+                pp.getbResultados().setVisible(true);
+                pp.getbSalir().setVisible(true);
+                break;
+            case "USUARIO":
+                pp.getbCompeticiones().setVisible(false);
+                pp.getbClasificacion().setVisible(true);
+                pp.getbEquipos().setVisible(false);
+                pp.getbJuegos().setVisible(false);
+                pp.getbPatrocinadores().setVisible(false);
+                pp.getbJugadores().setVisible(false);
+                pp.getbStaff().setVisible(false);
+                pp.getbUsuarios().setVisible(false);
+                pp.getbResultados().setVisible(true);
+                pp.getbSalir().setVisible(true);
+                break;
+            default:
+                break;
+
+        }
+
+         
     }
     public class BEquiposAl implements ActionListener {
         @Override
