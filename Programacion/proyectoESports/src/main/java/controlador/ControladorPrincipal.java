@@ -12,14 +12,11 @@ public class ControladorPrincipal {
     private ControladorV cv;
     private ControladorM cm;
     private Equipo e;
-    private ControladorM cm;
 
     public ControladorPrincipal() {
-        cv = new ControladorV(this);
         cm = new ControladorM();
+        cv = new ControladorV(this);
         System.out.println("Creados");
-
-
     }
     public void terminar() throws Exception
     {

@@ -7,10 +7,11 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "ENFRENTAMIENTOS", schema = "EQDAW02", catalog = "")
 public class Enfrentamiento {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen")
+    @SequenceGenerator(name = "seq_gen", sequenceName = "enfrentamientos_seq", allocationSize = 1)
     @Id
     @Column(name = "ID_ENFRENTAMIENTO", nullable = false, precision = 0)
-    private byte idEnfrentamiento;
+    private int idEnfrentamiento;
     @Basic
     @Column(name = "HORA", nullable = true)
     private Timestamp hora;
@@ -27,7 +28,7 @@ public class Enfrentamiento {
     @JoinColumn(name = "ID_GANADOR", referencedColumnName = "ID_EQUIPO")
     private Equipo equiposByIdGanador;
 
-    public byte getIdEnfrentamiento() {
+    public int getIdEnfrentamiento() {
         return idEnfrentamiento;
     }
 

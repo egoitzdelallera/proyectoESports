@@ -3,6 +3,7 @@ package controlador.controladorV;
 
 import controlador.ControladorPrincipal;
 import modelo.Equipo;
+import modelo.Usuario;
 
 import java.util.List;
 
