@@ -82,9 +82,6 @@ public class ControladorV{
     public void borrarEquipo() throws Exception{
         cp.borrarEquipo();
     }
-    public void modificarEquipo(Equipo eq) throws Exception{
-        cp.modificarEquipo(eq);
-    }
     public List<Equipo> comboEquipos() {
         return cp.comboEquipos();
     }
@@ -92,6 +89,15 @@ public class ControladorV{
     //Parte del Jugador
     public Jugador buscarJugador(String nickname) throws Exception {
         return cp.buscarJugador(nickname);
+    }
+    public void insertarJugador(Jugador jd) throws Exception{
+        cp.insertarJugador(jd);
+    }
+    public void borrarJugador() throws Exception{
+        cp.borrarJugador();
+    }
+    public List<Jugador> comboJugadores() {
+        return cp.comboJugadores();
     }
 
 

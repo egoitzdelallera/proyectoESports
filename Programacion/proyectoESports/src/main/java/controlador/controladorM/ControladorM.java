@@ -4,7 +4,6 @@ import controlador.ControladorPrincipal;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
 import modelo.Equipo;
 import modelo.Jugador;
 import modelo.Usuario;
@@ -38,9 +37,7 @@ public class ControladorM {
     public void insertarEquipo(Equipo eq) throws Exception{
         cme.insertarEquipo(eq);
     }
-    public void modificarEquipo(Equipo eq) throws Exception{
-        cme.modificarEquipo(eq);
-    }
+
     public void borrarEquipo() throws Exception{
         cme.borrarEquipo();
     }
@@ -51,6 +48,16 @@ public class ControladorM {
     //Parte del Jugador
     public Jugador buscarJugador(String nickname) throws Exception{
         return cmjd.buscarJugador(nickname);
+    }
+    public void insertarJugador(Jugador jd) throws Exception{
+        cmjd.insertarJugador(jd);
+    }
+
+    public void borrarJugador() throws Exception{
+        cmjd.borrarJugador();
+    }
+    public List<Jugador> comboJugadores() {
+        return cmjd.comboJugadores();
     }
 
 

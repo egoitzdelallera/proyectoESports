@@ -45,9 +45,6 @@ public class ControladorPrincipal {
     public void borrarEquipo() throws Exception{
         cm.borrarEquipo();
     }
-    public void modificarEquipo(Equipo eq) throws Exception{
-        cm.modificarEquipo(eq);
-    }
     public List<Equipo> comboEquipos() {
         return cm.comboEquipos();
     }
@@ -56,6 +53,15 @@ public class ControladorPrincipal {
 
     public Jugador buscarJugador(String nickname) throws Exception{
         return cm.buscarJugador(nickname);
+    }
+    public void insertarJugador(Jugador jd) throws Exception{
+        cm.insertarJugador(jd);
+    }
+    public void borrarJugador() throws Exception{
+        cm.borrarJugador();
+    }
+    public List<Jugador> comboJugadores() {
+        return cm.comboJugadores();
     }
 
 }
