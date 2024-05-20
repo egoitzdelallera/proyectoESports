@@ -70,15 +70,6 @@ public class ControladorVEquipos {
         @Override
         public void actionPerformed(ActionEvent e) {
             ve.getPanelCrear().setVisible(true);
-            ve.getTfNombre().setText(eq.getNombre());
-
-            //Hay que cambiar el tipo de dato
-            java.util.Date fechaFundacion = eq.getFechaFundacion();
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(fechaFundacion);
-            ve.getcFecha().setCalendar(calendar);
-
-
         }
     }
 
@@ -97,6 +88,11 @@ public class ControladorVEquipos {
                 cv.insertarEquipo(eq);
                 System.out.println("Equipo insertado");
                 ve.limpiar();
+
+                // Actualizar ComboBox
+                lista = cv.comboEquipos();
+                ve.getCbEquipos().removeAllItems();
+                lista.forEach(o -> ve.getCbEquipos().addItem(o.getNombre()));
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
@@ -107,6 +103,10 @@ public class ControladorVEquipos {
         public void actionPerformed(ActionEvent e) {
             try {
                 cv.borrarEquipo();
+                // Actualizar ComboBox
+                lista = cv.comboEquipos();
+                ve.getCbEquipos().removeAllItems();
+                lista.forEach(o -> ve.getCbEquipos().addItem(o.getNombre()));
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }

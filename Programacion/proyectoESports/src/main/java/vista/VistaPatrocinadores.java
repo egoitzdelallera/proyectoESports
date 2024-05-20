@@ -42,6 +42,11 @@ public class VistaPatrocinadores extends JFrame{
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
     }
+    public void limpiar()
+    {
+        tfNombre.setText("");
+        tfNombre.requestFocus();
+    }
 
     public JPanel getPanelComboBox() {
         return panelComboBox;
