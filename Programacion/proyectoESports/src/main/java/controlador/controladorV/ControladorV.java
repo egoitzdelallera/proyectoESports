@@ -2,9 +2,7 @@
 package controlador.controladorV;
 
 import controlador.ControladorPrincipal;
-import modelo.Equipo;
-import modelo.Jugador;
-import modelo.Usuario;
+import modelo.*;
 
 import java.util.List;
 
@@ -74,8 +72,6 @@ public class ControladorV{
     public Equipo buscarEquipo(String nombre) throws Exception {
         return cp.buscarEquipo(nombre);
     }
-
-
     public void insertarEquipo(Equipo eq) throws Exception{
         cp.insertarEquipo(eq);
     }
@@ -100,11 +96,39 @@ public class ControladorV{
         return cp.comboJugadores();
     }
 
+    //Parte del Juego
+    public Juego buscarJuego(String nombre) throws Exception {
+        return cp.buscarJuego(nombre);
+    }
+    public void insertarJuego(Juego jg) throws Exception{
+        cp.insertarJuego(jg);
+    }
+    public void borrarJuego() throws Exception{
+        cp.borrarJuego();
+    }
+    public List<Juego> comboJuegos() {
+        return cp.comboJuegos();
+    }
 
     public void terminar() throws Exception
     {
         // Han hecho clic en el botón salir.
         cp.terminar();
+    }
+
+    //Parte del Patrocinador
+    public Patrocinador buscarPatrocinador(String nombre) throws Exception{
+        return cp.buscarPatrocinador(nombre);
+    }
+    public void insertarPatrocinador(Patrocinador jg) throws Exception{
+        cp.insertarPatrocinador(jg);
+    }
+
+    public void borrarPatrocinador() throws Exception{
+        cp.borrarPatrocinador();
+    }
+    public List<Patrocinador> comboPatrocinadores() {
+        return cp.comboPatrocinadores();
     }
 }
 

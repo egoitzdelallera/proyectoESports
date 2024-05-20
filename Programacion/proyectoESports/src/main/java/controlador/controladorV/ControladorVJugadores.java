@@ -98,14 +98,19 @@ public class ControladorVJugadores {
                 jd.setRol(vjd.getTfRol().getText());
                 jd.setSueldo(Integer.valueOf(vjd.getTfSueldo().getText()));
 
-                eq = (Equipo) vjd.getCbEquipos().getSelectedItem();
+                eq = listaEq.get(vjd.getCbEquipos().getSelectedIndex()-1);
                 jd.setEquiposByIdEquipo(eq);
 
                 java.sql.Date fecha = new java.sql.Date(vjd.getcFecha().getDate().getTime());
                 jd.setFechaNacimiento(fecha);
                 cv.insertarJugador(jd);
-                System.out.println("Equipo insertado");
+                System.out.println("Jugador insertado");
                 vjd.limpiar();
+
+                // Actualizar ComboBox
+                listaJd = cv.comboJugadores();
+                vjd.getCbJugadores().removeAllItems();
+                listaJd.forEach(o -> vjd.getCbJugadores().addItem(o.getNombre()));
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
@@ -117,6 +122,11 @@ public class ControladorVJugadores {
         public void actionPerformed(ActionEvent e) {
             try {
                 cv.borrarJugador();
+
+                //Actualizar ComboBox
+                listaJd = cv.comboJugadores();
+                vjd.getCbJugadores().removeAllItems();
+                listaJd.forEach(o -> vjd.getCbJugadores().addItem(o.getNombre()));
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }

@@ -4,9 +4,7 @@ import controlador.ControladorPrincipal;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
-import modelo.Equipo;
-import modelo.Jugador;
-import modelo.Usuario;
+import modelo.*;
 
 import java.util.List;
 
@@ -14,7 +12,9 @@ public class ControladorM {
     private ControladorPrincipal cp;
     private ControladorMUsuario cmu;
     private ControladorMEquipo cme;
+    private ControladorMJuego cmjg;
     private ControladorMJugador cmjd;
+    private ControladorMPatrocinador cmpt;
     private EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction t;
@@ -31,6 +31,7 @@ public class ControladorM {
         emf.close();
     }
 
+    //Parte del Equipo
     public Equipo buscarEquipo(String nombre) throws Exception{
         return cme.buscarEquipo(nombre);
     }
@@ -67,5 +68,38 @@ public class ControladorM {
     {
         return cmu.buscarUsuario(nombre);
     }
+
+    //Parte del Juego
+
+    public Juego buscarJuego(String nombre) throws Exception{
+        return cmjg.buscarJuego(nombre);
+    }
+    public void insertarJuego(Juego jg) throws Exception{
+        cmjg.insertarJuego(jg);
+    }
+
+    public void borrarJuego() throws Exception{
+        cmjg.borrarJuego();
+    }
+    public List<Juego> comboJuegos() {
+        return cmjg.comboJuegos();
+    }
+
+    //Parte del Patrocinador
+
+    public Patrocinador buscarPatrocinador(String nombre) throws Exception{
+        return cmpt.buscarPatrocinador(nombre);
+    }
+    public void insertarPatrocinador(Patrocinador jg) throws Exception{
+        cmpt.insertarPatrocinador(jg);
+    }
+
+    public void borrarPatrocinador() throws Exception{
+        cmpt.borrarPatrocinador();
+    }
+    public List<Patrocinador> comboPatrocinadores() {
+        return cmpt.comboPatrocinadores();
+    }
+
 }
 

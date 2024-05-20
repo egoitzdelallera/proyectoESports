@@ -17,15 +17,15 @@ public class VistaJuegos extends JFrame {
     private JTextField tfEmpresa;
     private JPanel panelPrincipal;
     private JButton bSalir;
-    //private JCalendar cFecha
+    private JCalendar cFecha;
 
     public VistaJuegos() {
         super("Juegos");
         setContentPane(panelPrincipal);
         setSize(500,500);
         setLocationRelativeTo(null);
-        //cFecha = new JCalendar();
-        //pFecha.add(cFecha);
+        cFecha = new JCalendar();
+        pFecha.add(cFecha);
     }
 
     public void addBEditarAl (ActionListener al){
@@ -37,17 +37,23 @@ public class VistaJuegos extends JFrame {
     public void addBAceptarAl (ActionListener al){
         bAceptar.addActionListener(al);
     }
-    public void addCbEquiposAl (ActionListener al){
+    public void addCbJuegosAl (ActionListener al){
         cbJuegos.addActionListener(al);
     }
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
     }
 
+    public void limpiar()
+    {
+        tfNombre.setText("");
+        tfEmpresa.setText("");
+        tfNombre.requestFocus();
+    }
+
     public JPanel getPanelComboBox() {
         return panelComboBox;
     }
-
     public JComboBox getCbJuegos() {
         return cbJuegos;
     }
@@ -78,5 +84,9 @@ public class VistaJuegos extends JFrame {
 
     public JPanel getPanelPrincipal() {
         return panelPrincipal;
+    }
+
+    public void setCbJuegos(JComboBox cbJuegos) {
+        this.cbJuegos = cbJuegos;
     }
 }
