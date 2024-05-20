@@ -38,6 +38,9 @@ public class ControladorM {
     public void insertarEquipo(Equipo eq) throws Exception{
         cme.insertarEquipo(eq);
     }
+    public void modificarEquipo(Equipo eq) throws Exception{
+        cme.modificarEquipo(eq);
+    }
     public void borrarEquipo() throws Exception{
         cme.borrarEquipo();
     }

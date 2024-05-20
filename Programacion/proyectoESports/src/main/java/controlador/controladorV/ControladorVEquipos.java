@@ -21,7 +21,8 @@ public class ControladorVEquipos {
     public void mostrarEquipos() {
         ve = new VistaEquipos();
 
-        ve.addBAceptarAl(new BAceptarAl());
+        ve.addBAceptarModificarAl(new BAceptarModificarAl());
+        ve.addBAceptarCrearAl(new BAceptarCrearAl());
         ve.addBBorrarAl(new BBorrarAl());
         ve.addBEditarAl(new BEditarAl());
         ve.addCbEquiposAl(new CbEquiposAl());
@@ -31,6 +32,7 @@ public class ControladorVEquipos {
         ve.getPanelComboBox().setVisible(true);
         ve.getPanelCrear().setVisible(false);
         ve.getPanelDatos().setVisible(false);
+        ve.getPanelModificar().setVisible(false);
 
         lista = cv.comboEquipos();
         lista.forEach(o->ve.getCbEquipos().addItem(o.getNombre()));
@@ -67,7 +69,7 @@ public class ControladorVEquipos {
     public class BEditarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            ve.getPanelCrear().setVisible(true);
+            ve.getPanelModificar().setVisible(true);
             ve.getTfNombre().setText(eq.getNombre());
 
             //Hay que cambiar el tipo de dato
@@ -80,7 +82,25 @@ public class ControladorVEquipos {
         }
     }
 
-    public class BAceptarAl implements ActionListener{
+    public class BAceptarModificarAl implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            try {
+                eq = new Equipo();
+                eq.setNombre(ve.getTfNombre().getText());
+                java.sql.Date fecha = new java.sql.Date(ve.getcFecha().getDate().getTime());
+                eq.setFechaFundacion(fecha);
+                cv.modificarEquipo(eq);
+                System.out.println("Equipo insertado");
+                ve.limpiar();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+
+        }
+    }
+    public class BAceptarCrearAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -95,7 +115,6 @@ public class ControladorVEquipos {
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
-
         }
     }
     public class BBorrarAl implements ActionListener{

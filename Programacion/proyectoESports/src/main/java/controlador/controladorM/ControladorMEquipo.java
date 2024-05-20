@@ -46,4 +46,17 @@ public class ControladorMEquipo {
         transaction.commit();
         return lista;
     }
+    public void modificarEquipo(Equipo eq) {
+        try {
+            transaction.begin();
+            em.merge(eq);  // Utiliza merge en lugar de persist
+            transaction.commit();
+        } catch (PersistenceException e) {
+            em.getTransaction().rollback();
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
+
 }
