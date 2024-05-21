@@ -6,7 +6,7 @@ import modelo.*;
 
 import java.util.List;
 
-public class ControladorV{
+public class  ControladorV{
     private ControladorPrincipal cp;
     private ControladorVPrincipal cvpc;
     private ControladorVEquipos cve;
@@ -82,6 +82,7 @@ public class ControladorV{
         return cp.comboEquipos();
     }
 
+
     //Parte del Jugador
     public Jugador buscarJugador(String nickname) throws Exception {
         return cp.buscarJugador(nickname);
@@ -95,6 +96,7 @@ public class ControladorV{
     public List<Jugador> comboJugadores() {
         return cp.comboJugadores();
     }
+
 
     //Parte del Juego
     public Juego buscarJuego(String nombre) throws Exception {
@@ -116,6 +118,7 @@ public class ControladorV{
         cp.terminar();
     }
 
+
     //Parte del Patrocinador
     public Patrocinador buscarPatrocinador(String nombre) throws Exception{
         return cp.buscarPatrocinador(nombre);
@@ -130,5 +133,21 @@ public class ControladorV{
     public List<Patrocinador> comboPatrocinadores() {
         return cp.comboPatrocinadores();
     }
+
+
+    //Parte del Staff
+    public Staff buscarStaff(String nombre) throws Exception {
+        return cp.buscarStaff(nombre);
+    }
+    public void insertarStaff(Staff st) throws Exception{
+        cp.insertarStaff(st);
+    }
+    public void borrarStaff() throws Exception{
+        cp.borrarStaff();
+    }
+    public List<Staff> comboStaff() {
+        return cp.comboStaff();
+    }
+
 }
 

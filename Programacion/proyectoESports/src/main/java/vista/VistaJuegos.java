@@ -1,4 +1,6 @@
 package vista;
+import com.toedter.calendar.JCalendar;
+
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -88,5 +90,13 @@ public class VistaJuegos extends JFrame {
 
     public void setCbJuegos(JComboBox cbJuegos) {
         this.cbJuegos = cbJuegos;
+    }
+
+    public JCalendar getcFecha() {
+        return cFecha;
+    }
+
+    public void setcFecha(JCalendar cFecha) {
+        this.cFecha = cFecha;
     }
 }

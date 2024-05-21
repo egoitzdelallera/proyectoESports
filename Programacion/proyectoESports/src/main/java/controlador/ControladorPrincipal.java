@@ -93,6 +93,23 @@ public class ControladorPrincipal {
     public List<Patrocinador> comboPatrocinadores() {
         return cm.comboPatrocinadores();
     }
+
+
+    //Parte del Staff
+
+    public Staff buscarStaff(String nombre) throws Exception{
+        return cm.buscarStaff(nombre);
+    }
+    public void insertarStaff(Staff st) throws Exception{
+        cm.insertarStaff(st);
+    }
+
+    public void borrarStaff() throws Exception{
+        cm.borrarStaff();
+    }
+    public List<Staff> comboStaff() {
+        return cm.comboStaff();
+    }
 }
 
 

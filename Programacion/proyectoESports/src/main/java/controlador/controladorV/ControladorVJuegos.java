@@ -1,6 +1,5 @@
 package controlador.controladorV;
 
-
 import modelo.Juego;
 import vista.VistaJuegos;
 
@@ -54,7 +53,7 @@ public class ControladorVJuegos {
                     java.util.Date fechaFundacion = jg.getFechaLanzamiento();
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(fechaFundacion);
-                    jg.getcFecha().setCalendar(calendar);
+                    vjg.getcFecha().setCalendar(calendar);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }

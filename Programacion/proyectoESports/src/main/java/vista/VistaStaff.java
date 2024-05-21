@@ -3,6 +3,7 @@ package vista;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
+
 public class VistaStaff extends JFrame {
     private JPanel panelComboBox;
     private JComboBox cbStaff;
@@ -123,5 +124,12 @@ public class VistaStaff extends JFrame {
 
     public void setCbEquipos(JComboBox cbEquipos) {
         this.cbEquipos = cbEquipos;
+    }
+    public void limpiar()
+    {
+        tfNombre.setText("");
+        tfPuesto.setText("");
+        tfSueldo.setText("");
+        tfNombre.requestFocus();
     }
 }
