@@ -33,6 +33,15 @@ public class ControladorPrincipal {
     {
         return cm.buscarUsuario(nombre);
     }
+    public void insertarUsuario(Usuario us) throws Exception{
+        cm.insertarUsuario(us);
+    }
+    public void borrarUsuario() throws Exception{
+        cm.borrarUsuario();
+    }
+    public List<Usuario> comboUsuarios() {
+        return cm.comboUsuarios();
+    }
 
     //Parte del Equipo
     public Equipo buscarEquipo(String nombre) throws Exception {

@@ -28,6 +28,7 @@ public class ControladorMEquipo {
         transaction.begin();
         em.remove(eq);
         transaction.commit();
+        System.out.println("Equipo Borrado");
     }
     public Equipo buscarEquipo(String nombre) throws Exception
     {

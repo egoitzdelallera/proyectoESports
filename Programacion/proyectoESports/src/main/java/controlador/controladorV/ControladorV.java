@@ -18,7 +18,7 @@ public class ControladorV{
     private ControladorVPatrocinadores cvpt;
     private ControladorVCompeticiones cvc;
     private Equipo eq;
-    private Usuario u;
+    private Usuario us;
 
     public ControladorV(ControladorPrincipal cp) {
         this.cp = cp;
@@ -65,6 +65,15 @@ public class ControladorV{
     public Usuario buscarUsuario(String nombre) throws Exception
     {
         return cp.buscarUsuario(nombre);
+    }
+    public void insertarUsuario(Usuario us) throws Exception{
+        cp.insertarUsuario(us);
+    }
+    public void borrarUsuario() throws Exception{
+        cp.borrarUsuario();
+    }
+    public List<Usuario> comboUsuarios() {
+        return cp.comboUsuarios();
     }
 
 

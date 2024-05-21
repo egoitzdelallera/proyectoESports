@@ -24,6 +24,8 @@ public class ControladorM {
         cmu = new ControladorMUsuario(this);
         cme = new ControladorMEquipo(this);
         cmjd = new ControladorMJugador(this);
+        cmjg = new ControladorMJuego(this);
+        cmpt = new ControladorMPatrocinador(this);
     }
 
     public void terminar() throws Exception{
@@ -68,6 +70,17 @@ public class ControladorM {
     {
         return cmu.buscarUsuario(nombre);
     }
+    public void insertarUsuario(Usuario us) throws Exception{
+        cmu.insertarUsuario(us);
+    }
+
+    public void borrarUsuario() throws Exception{
+        cmu.borrarUsuario();
+    }
+    public List<Usuario> comboUsuarios() {
+        return cmu.comboUsuarios();
+    }
+
 
     //Parte del Juego
 

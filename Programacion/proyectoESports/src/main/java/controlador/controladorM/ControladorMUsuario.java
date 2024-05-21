@@ -2,7 +2,10 @@ package controlador.controladorM;
 
 import jakarta.persistence.*;
 import modelo.Equipo;
+import modelo.Juego;
 import modelo.Usuario;
+
+import java.util.List;
 
 public class ControladorMUsuario {
 
@@ -10,7 +13,7 @@ public class ControladorMUsuario {
     private EntityManager em;
     private EntityTransaction transaction ;
     private ControladorM cm;
-    private Usuario u;
+    private Usuario us;
 
     public ControladorMUsuario(ControladorM cm) {
         this.cm = cm;
@@ -22,13 +25,31 @@ public class ControladorMUsuario {
         System.out.println("Controlador Modelo Usuario");
     }
 
-    // Prueba para buscar usuario con el nombre del usuario
+    public void insertarUsuario (Usuario us) throws Exception {
+        // Insertar
+        transaction.begin();
+        em.persist(us);
+        transaction.commit();
+    }
+    public void borrarUsuario() throws Exception {
+        transaction.begin();
+        em.remove(us);
+        transaction.commit();
+    }
+
     public Usuario buscarUsuario(String nombre) throws Exception {
         transaction.begin();
         TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.nombre = :nombre", Usuario.class);
         query.setParameter("nombre", nombre);
-        u = query.getSingleResult();
+        us = query.getSingleResult();
         transaction.commit();
-        return u;
+        return us;
+    }
+    public List<Usuario> comboUsuarios(){
+        transaction.begin();
+        List<Usuario> lista =
+                em.createQuery("SELECT us FROM Usuario us", Usuario.class).getResultList();
+        transaction.commit();
+        return lista;
     }
 }

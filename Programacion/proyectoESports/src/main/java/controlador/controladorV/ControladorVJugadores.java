@@ -37,11 +37,9 @@ public class ControladorVJugadores {
         vjd.getPanelDatos().setVisible(false);
         vjd.getPanelCrear().setVisible(false);
 
-        listaEq = cv.comboEquipos();
-        listaEq.forEach(o->vjd.getCbEquipos().addItem(o.getNombre()));
 
         listaJd = cv.comboJugadores();
-        listaJd.forEach(o->vjd.getCbJugadores().addItem(o.getNombre()));
+        listaJd.forEach(o->vjd.getCbJugadores().addItem(o.getNickname()));
 
 
     }
@@ -57,7 +55,29 @@ public class ControladorVJugadores {
 
                 try {
                     jd = cv.buscarJugador(vjd.getCbJugadores().getItemAt(combo).toString());
-                    vjd.getTaDatos().setText(jd.getNombre() + jd.getNacionalidad() + jd.getNickname() + jd.getRol() + jd.getFechaNacimiento() + jd.getSueldo());
+
+                    vjd.getTaDatos().setText(jd.getNombre()+"\n"+jd.getNacionalidad()+"\n"+ jd.getNickname()+
+                            "\n"+ jd.getRol()+"\n"+ jd.getFechaNacimiento()+"\n"+ jd.getSueldo());
+
+                    vjd.getTfNombre().setText(jd.getNombre());
+                    vjd.getTfNacionalidad().setText(jd.getNacionalidad());
+                    vjd.getTfNickname().setText(jd.getNickname());
+                    vjd.getTfRol().setText(jd.getRol());
+                    vjd.getTfSueldo().setText(String.valueOf(jd.getSueldo()));
+
+                    listaEq = cv.comboEquipos();
+                    listaEq.forEach(o->vjd.getCbEquipos().addItem(o.getNombre()));
+
+                    eq = listaEq.get(vjd.getCbEquipos().getSelectedIndex()-1);
+                    jd.setEquiposByIdEquipo(eq);
+
+
+
+                    //Hay que cambiar el tipo de dato
+                    java.util.Date fechaFundacion = jd.getFechaNacimiento();
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(fechaFundacion);
+                    vjd.getcFecha().setCalendar(calendar);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -70,17 +90,7 @@ public class ControladorVJugadores {
         @Override
         public void actionPerformed(ActionEvent e) {
             vjd.getPanelCrear().setVisible(true);
-            vjd.getTfNombre().setText(jd.getNombre());
-            vjd.getTfNacionalidad().setText(jd.getNacionalidad());
-            vjd.getTfNickname().setText(jd.getNickname());
-            vjd.getTfRol().setText(jd.getRol());
-            vjd.getTfSueldo().setText(String.valueOf(jd.getSueldo()));
 
-            //Hay que cambiar el tipo de dato
-            java.util.Date fechaFundacion = jd.getFechaNacimiento();
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(fechaFundacion);
-            vjd.getcFecha().setCalendar(calendar);
         }
     }
 
@@ -98,8 +108,6 @@ public class ControladorVJugadores {
                 jd.setRol(vjd.getTfRol().getText());
                 jd.setSueldo(Integer.valueOf(vjd.getTfSueldo().getText()));
 
-                eq = listaEq.get(vjd.getCbEquipos().getSelectedIndex()-1);
-                jd.setEquiposByIdEquipo(eq);
 
                 java.sql.Date fecha = new java.sql.Date(vjd.getcFecha().getDate().getTime());
                 jd.setFechaNacimiento(fecha);
@@ -110,7 +118,7 @@ public class ControladorVJugadores {
                 // Actualizar ComboBox
                 listaJd = cv.comboJugadores();
                 vjd.getCbJugadores().removeAllItems();
-                listaJd.forEach(o -> vjd.getCbJugadores().addItem(o.getNombre()));
+                listaJd.forEach(o -> vjd.getCbJugadores().addItem(o.getNickname()));
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
