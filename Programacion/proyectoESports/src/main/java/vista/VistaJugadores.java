@@ -53,6 +53,16 @@ public class VistaJugadores extends JFrame{
     }
     public void addCBEquiposAl(ActionListener al) {cbEquipos.addActionListener(al);}
 
+    public void limpiar()
+    {
+        tfNombre.setText("");
+        tfNacionalidad.setText("");
+        tfNickname.setText("");
+        tfRol.setText("");
+        tfSueldo.setText("");
+        tfNombre.requestFocus();
+    }
+
     public JPanel getPanelPrincipal() {
         return panelPrincipal;
     }

@@ -20,13 +20,13 @@ public class ControladorMJugador {
         transaction = em. getTransaction ();
     }
 
-    public void insertarJuagdor (Jugador jd) throws Exception {
+    public void insertarJugador (Jugador jd) throws Exception {
         // Insertar
         transaction.begin();
         em.persist(jd);
         transaction.commit();
     }
-    public void borrarJuagdor() throws Exception {
+    public void borrarJugador() throws Exception {
         transaction.begin();
         em.remove(jd);
         transaction.commit();

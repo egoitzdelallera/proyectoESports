@@ -3,9 +3,7 @@ package controlador;
 
 import controlador.controladorM.ControladorM;
 import controlador.controladorV.ControladorV;
-import modelo.Equipo;
-import modelo.Jugador;
-import modelo.Usuario;
+import modelo.*;
 
 import java.util.List;
 
@@ -14,6 +12,7 @@ public class ControladorPrincipal {
     private ControladorM cm;
     private Equipo eq;
     private Jugador jd;
+    private Juego jg;
 
 
     public ControladorPrincipal() {
@@ -45,9 +44,6 @@ public class ControladorPrincipal {
     public void borrarEquipo() throws Exception{
         cm.borrarEquipo();
     }
-    public void modificarEquipo(Equipo eq) throws Exception{
-        cm.modificarEquipo(eq);
-    }
     public List<Equipo> comboEquipos() {
         return cm.comboEquipos();
     }
@@ -57,7 +53,46 @@ public class ControladorPrincipal {
     public Jugador buscarJugador(String nickname) throws Exception{
         return cm.buscarJugador(nickname);
     }
+    public void insertarJugador(Jugador jd) throws Exception{
+        cm.insertarJugador(jd);
+    }
+    public void borrarJugador() throws Exception{
+        cm.borrarJugador();
+    }
+    public List<Jugador> comboJugadores() {
+        return cm.comboJugadores();
+    }
 
+    //Parte del Juego
+
+    public Juego buscarJuego(String nombre) throws Exception {
+        return cm.buscarJuego(nombre);
+    }
+    public void insertarJuego(Juego jg) throws Exception{
+        cm.insertarJuego(jg);
+    }
+    public void borrarJuego() throws Exception{
+        cm.borrarJuego();
+    }
+    public List<Juego> comboJuegos() {
+        return cm.comboJuegos();
+    }
+
+    //Parte del Patrocinador
+
+    public Patrocinador buscarPatrocinador(String nombre) throws Exception{
+        return cm.buscarPatrocinador(nombre);
+    }
+    public void insertarPatrocinador(Patrocinador jg) throws Exception{
+        cm.insertarPatrocinador(jg);
+    }
+
+    public void borrarPatrocinador() throws Exception{
+        cm.borrarPatrocinador();
+    }
+    public List<Patrocinador> comboPatrocinadores() {
+        return cm.comboPatrocinadores();
+    }
 }
 
 
