@@ -32,22 +32,46 @@ BEGIN
 END;
 /
 
--- Trigger para evitar nombres de competiciones duplicados
+-- Compound Trigger para evitar nombres de competiciones duplicados
 CREATE OR REPLACE TRIGGER competiciones_nombre_duplicate
-BEFORE INSERT OR UPDATE ON competiciones
-FOR EACH ROW
-DECLARE
-    v_count NUMBER;
-BEGIN
-    SELECT COUNT(*) INTO v_count
-    FROM competiciones
-    WHERE UPPER(nombre) = UPPER(:NEW.nombre);
-    
-    IF v_count > 0 THEN
-        RAISE_APPLICATION_ERROR(-20003, 'Ya existe una competición con ese nombre.');
-    END IF;
-END;
+FOR INSERT OR UPDATE ON competiciones
+COMPOUND TRIGGER
+
+    -- Variable para almacenar los nombres de las competiciones nuevos o actualizados
+    TYPE t_competicion IS RECORD (
+        nombre COMPETICIONES.NOMBRE%TYPE,
+        id_competicion COMPETICIONES.ID_COMPETICION%TYPE
+    );
+    v_competiciones t_competicion;
+
+    -- BEFORE EACH ROW: Captura los datos de cada fila nueva o actualizada
+    BEFORE EACH ROW IS
+    BEGIN
+        v_competiciones.nombre := :NEW.NOMBRE;
+        v_competiciones.id_competicion := :NEW.ID_COMPETICION;
+    END BEFORE EACH ROW;
+
+    -- AFTER STATEMENT: Realiza la verificación después de que todas las filas hayan sido procesadas
+    AFTER STATEMENT IS
+    BEGIN
+        DECLARE
+            v_count INTEGER;
+        BEGIN
+            SELECT COUNT(*)
+            INTO v_count
+            FROM COMPETICIONES
+            WHERE UPPER(nombre) = UPPER(v_competiciones.nombre)
+            AND id_competicion != v_competiciones.id_competicion;
+
+            IF v_count > 0 THEN
+                RAISE_APPLICATION_ERROR(-20003, 'Ya existe una competición con ese nombre.');
+            END IF;
+        END;
+    END AFTER STATEMENT;
+
+END competiciones_nombre_duplicate;
 /
+
 
 -- Trigger para evitar nombres de jugadores duplicados
 CREATE OR REPLACE TRIGGER jugadores_nombre_duplicate
