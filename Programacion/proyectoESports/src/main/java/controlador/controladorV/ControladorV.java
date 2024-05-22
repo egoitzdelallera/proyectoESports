@@ -186,5 +186,10 @@ public class ControladorV{
 
 
 
+=======
+    public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
+        return cp.buscarParticipacion(idCompeticion, idEquipo);
+    }
+>>>>>>> Stashed changes
 }
 

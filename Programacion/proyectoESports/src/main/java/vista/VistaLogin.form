@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="vista.VistaLogin">
   <grid id="cbd77" binding="contentPane" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -123,3 +124,5 @@
     </children>
   </grid>
 </form>
+=======
+>>>>>>> Stashed changes

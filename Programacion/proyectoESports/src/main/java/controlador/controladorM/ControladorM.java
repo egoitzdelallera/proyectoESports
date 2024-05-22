@@ -18,6 +18,9 @@ public class ControladorM {
     private ControladorMCompeticion cmcomp;
     private ControladorMParticipacion cmpart;
     private ControladorMStaff cms;
+=======
+    private ControladorMParticipacion cmpart;
+>>>>>>> Stashed changes
     private EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction t;
@@ -32,6 +35,9 @@ public class ControladorM {
         cmcomp = new ControladorMCompeticion(this);
         cmpart = new ControladorMParticipacion(this);
         cms = new ControladorMStaff(this);
+=======
+
+>>>>>>> Stashed changes
     }
 
     public void terminar() throws Exception{
@@ -144,6 +150,9 @@ public class ControladorM {
 
     public void borrarParticipacion(Participacion par) throws Exception {
         cmpart.borrarParticipacion(par);
+    }
+    public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
+        return cmpart.buscarParticipacion(idCompeticion, idEquipo);
     }
 
     public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
