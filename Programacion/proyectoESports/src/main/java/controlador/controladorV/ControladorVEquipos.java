@@ -31,7 +31,6 @@ public class ControladorVEquipos {
     public void mostrarEquipos() {
         ve = new VistaEquipos();
 
-
         ve.addBAceptarAl(new BAceptarAl());
         ve.addBBorrarAl(new BBorrarAl());
         ve.addBEditarAl(new BEditarAl());
@@ -43,10 +42,7 @@ public class ControladorVEquipos {
         ve.getPanelCrear().setVisible(false);
         ve.getPanelDatos().setVisible(false);
 
-
-
         rellenarLista();
-
     }
 
 
@@ -76,7 +72,8 @@ public class ControladorVEquipos {
                         throw new RuntimeException(ex);
                     }
 
-                } }
+                }
+             }
         }
     }
     public class BEditarAl implements ActionListener {
