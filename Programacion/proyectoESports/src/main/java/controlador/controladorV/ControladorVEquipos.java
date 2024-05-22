@@ -41,9 +41,7 @@ public class ControladorVEquipos {
         ve.getPanelComboBox().setVisible(true);
         ve.getPanelCrear().setVisible(false);
         ve.getPanelDatos().setVisible(false);
-
         rellenarLista();
-
     }
 
 

@@ -57,7 +57,7 @@ public class ControladorVJugadores {
         public void actionPerformed(ActionEvent e) {
             combo = vjd.getCbJugadores().getSelectedIndex();
             if(combo>=1) {
-                if (combo == 1) {
+                if (combo == 1  ) {
                     vjd.getPanelCrear().setVisible(true);
                 } else {
                     vjd.getPanelDatos().setVisible(true);
