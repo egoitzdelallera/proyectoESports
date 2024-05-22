@@ -159,13 +159,17 @@ public class ControladorV{
         return cp.comboParticipaciones(idCompeticion);
     }
 
-    public void insertarParticipacion(Participacion par) throws Exception {
-        cp.insertarParticipacion(par);
+    public void insertarParticipacion(Competicion comp, Equipo eq) throws Exception {
+        cp.insertarParticipacion(comp, eq);
     }
 
     public void borrarParticipacion(Participacion par) throws Exception {
         cp.borrarParticipacion(par);
     }
+    public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
+        return cp.buscarParticipacion(idCompeticion, idEquipo);
+    }
+
     //Parte del Staff
     public Staff buscarStaff(String nombre) throws Exception {
         return cp.buscarStaff(nombre);

@@ -16,6 +16,7 @@ public class ControladorM {
     private ControladorMJugador cmjd;
     private ControladorMPatrocinador cmpt;
     private ControladorMCompeticion cmcomp;
+    private ControladorMParticipacion cmpart;
     private ControladorMStaff cms;
     private EntityManagerFactory emf;
     private EntityManager em;
@@ -29,6 +30,7 @@ public class ControladorM {
         cmjg = new ControladorMJuego(this);
         cmpt = new ControladorMPatrocinador(this);
         cmcomp = new ControladorMCompeticion(this);
+        cmpart = new ControladorMParticipacion(this);
         cms = new ControladorMStaff(this);
     }
 
@@ -134,14 +136,18 @@ public class ControladorM {
     // Parte de las participaciones
 
     public List<Equipo> comboParticipaciones(int idCompeticion) throws Exception {
-        return cmcomp.comboParticipaciones(idCompeticion);
+        return cmpart.comboParticipaciones(idCompeticion);
     }
-    public void insertarParticipacion(Participacion par) throws Exception {
-        cmcomp.insertarParticipacion(par);
+    public void insertarParticipacion(Competicion comp, Equipo eq) throws Exception {
+        cmpart.insertarParticipacion(comp, eq);
     }
 
     public void borrarParticipacion(Participacion par) throws Exception {
-        cmcomp.borrarParticipacion(par);
+        cmpart.borrarParticipacion(par);
+    }
+
+    public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
+        return cmpart.buscarParticipacion(idCompeticion, idEquipo);
     }
 
     //Parte del Staff
