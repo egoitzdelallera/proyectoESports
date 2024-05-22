@@ -112,7 +112,9 @@ public class VistaEquipos extends JFrame{
     public void limpiar()
     {
         tfNombre.setText("");
+        taDatos.setText("");
         tfNombre.requestFocus();
     }
+
 
 }

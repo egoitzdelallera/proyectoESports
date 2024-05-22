@@ -1,6 +1,8 @@
 package controlador.controladorV;
 
 import modelo.Equipo;
+import modelo.Jugador;
+import modelo.Staff;
 import vista.VistaEquipos;
 
 import javax.swing.*;
@@ -14,19 +16,40 @@ public class ControladorVEquipos {
     private VistaEquipos ve;
     private ControladorV cv;
     private Equipo eq;
-    private List<Equipo> lista;
+    private Jugador jd;
+    private List<Equipo> listaEq;
+    private List<Jugador> listaJd;
+    private List<Staff> listaSt;
     private int combo = 0;
     private JComboBox combobox;
     public ControladorVEquipos(ControladorV cv) {
         this.cv = cv;
     }
     public void rellenarLista(){
-        lista = cv.comboEquipos();
+        listaEq = cv.comboEquipos();
         combobox = ve.getCbEquipos();
         combobox.removeAllItems();
         combobox.addItem("Selecciona");
         combobox.addItem("Nuevo");
-        lista.forEach(o->combobox.addItem(o.getNombre()));
+        listaEq.forEach(o->combobox.addItem(o.getNombre()));
+    }
+    public void setListaJd(){
+        listaJd = (List<Jugador>) eq.getJugadoresByIdEquipo();
+        // Construir una cadena con los nombres de los jugadores
+        StringBuilder nombresJugadores = new StringBuilder();
+        for (Jugador jugador : listaJd) {
+            nombresJugadores.append(jugador.getNombre()).append("\n");
+        }
+
+    }
+    public void setListaSt(){
+        listaSt = (List<Staff>) eq.getStaffByIdEquipo();
+        // Construir una cadena con los nombres de los jugadores
+        StringBuilder nombresStaff = new StringBuilder();
+        for (Staff staff : listaSt) {
+            nombresStaff.append(staff.getNombre()).append("\n");
+        }
+
     }
     public void mostrarEquipos() {
         ve = new VistaEquipos();
@@ -42,6 +65,8 @@ public class ControladorVEquipos {
         ve.getPanelCrear().setVisible(false);
         ve.getPanelDatos().setVisible(false);
 
+
+
         rellenarLista();
     }
 
@@ -49,18 +74,22 @@ public class ControladorVEquipos {
     public class CbEquiposAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-
              combo = combobox.getSelectedIndex();
              if (combo>=1)
              {
                 if (combo == 1){
                     ve.getPanelCrear().setVisible(true);
+                    ve.getPanelDatos().setVisible(false);
+                    ve.limpiar();
                 }else {
                     ve.getPanelDatos().setVisible(true);
+                    ve.getPanelCrear().setVisible(false);
 
                     try {
                         eq = cv.buscarEquipo(combobox.getItemAt(combo).toString());
-                        ve.getTaDatos().setText(eq.getNombre() + "\n" + eq.getFechaFundacion() + "\n" + eq.getJugadoresByIdEquipo());
+                        setListaJd();
+                        setListaSt();
+                        ve.getTaDatos().setText("Nombre: "+eq.getNombre() + "\nFecha de fundacion: " + eq.getFechaFundacion() + "\nJugadores: " + listaJd+ "\nStaff:" + listaSt);
                         ve.getTfNombre().setText(eq.getNombre());
 
                         //Hay que cambiar el tipo de dato

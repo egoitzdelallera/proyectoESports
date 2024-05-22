@@ -3,9 +3,11 @@
 package vista;
 
 import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class VistaJugadores extends JFrame{
     private JPanel panelPrincipal;
@@ -26,6 +28,8 @@ public class VistaJugadores extends JFrame{
     private JTextField tfSueldo;
     private JComboBox cbEquipos;
     private JCalendar cFecha;
+    private JDateChooser dateChooser;
+
 
     public VistaJugadores() {
         super("Jugadores");
@@ -34,6 +38,7 @@ public class VistaJugadores extends JFrame{
         setLocationRelativeTo(null);
         cFecha = new JCalendar();
         pFecha.add(cFecha);
+        dateChooser = new JDateChooser();
     }
 
     public void addBEditarAl (ActionListener al){
@@ -60,6 +65,9 @@ public class VistaJugadores extends JFrame{
         tfNickname.setText("");
         tfRol.setText("");
         tfSueldo.setText("");
+        cbEquipos.setSelectedItem(0);
+        taDatos.setText("");
+        dateChooser.setDate(new Date());
         tfNombre.requestFocus();
     }
 
