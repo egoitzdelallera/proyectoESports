@@ -29,24 +29,29 @@ END controlar_max_jugadores;
 -- CONTROLAR QUE HAYA POR LO MENOS UN ENTRENADOR POR EQUIPO
 
 CREATE OR REPLACE TRIGGER controlar_entrenador
-BEFORE INSERT OR UPDATE ON participaciones
-FOR EACH ROW
-DECLARE
+    FOR INSERT OR UPDATE ON participaciones
+    COMPOUND TRIGGER
     v_num_entrenadores NUMBER;
+    v_new_equipo NUMBER;
+BEFORE EACH ROW IS
 BEGIN
-    -- Contar el n�mero de entrenadores del equipo en la competici�n
-    SELECT COUNT(*)
-    INTO v_num_entrenadores
-    FROM staff
-    WHERE id_equipo = :NEW.id_equipo
-    AND puesto = 'Entrenador';
+    v_new_equipo := :new.id_equipo;
+END BEFORE EACH ROW;
 
-    -- Excepci�n en caso de que el n�mero de entrenadores sea 0
-    IF v_num_entrenadores = 0 THEN
-        RAISE_APPLICATION_ERROR(-20014, 'Debe haber al menos un entrenador en 
-        cada equipo');
-    END IF;
-END;
+    AFTER STATEMENT IS
+    BEGIN
+        SELECT COUNT(*)
+        INTO v_num_entrenadores
+        FROM staff
+        WHERE id_equipo = v_new_equipo
+          AND puesto = 'Entrenador';
+
+        -- Excepci�n en caso de que el n�mero de entrenadores sea 0
+        IF v_num_entrenadores = 0 THEN
+            RAISE_APPLICATION_ERROR(-20014, 'Debe haber al menos un entrenador en cada equipo');
+        END IF;
+    END AFTER STATEMENT;
+    END controlar_entrenador;
 /
 
 -- CONTROLAR QUE EL NUMERO DE EQUIPOS EN LA COMPETICION ES PAR

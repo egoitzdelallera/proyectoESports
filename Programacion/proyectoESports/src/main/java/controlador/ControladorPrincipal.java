@@ -122,12 +122,15 @@ public class ControladorPrincipal {
     public List<Equipo> comboParticipaciones(int idCompeticion) throws Exception {
         return cm.comboParticipaciones(idCompeticion);
     }
-    public void insertarParticipacion(Participacion par) throws Exception {
-        cm.insertarParticipacion(par);
+    public void insertarParticipacion(Competicion comp, Equipo eq) throws Exception {
+        cm.insertarParticipacion(comp, eq);
     }
 
     public void borrarParticipacion(Participacion par) throws Exception {
         cm.borrarParticipacion(par);
+    }
+    public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
+        return cm.buscarParticipacion(idCompeticion, idEquipo);
     }
 
     //Parte del Staff
