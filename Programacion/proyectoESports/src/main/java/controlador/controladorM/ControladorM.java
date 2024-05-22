@@ -15,6 +15,7 @@ public class ControladorM {
     private ControladorMJuego cmjg;
     private ControladorMJugador cmjd;
     private ControladorMPatrocinador cmpt;
+    private ControladorMCompeticion cmcomp;
     private EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction t;
@@ -26,6 +27,7 @@ public class ControladorM {
         cmjd = new ControladorMJugador(this);
         cmjg = new ControladorMJuego(this);
         cmpt = new ControladorMPatrocinador(this);
+        cmcomp = new ControladorMCompeticion(this);
     }
 
     public void terminar() throws Exception{
@@ -114,5 +116,33 @@ public class ControladorM {
         return cmpt.comboPatrocinadores();
     }
 
-}
+    // Parte de la Competicion
+    public List<Competicion> comboCompeticiones() {
+        return cmcomp.comboCompeticiones();
+    }
+    public Competicion buscarCompeticion(String nombre) throws Exception {
+        return cmcomp.buscarCompeticion(nombre);
+    }
+    public void borrarCompeticion(Competicion comp) throws Exception {
+        cmcomp.borrarCompeticion(comp);
+    }
+    public void insertarCompeticion(Competicion comp) throws Exception {
+        cmcomp.insertarCompeticion(comp);
+    }
+    // Parte de las participaciones
+
+    public List<Equipo> comboParticipaciones(int idCompeticion) throws Exception {
+        return cmcomp.comboParticipaciones(idCompeticion);
+    }
+    public void insertarParticipacion(Participacion par) throws Exception {
+        cmcomp.insertarParticipacion(par);
+    }
+
+    public void borrarParticipacion(Participacion par) throws Exception {
+        cmcomp.borrarParticipacion(par);
+    }
+
+
+
+    }
 

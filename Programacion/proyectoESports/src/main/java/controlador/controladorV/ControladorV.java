@@ -139,5 +139,32 @@ public class ControladorV{
     public List<Patrocinador> comboPatrocinadores() {
         return cp.comboPatrocinadores();
     }
+
+    // Parte de la competicion
+    public List<Competicion> comboCompeticiones() {
+        return cp.comboCompeticiones();
+    }
+    public Competicion buscarCompeticion(String nombre) throws Exception {
+        return cp.buscarCompeticion(nombre);
+    }
+    public void borrarCompeticion(Competicion comp) throws Exception {
+        cp.borrarCompeticion(comp);
+    }
+    public void insertarCompeticion(Competicion comp) throws Exception {
+        cp.insertarCompeticion(comp);
+    }
+    // Parte de las participaciones
+
+    public List<Equipo> comboParticipaciones(int idCompeticion) throws Exception {
+        return cp.comboParticipaciones(idCompeticion);
+    }
+
+    public void insertarParticipacion(Participacion par) throws Exception {
+        cp.insertarParticipacion(par);
+    }
+
+    public void borrarParticipacion(Participacion par) throws Exception {
+        cp.borrarParticipacion(par);
+    }
 }
 
