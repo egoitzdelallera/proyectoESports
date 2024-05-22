@@ -9,11 +9,11 @@ public class Participacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID_EQUIPO", nullable = false, precision = 0)
-    private byte idEquipo;
+    private int idEquipo;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID_COMPETICION", nullable = false, precision = 0)
-    private byte idCompeticion;
+    private int idCompeticion;
     @Basic
     @Column(name = "PUNTUACION", nullable = true, precision = 0)
     private Byte puntuacion;
@@ -24,7 +24,7 @@ public class Participacion {
     @JoinColumn(name = "ID_COMPETICION", referencedColumnName = "ID_COMPETICION", nullable = false, insertable = false, updatable = false)
     private Competicion competicionesByIdCompeticion;
 
-    public byte getIdEquipo() {
+    public int getIdEquipo() {
         return idEquipo;
     }
 
@@ -32,11 +32,11 @@ public class Participacion {
         this.idEquipo = idEquipo;
     }
 
-    public byte getIdCompeticion() {
+    public int getIdCompeticion() {
         return idCompeticion;
     }
 
-    public void setIdCompeticion(byte idCompeticion) {
+    public void setIdCompeticion(int idCompeticion) {
         this.idCompeticion = idCompeticion;
     }
 

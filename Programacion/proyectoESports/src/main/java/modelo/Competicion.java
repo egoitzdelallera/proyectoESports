@@ -37,7 +37,7 @@ public class Competicion {
         return idCompeticion;
     }
 
-    public void setIdCompeticion(byte idCompeticion) {
+    public void setIdCompeticion(int idCompeticion) {
         this.idCompeticion = idCompeticion;
     }
 
