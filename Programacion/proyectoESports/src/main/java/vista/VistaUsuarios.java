@@ -121,4 +121,11 @@ public class VistaUsuarios extends JFrame {
     public void setRbUsuario(JRadioButton rbUsuario) {
         this.rbUsuario = rbUsuario;
     }
+
+    public void limpiar() {
+        tfNombre.setText("");
+        tfContrasena.setText("");
+        if(rbUsuario.isSelected()) rbUsuario.setSelected(false);
+        if(rbAdministrador.isSelected()) rbAdministrador.setSelected(false);
+    }
 }

@@ -179,8 +179,6 @@ public class ControladorVCompeticiones {
             }catch (Exception ex){
                 throw new RuntimeException(ex);
             }
-
-
         }
     }
 }

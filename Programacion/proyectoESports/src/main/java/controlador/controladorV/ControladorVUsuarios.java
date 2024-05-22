@@ -61,19 +61,39 @@ public class ControladorVUsuarios {
     public class BEditarAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            vu.getPanelCrear().setVisible(true);
         }
     }
     public class BBorrarAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            try {
+                cv.borrarUsuario();
+                //TODO Actualizar combo box
+            }catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
     public class BAceptarAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+            try {
+                if(combo == 0) {
+                    us = new Usuario();
+                }
+                us.setNombre(vu.getTfNombre().getText());
+                us.setContrasena(vu.getTfContrasena().getText());
+                if(vu.getRbUsuario().isSelected()) us.setRol("USUARIO");
+                else us.setRol("ADMINISTRADOR");
+                cv.insertarUsuario(us);
+                System.out.println("Usuario insertado");
+                vu.limpiar();
 
+                //TODO actualizar combo box con el usuario insertado
+            }catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 
