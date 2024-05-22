@@ -68,8 +68,7 @@ public class ControladorVJugadores {
                     listaEq = cv.comboEquipos();
                     listaEq.forEach(o->vjd.getCbEquipos().addItem(o.getNombre()));
 
-                    eq = listaEq.get(vjd.getCbEquipos().getSelectedIndex()-1);
-                    jd.setEquiposByIdEquipo(eq);
+
 
 
 
@@ -111,6 +110,10 @@ public class ControladorVJugadores {
 
                 java.sql.Date fecha = new java.sql.Date(vjd.getcFecha().getDate().getTime());
                 jd.setFechaNacimiento(fecha);
+
+                eq = listaEq.get(vjd.getCbEquipos().getSelectedIndex());
+                jd.setEquiposByIdEquipo(eq);
+
                 cv.insertarJugador(jd);
                 System.out.println("Jugador insertado");
                 vjd.limpiar();
