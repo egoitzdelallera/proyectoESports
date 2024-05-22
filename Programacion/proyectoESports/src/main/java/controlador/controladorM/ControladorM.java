@@ -16,6 +16,7 @@ public class ControladorM {
     private ControladorMJugador cmjd;
     private ControladorMPatrocinador cmpt;
     private ControladorMCompeticion cmcomp;
+    private ControladorMStaff cms;
     private EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction t;
@@ -28,6 +29,7 @@ public class ControladorM {
         cmjg = new ControladorMJuego(this);
         cmpt = new ControladorMPatrocinador(this);
         cmcomp = new ControladorMCompeticion(this);
+        cms = new ControladorMStaff(this);
     }
 
     public void terminar() throws Exception{
@@ -140,6 +142,21 @@ public class ControladorM {
 
     public void borrarParticipacion(Participacion par) throws Exception {
         cmcomp.borrarParticipacion(par);
+    }
+
+    //Parte del Staff
+    public Staff buscarStaff(String nombre) throws Exception{
+        return cms.buscarStaff(nombre);
+    }
+    public void insertarStaff(Staff st) throws Exception{
+        cms.insertarStaff(st);
+    }
+
+    public void borrarStaff() throws Exception{
+        cms.borrarStaff();
+    }
+    public List<Staff> comboStaff() {
+        return cms.comboStaff();
     }
 
 
