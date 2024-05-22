@@ -21,6 +21,8 @@ public class ControladorVEquipos {
         this.cv = cv;
     }
     public void rellenarLista(){
+        lista = cv.comboEquipos();
+        combobox = ve.getCbEquipos();
         combobox.removeAllItems();
         combobox.addItem("Selecciona");
         combobox.addItem("Nuevo");
@@ -28,7 +30,6 @@ public class ControladorVEquipos {
     }
     public void mostrarEquipos() {
         ve = new VistaEquipos();
-
 
         ve.addBAceptarAl(new BAceptarAl());
         ve.addBBorrarAl(new BBorrarAl());
@@ -41,9 +42,6 @@ public class ControladorVEquipos {
         ve.getPanelCrear().setVisible(false);
         ve.getPanelDatos().setVisible(false);
 
-
-        lista = cv.comboEquipos();
-        combobox = ve.getCbEquipos();
         rellenarLista();
 
     }
@@ -75,7 +73,8 @@ public class ControladorVEquipos {
                         throw new RuntimeException(ex);
                     }
 
-                } }
+                }
+             }
         }
     }
     public class BEditarAl implements ActionListener {
