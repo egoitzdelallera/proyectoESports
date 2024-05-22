@@ -92,7 +92,7 @@ public class ControladorVEquipos {
                 // Actualizar ComboBox
                 lista = cv.comboEquipos();
                 ve.getCbEquipos().removeAllItems();
-                lista.forEach(o -> ve.getCbEquipos().addItem(o.getNombre()));
+                lista.forEach(o->ve.getCbEquipos().addItem(o.getNombre()));
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }

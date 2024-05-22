@@ -13,7 +13,7 @@ public class ControladorPrincipal {
     private Equipo eq;
     private Jugador jd;
     private Juego jg;
-
+    private Staff st;
 
     public ControladorPrincipal() {
         cm = new ControladorM(this);
@@ -129,6 +129,21 @@ public class ControladorPrincipal {
     public void borrarParticipacion(Participacion par) throws Exception {
         cm.borrarParticipacion(par);
     }
+
+    //Parte del Staff
+    public Staff buscarStaff(String nombre) throws Exception {
+        return cm.buscarStaff(nombre);
+    }
+    public void insertarStaff(Staff st) throws Exception{
+        cm.insertarStaff(st);
+    }
+    public void borrarStaff() throws Exception{
+        cm.borrarStaff();
+    }
+    public List<Staff> comboStaff() {
+        return cm.comboStaff();
+    }
+
 
 }
 

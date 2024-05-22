@@ -166,5 +166,19 @@ public class ControladorV{
     public void borrarParticipacion(Participacion par) throws Exception {
         cp.borrarParticipacion(par);
     }
+    //Parte del Staff
+    public Staff buscarStaff(String nombre) throws Exception {
+        return cp.buscarStaff(nombre);
+    }
+    public void insertarStaff(Staff st) throws Exception{
+        cp.insertarStaff(st);
+    }
+    public void borrarStaff() throws Exception{
+        cp.borrarStaff();
+    }
+    public List<Staff> comboStaff() {
+        return cp.comboStaff();
+    }
+
 }
 
