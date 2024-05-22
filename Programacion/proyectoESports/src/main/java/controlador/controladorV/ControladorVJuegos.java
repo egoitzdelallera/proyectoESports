@@ -46,8 +46,9 @@ public class ControladorVJuegos {
 
                 try {
                     jg = cv.buscarJuego(vjg.getCbJuegos().getItemAt(combo).toString());
-                    vjg.getTaDatos().setText(jg.getNombre()+jg.getEmpresa()+jg.getFechaLanzamiento());
+                    vjg.getTaDatos().setText(jg.getNombre()+"\n"+jg.getEmpresa()+"\n"+jg.getFechaLanzamiento());
                     vjg.getTfNombre().setText(jg.getNombre());
+                    vjg.getTfEmpresa().setText(jg.getEmpresa());
 
                     //Hay que cambiar el tipo de dato
                     java.util.Date fechaFundacion = jg.getFechaLanzamiento();

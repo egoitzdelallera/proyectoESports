@@ -15,8 +15,8 @@ public class ControladorMEquipo {
     public ControladorMEquipo(ControladorM cm) {
         this.cm = cm;
         emf = Persistence.createEntityManagerFactory ("default");
-        em = emf. createEntityManager ();
-        transaction = em. getTransaction ();
+        em = emf.createEntityManager ();
+        transaction = em.getTransaction ();
     }
     public void insertarEquipo (Equipo eq) throws Exception {
         // Insertar
@@ -28,6 +28,7 @@ public class ControladorMEquipo {
         transaction.begin();
         em.remove(eq);
         transaction.commit();
+        System.out.println("Equipo Borrado");
     }
     public Equipo buscarEquipo(String nombre) throws Exception
     {

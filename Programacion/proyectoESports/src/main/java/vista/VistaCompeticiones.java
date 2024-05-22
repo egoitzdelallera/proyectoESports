@@ -52,7 +52,7 @@ public class VistaCompeticiones extends JFrame {
     }
     public void addBEliminarEquipoAl (ActionListener al) {bEliminarEquipo.addActionListener(al);
     }
-    public void addCbEquiposAl (ActionListener al){
+    public void addCbCompeticionesAl (ActionListener al){
         cbCompeticiones.addActionListener(al);
     }
     public void addBSalirAl (ActionListener al){
@@ -161,5 +161,9 @@ public class VistaCompeticiones extends JFrame {
 
     public void setcFechaFin(JCalendar cFechaFin) {
         this.cFechaFin = cFechaFin;
+    }
+
+    public void limpiar() {
+
     }
 }

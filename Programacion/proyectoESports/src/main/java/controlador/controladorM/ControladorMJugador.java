@@ -34,7 +34,7 @@ public class ControladorMJugador {
     public Jugador buscarJugador(String nickname) throws Exception
     {
         transaction.begin();
-        TypedQuery<Jugador> query = em.createQuery("SELECT j FROM Jugador j WHERE j.nickname = :nickname", Jugador.class);
+        TypedQuery<Jugador> query = em.createQuery("SELECT jd FROM Jugador jd WHERE jd.nickname = :nickname", Jugador.class);
         query.setParameter("nickname", nickname);
         jd = query.getSingleResult();
         transaction.commit();

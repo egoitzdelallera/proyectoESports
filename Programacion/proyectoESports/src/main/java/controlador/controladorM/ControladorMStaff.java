@@ -2,11 +2,9 @@ package controlador.controladorM;
 
 import jakarta.persistence.*;
 
-import modelo.Jugador;
 import modelo.Staff;
 
 import java.util.List;
-
 
 public class ControladorMStaff {
     private Staff st;
@@ -28,17 +26,15 @@ public class ControladorMStaff {
         em.persist(st);
         transaction.commit();
     }
-
     public void borrarStaff() throws Exception {
         transaction.begin();
         em.remove(st);
         transaction.commit();
     }
-
     public Staff buscarStaff(String nombre) throws Exception
     {
         transaction.begin();
-        TypedQuery<Staff> query = em.createQuery("SELECT s FROM Staff s WHERE s.nombre = :nombre", Staff.class);
+        TypedQuery<Staff> query = em.createQuery("SELECT st FROM Staff st WHERE st.nombre = :nombre", Staff.class);
         query.setParameter("nombre", nombre);
         st = query.getSingleResult();
         transaction.commit();

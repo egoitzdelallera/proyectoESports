@@ -13,7 +13,7 @@ public class ControladorPrincipal {
     private Equipo eq;
     private Jugador jd;
     private Juego jg;
-
+    private Staff st;
 
     public ControladorPrincipal() {
         cm = new ControladorM(this);
@@ -32,6 +32,15 @@ public class ControladorPrincipal {
     public Usuario buscarUsuario(String nombre) throws Exception
     {
         return cm.buscarUsuario(nombre);
+    }
+    public void insertarUsuario(Usuario us) throws Exception{
+        cm.insertarUsuario(us);
+    }
+    public void borrarUsuario() throws Exception{
+        cm.borrarUsuario();
+    }
+    public List<Usuario> comboUsuarios() {
+        return cm.comboUsuarios();
     }
 
     //Parte del Equipo
@@ -94,22 +103,48 @@ public class ControladorPrincipal {
         return cm.comboPatrocinadores();
     }
 
+    // Parte de la competicion
+    public List<Competicion> comboCompeticiones() {
+        return cm.comboCompeticiones();
+    }
+    public Competicion buscarCompeticion(String nombre) throws Exception {
+        return cm.buscarCompeticion(nombre);
+    }
+    public void borrarCompeticion(Competicion comp) throws Exception {
+        cm.borrarCompeticion(comp);
+    }
+    public void insertarCompeticion(Competicion comp) throws Exception {
+        cm.insertarCompeticion(comp);
+    }
+
+    // Parte de las participaciones
+
+    public List<Equipo> comboParticipaciones(int idCompeticion) throws Exception {
+        return cm.comboParticipaciones(idCompeticion);
+    }
+    public void insertarParticipacion(Participacion par) throws Exception {
+        cm.insertarParticipacion(par);
+    }
+
+    public void borrarParticipacion(Participacion par) throws Exception {
+        cm.borrarParticipacion(par);
+    }
 
     //Parte del Staff
-
-    public Staff buscarStaff(String nombre) throws Exception{
+    public Staff buscarStaff(String nombre) throws Exception {
         return cm.buscarStaff(nombre);
     }
     public void insertarStaff(Staff st) throws Exception{
         cm.insertarStaff(st);
     }
-
     public void borrarStaff() throws Exception{
         cm.borrarStaff();
     }
     public List<Staff> comboStaff() {
         return cm.comboStaff();
     }
+
+
 }
 
 

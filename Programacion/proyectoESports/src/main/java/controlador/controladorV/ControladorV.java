@@ -18,7 +18,7 @@ public class  ControladorV{
     private ControladorVPatrocinadores cvpt;
     private ControladorVCompeticiones cvc;
     private Equipo eq;
-    private Usuario u;
+    private Usuario us;
 
     public ControladorV(ControladorPrincipal cp) {
         this.cp = cp;
@@ -65,6 +65,15 @@ public class  ControladorV{
     public Usuario buscarUsuario(String nombre) throws Exception
     {
         return cp.buscarUsuario(nombre);
+    }
+    public void insertarUsuario(Usuario us) throws Exception{
+        cp.insertarUsuario(us);
+    }
+    public void borrarUsuario() throws Exception{
+        cp.borrarUsuario();
+    }
+    public List<Usuario> comboUsuarios() {
+        return cp.comboUsuarios();
     }
 
 
@@ -134,7 +143,32 @@ public class  ControladorV{
         return cp.comboPatrocinadores();
     }
 
+    // Parte de la competicion
+    public List<Competicion> comboCompeticiones() {
+        return cp.comboCompeticiones();
+    }
+    public Competicion buscarCompeticion(String nombre) throws Exception {
+        return cp.buscarCompeticion(nombre);
+    }
+    public void borrarCompeticion(Competicion comp) throws Exception {
+        cp.borrarCompeticion(comp);
+    }
+    public void insertarCompeticion(Competicion comp) throws Exception {
+        cp.insertarCompeticion(comp);
+    }
+    // Parte de las participaciones
 
+    public List<Equipo> comboParticipaciones(int idCompeticion) throws Exception {
+        return cp.comboParticipaciones(idCompeticion);
+    }
+
+    public void insertarParticipacion(Participacion par) throws Exception {
+        cp.insertarParticipacion(par);
+    }
+
+    public void borrarParticipacion(Participacion par) throws Exception {
+        cp.borrarParticipacion(par);
+    }
     //Parte del Staff
     public Staff buscarStaff(String nombre) throws Exception {
         return cp.buscarStaff(nombre);
