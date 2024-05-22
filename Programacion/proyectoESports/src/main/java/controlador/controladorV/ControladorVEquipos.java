@@ -21,6 +21,8 @@ public class ControladorVEquipos {
         this.cv = cv;
     }
     public void rellenarLista(){
+        lista = cv.comboEquipos();
+        combobox = ve.getCbEquipos();
         combobox.removeAllItems();
         combobox.addItem("Selecciona");
         combobox.addItem("Nuevo");
@@ -42,8 +44,7 @@ public class ControladorVEquipos {
         ve.getPanelDatos().setVisible(false);
 
 
-        lista = cv.comboEquipos();
-        combobox = ve.getCbEquipos();
+
         rellenarLista();
 
     }
