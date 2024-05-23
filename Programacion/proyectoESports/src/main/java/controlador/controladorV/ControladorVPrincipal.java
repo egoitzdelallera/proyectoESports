@@ -136,7 +136,6 @@ public class ControladorVPrincipal {
     public class BStaffAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
             cv.mostrarStaff();
         }
     }

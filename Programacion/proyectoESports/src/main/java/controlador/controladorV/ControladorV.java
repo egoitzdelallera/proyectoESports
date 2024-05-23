@@ -127,6 +127,7 @@ public class ControladorV {
         return cp.comboEquipos();
     }
 
+
     //Parte del Jugador
     public Jugador buscarJugador(String nickname) throws Exception {
         return cp.buscarJugador(nickname);
@@ -143,6 +144,7 @@ public class ControladorV {
     public List<Jugador> comboJugadores() {
         return cp.comboJugadores();
     }
+
 
     //Parte del Juego
     public Juego buscarJuego(String nombre) throws Exception {
@@ -165,6 +167,7 @@ public class ControladorV {
         // Han hecho clic en el botón salir.
         cp.terminar();
     }
+
 
     //Parte del Patrocinador
     public Patrocinador buscarPatrocinador(String nombre) throws Exception {
