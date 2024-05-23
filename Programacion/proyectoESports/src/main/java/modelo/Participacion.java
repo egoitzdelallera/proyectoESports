@@ -28,7 +28,7 @@ public class Participacion {
         return idEquipo;
     }
 
-    public void setIdEquipo(byte idEquipo) {
+    public void setIdEquipo(int idEquipo) {
         this.idEquipo = idEquipo;
     }
 

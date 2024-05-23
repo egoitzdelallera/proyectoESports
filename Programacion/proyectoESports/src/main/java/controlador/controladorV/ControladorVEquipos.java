@@ -65,8 +65,6 @@ public class ControladorVEquipos {
         ve.getPanelCrear().setVisible(false);
         ve.getPanelDatos().setVisible(false);
 
-
-
         rellenarLista();
     }
 
