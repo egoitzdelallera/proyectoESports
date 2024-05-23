@@ -23,8 +23,9 @@ public class ControladorVPrincipal {
         pp.addBJugadoresAl(new BJugadoresAl());
         pp.addBUsuariosAl(new BUsuariosAl());
         pp.addBStaffAl(new BStaffAl());
-        /*pp.addBClasificacionAl(new BClasificacionAl());
-        pp.addBResultadosAl(new BResultadosAl());*/
+        pp.addBClasificacionesAl(new BClasificacionesAl());
+        pp.addBResultadosAl(new BRTJornadasAl());
+        pp.addBResultadosUJAl(new BRUJornadaAl());
         pp.addBSalirAl(new BSalirAl());
 
         pp.setVisible(true);
@@ -40,6 +41,7 @@ public class ControladorVPrincipal {
                 pp.getbStaff().setVisible(true);
                 pp.getbUsuarios().setVisible(true);
                 pp.getbResultados().setVisible(true);
+                pp.getbResultadosUJ().setVisible(true);
                 pp.getbSalir().setVisible(true);
                 break;
             case "USUARIO":
@@ -51,16 +53,50 @@ public class ControladorVPrincipal {
                 pp.getbJugadores().setVisible(false);
                 pp.getbStaff().setVisible(false);
                 pp.getbUsuarios().setVisible(false);
-                pp.getbResultados().setVisible(true);
+                pp.getbResultados().setVisible(false);
+                pp.getbResultadosUJ().setVisible(true);
                 pp.getbSalir().setVisible(true);
                 break;
             default:
                 break;
 
         }
-
-         
     }
+
+    public class BRUJornadaAl implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                cv.mostrarRUJornada();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
+
+    public class BRTJornadasAl implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                cv.mostrarRTJornadas();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
+    public class BClasificacionesAl implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                cv.mostrarClasificaciones();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
+
     public class BEquiposAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

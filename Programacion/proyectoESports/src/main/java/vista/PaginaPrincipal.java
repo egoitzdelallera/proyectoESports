@@ -15,6 +15,7 @@ public class PaginaPrincipal extends JFrame {
     private JButton bSalir;
     private JButton bClasificacion;
     private JButton bResultados;
+    private JButton bResultadosUJ;
 
     public PaginaPrincipal() {
         super("Ventana Principal");
@@ -43,11 +44,14 @@ public class PaginaPrincipal extends JFrame {
     public void addBUsuariosAl (ActionListener al){
         bUsuarios.addActionListener(al);
     }
-    public void addBClasificacionAl (ActionListener al){
+    public void addBClasificacionesAl (ActionListener al){
         bClasificacion.addActionListener(al);
     }
     public void addBResultadosAl (ActionListener al){
         bResultados.addActionListener(al);
+    }
+    public void addBResultadosUJAl(ActionListener al) {
+        bResultadosUJ.addActionListener(al);
     }
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
@@ -132,5 +136,13 @@ public class PaginaPrincipal extends JFrame {
 
     public void setbResultados(JButton bResultados) {
         this.bResultados = bResultados;
+    }
+
+    public JButton getbResultadosUJ() {
+        return bResultadosUJ;
+    }
+
+    public void setbResultadosUJ(JButton bResultadosUJ) {
+        this.bResultadosUJ = bResultadosUJ;
     }
 }
