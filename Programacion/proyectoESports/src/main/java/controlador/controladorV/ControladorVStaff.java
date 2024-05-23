@@ -6,6 +6,7 @@ import modelo.Jugador;
 import modelo.Staff;
 import vista.VistaStaff;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -19,11 +20,22 @@ public class ControladorVStaff {
     private List<Staff> listaSt;
     private List<Equipo> listaEq;
     private int combo = 0;
+    private JComboBox combobox;
     private Staff st;
     private Equipo eq;
     public ControladorVStaff(ControladorV cv) {
         this.cv = cv;
     }
+
+    public void rellenarLista(){
+        listaEq = cv.comboEquipos();
+        combobox = vs.getCbEquipos();
+        combobox.removeAllItems();
+        combobox.addItem("Selecciona");
+        combobox.addItem("Nuevo");
+        listaEq.forEach(o->combobox.addItem(o.getNombre()));
+    }
+
     public void mostrarStaff() {
         vs = new VistaStaff();
 
@@ -42,27 +54,30 @@ public class ControladorVStaff {
         listaSt = cv.comboStaff();
         listaSt.forEach(o->vs.getCbStaff().addItem(o.getNombre()));
 
+        rellenarLista();
     }
     public class CbStaffAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             combo = vs.getCbStaff().getSelectedIndex();
-            if (combo == 0){
-                vs.getPanelCrear().setVisible(true);
-            }else {
-                vs.getPanelDatos().setVisible(true);
+            if (combo >= 1) {
+                if (combo == 1){
+                    vs.getPanelCrear().setVisible(true);
+                }else {
+                    vs.getPanelDatos().setVisible(true);
 
-                try {
-                    st = cv.buscarStaff(vs.getCbStaff().getItemAt(combo).toString());
-                    vs.getTaDatos().setText(st.getNombre()+"\n"+st.getPuesto()+"\n"+st.getSueldo());
-                    vs.getTfNombre().setText(st.getNombre());
-                    vs.getTfPuesto().setText(st.getPuesto());
-                    vs.getTfSueldo().setText(String.valueOf(st.getSueldo()));
+                    try {
+                        st = cv.buscarStaff(vs.getCbStaff().getItemAt(combo).toString());
+                        vs.getTaDatos().setText(st.getNombre()+"\n"+st.getPuesto()+"\n"+st.getSueldo());
+                        vs.getTfNombre().setText(st.getNombre());
+                        vs.getTfPuesto().setText(st.getPuesto());
+                        vs.getTfSueldo().setText(String.valueOf(st.getSueldo()));
 
 
 
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
         }

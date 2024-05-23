@@ -5,6 +5,7 @@ import modelo.Equipo;
 import modelo.Jugador;
 import vista.VistaJugadores;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -18,9 +19,19 @@ public class ControladorVJugadores {
     private List<Jugador> listaJd;
     private List<Equipo> listaEq;
     private int combo = 0;
+    private JComboBox combobox;
 
     public ControladorVJugadores(ControladorV cv) {
         this.cv = cv;
+    }
+
+    public void rellenarLista(){
+        listaEq = cv.comboEquipos();
+        combobox = vjd.getCbEquipos();
+        combobox.removeAllItems();
+        combobox.addItem("Selecciona");
+        combobox.addItem("Nuevo");
+        listaEq.forEach(o->combobox.addItem(o.getNombre()));
     }
 
     public void mostrarJugadores() {
@@ -38,23 +49,24 @@ public class ControladorVJugadores {
         vjd.getPanelCrear().setVisible(false);
 
 
-        listaJd = cv.comboJugadores();
-        listaJd.forEach(o->vjd.getCbJugadores().addItem(o.getNickname()));
-
-
+        rellenarLista();
     }
 
     public class CbJugadoresAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             combo = vjd.getCbJugadores().getSelectedIndex();
-            if (combo == 0) {
-                vjd.getPanelCrear().setVisible(true);
-            } else {
-                vjd.getPanelDatos().setVisible(true);
+            if(combo>=1) {
+                if (combo == 1  ) {
+                    vjd.getPanelCrear().setVisible(true);
+                    vjd.getPanelDatos().setVisible(false);
+                    vjd.limpiar();
+                } else {
+                    vjd.getPanelDatos().setVisible(true);
+                    vjd.getPanelCrear().setVisible(false);
 
-                try {
-                    jd = cv.buscarJugador(vjd.getCbJugadores().getItemAt(combo).toString());
+                    try {
+                        jd = cv.buscarJugador(vjd.getCbJugadores().getItemAt(combo).toString());
 
                     vjd.getTaDatos().setText(jd.getNombre()+"\n"+jd.getNacionalidad()+"\n"+ jd.getNickname()+
                             "\n"+ jd.getRol()+"\n"+ jd.getFechaNacimiento()+"\n"+ jd.getSueldo());
@@ -65,22 +77,23 @@ public class ControladorVJugadores {
                     vjd.getTfRol().setText(jd.getRol());
                     vjd.getTfSueldo().setText(String.valueOf(jd.getSueldo()));
 
-                    listaEq = cv.comboEquipos();
-                    listaEq.forEach(o->vjd.getCbEquipos().addItem(o.getNombre()));
+                        listaEq = cv.comboEquipos();
+                        listaEq.forEach(o->vjd.getCbEquipos().addItem(o.getNombre()));
 
 
 
 
 
-                    //Hay que cambiar el tipo de dato
-                    java.util.Date fechaFundacion = jd.getFechaNacimiento();
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(fechaFundacion);
-                    vjd.getcFecha().setCalendar(calendar);
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
+                        //Hay que cambiar el tipo de dato
+                        java.util.Date fechaFundacion = jd.getFechaNacimiento();
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(fechaFundacion);
+                        vjd.getcFecha().setCalendar(calendar);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+
                 }
-
             }
         }
     }
@@ -111,7 +124,7 @@ public class ControladorVJugadores {
                 java.sql.Date fecha = new java.sql.Date(vjd.getcFecha().getDate().getTime());
                 jd.setFechaNacimiento(fecha);
 
-                eq = listaEq.get(vjd.getCbEquipos().getSelectedIndex());
+                eq = listaEq.get(vjd.getCbEquipos().getSelectedIndex()+2);
                 jd.setEquiposByIdEquipo(eq);
 
                 cv.insertarJugador(jd);
@@ -133,7 +146,7 @@ public class ControladorVJugadores {
         public void actionPerformed(ActionEvent e) {
             try {
                 cv.borrarJugador();
-
+                vjd.limpiar();
                 //Actualizar ComboBox
                 listaJd = cv.comboJugadores();
                 vjd.getCbJugadores().removeAllItems();

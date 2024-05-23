@@ -1,8 +1,11 @@
 package controlador.controladorV;
 
 import modelo.Equipo;
+import modelo.Jugador;
+import modelo.Staff;
 import vista.VistaEquipos;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -13,14 +16,43 @@ public class ControladorVEquipos {
     private VistaEquipos ve;
     private ControladorV cv;
     private Equipo eq;
-    private List<Equipo> lista;
+    private Jugador jd;
+    private List<Equipo> listaEq;
+    private List<Jugador> listaJd;
+    private List<Staff> listaSt;
     private int combo = 0;
+    private JComboBox combobox;
     public ControladorVEquipos(ControladorV cv) {
         this.cv = cv;
     }
+    public void rellenarLista(){
+        listaEq = cv.comboEquipos();
+        combobox = ve.getCbEquipos();
+        combobox.removeAllItems();
+        combobox.addItem("Selecciona");
+        combobox.addItem("Nuevo");
+        listaEq.forEach(o->combobox.addItem(o.getNombre()));
+    }
+    public void setListaJd(){
+        listaJd = (List<Jugador>) eq.getJugadoresByIdEquipo();
+        // Construir una cadena con los nombres de los jugadores
+        StringBuilder nombresJugadores = new StringBuilder();
+        for (Jugador jugador : listaJd) {
+            nombresJugadores.append(jugador.getNombre()).append("\n");
+        }
+
+    }
+    public void setListaSt(){
+        listaSt = (List<Staff>) eq.getStaffByIdEquipo();
+        // Construir una cadena con los nombres de los jugadores
+        StringBuilder nombresStaff = new StringBuilder();
+        for (Staff staff : listaSt) {
+            nombresStaff.append(staff.getNombre()).append("\n");
+        }
+
+    }
     public void mostrarEquipos() {
         ve = new VistaEquipos();
-
 
         ve.addBAceptarAl(new BAceptarAl());
         ve.addBBorrarAl(new BBorrarAl());
@@ -33,37 +65,42 @@ public class ControladorVEquipos {
         ve.getPanelCrear().setVisible(false);
         ve.getPanelDatos().setVisible(false);
 
-
-        lista = cv.comboEquipos();
-        lista.forEach(o->ve.getCbEquipos().addItem(o.getNombre()));
-
+        rellenarLista();
     }
 
 
     public class CbEquiposAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-             combo = ve.getCbEquipos().getSelectedIndex();
-            if (combo == 0){
-                ve.getPanelCrear().setVisible(true);
-            }else{
-                ve.getPanelDatos().setVisible(true);
+             combo = combobox.getSelectedIndex();
+             if (combo>=1)
+             {
+                if (combo == 1){
+                    ve.getPanelCrear().setVisible(true);
+                    ve.getPanelDatos().setVisible(false);
+                    ve.limpiar();
+                }else {
+                    ve.getPanelDatos().setVisible(true);
+                    ve.getPanelCrear().setVisible(false);
 
-                try {
-                    eq = cv.buscarEquipo(ve.getCbEquipos().getItemAt(combo).toString());
-                    ve.getTaDatos().setText(eq.getNombre()+"\n"+eq.getFechaFundacion()+"\n"+eq.getJugadoresByIdEquipo());
-                    ve.getTfNombre().setText(eq.getNombre());
+                    try {
+                        eq = cv.buscarEquipo(combobox.getItemAt(combo).toString());
+                        setListaJd();
+                        setListaSt();
+                        ve.getTaDatos().setText("Nombre: "+eq.getNombre() + "\nFecha de fundacion: " + eq.getFechaFundacion() + "\nJugadores: " + listaJd+ "\nStaff:" + listaSt);
+                        ve.getTfNombre().setText(eq.getNombre());
 
-                    //Hay que cambiar el tipo de dato
-                    java.util.Date fechaFundacion = eq.getFechaFundacion();
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(fechaFundacion);
-                    ve.getcFecha().setCalendar(calendar);
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
+                        //Hay que cambiar el tipo de dato
+                        java.util.Date fechaFundacion = eq.getFechaFundacion();
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(fechaFundacion);
+                        ve.getcFecha().setCalendar(calendar);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+
                 }
-
-            }
+             }
         }
     }
     public class BEditarAl implements ActionListener {
@@ -77,9 +114,9 @@ public class ControladorVEquipos {
     public class BAceptarAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            combobox = ve.getCbEquipos();
             try {
-                if (combo == 0) {
+                if (combo == 1) {
                     eq = new Equipo();
                 }
                 eq.setNombre(ve.getTfNombre().getText());
@@ -89,10 +126,7 @@ public class ControladorVEquipos {
                 System.out.println("Equipo insertado");
                 ve.limpiar();
 
-                // Actualizar ComboBox
-                lista = cv.comboEquipos();
-                ve.getCbEquipos().removeAllItems();
-                lista.forEach(o->ve.getCbEquipos().addItem(o.getNombre()));
+                rellenarLista();
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
@@ -103,10 +137,7 @@ public class ControladorVEquipos {
         public void actionPerformed(ActionEvent e) {
             try {
                 cv.borrarEquipo();
-                // Actualizar ComboBox
-                /*lista = cv.comboEquipos();
-                ve.getCbEquipos().removeAllItems();
-                lista.forEach(o -> ve.getCbEquipos().addItem(o.getNombre()));*/
+                rellenarLista();
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }

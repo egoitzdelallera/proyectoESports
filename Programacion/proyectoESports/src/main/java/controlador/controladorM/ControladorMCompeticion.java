@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import modelo.Competicion;
 import modelo.Equipo;
 import modelo.Participacion;
+import modelo.ParticipacionPK;
 
 import java.util.List;
 
@@ -13,9 +14,7 @@ public class ControladorMCompeticion {
     private EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction transaction ;
-    private Participacion part;
     private ControladorM cm;
-    private Equipo eq;
     public ControladorMCompeticion(ControladorM cm) {
         this.cm = cm;
         emf = Persistence.createEntityManagerFactory("default");
@@ -56,27 +55,4 @@ public class ControladorMCompeticion {
         return lista;
     }
 
-    public List<Equipo> comboParticipaciones(int idCompeticion) throws Exception {
-        transaction.begin();
-        TypedQuery<Equipo> query = em.createQuery(
-                "SELECT e FROM Equipo e JOIN Participacion p ON e.id = p.idEquipo WHERE p.idCompeticion = :idCompeticion",
-                Equipo.class
-        );
-        query.setParameter("idCompeticion", idCompeticion);
-        List<Equipo> lista = query.getResultList();
-        transaction.commit();
-        return lista;
-    }
-
-    public void insertarParticipacion(Participacion par) throws Exception {
-        transaction.begin();
-        em.persist(par);
-        transaction.commit();
-    }
-
-    public void borrarParticipacion(Participacion par) throws Exception {
-        transaction.begin();
-        em.remove(em.merge(par));
-        transaction.commit();
-    }
 }

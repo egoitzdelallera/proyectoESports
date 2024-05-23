@@ -3,7 +3,6 @@ package vista;
 import com.toedter.calendar.JCalendar;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class VistaCompeticiones extends JFrame {
@@ -24,6 +23,8 @@ public class VistaCompeticiones extends JFrame {
     private JButton bEliminarEquipo;
     private JButton bSalir;
     private JPanel pFechaFin;
+    private JCheckBox chkEstado;
+    private JComboBox cbJuego;
     private JCalendar cFechaInicio;
     private JCalendar cFechaFin;
 
@@ -31,7 +32,7 @@ public class VistaCompeticiones extends JFrame {
     public VistaCompeticiones() {
         super("Competiciones");
         setContentPane(panelPrincipal);
-        setSize(1000,500);
+        setSize(1000,1000);
         setLocationRelativeTo(null);
         cFechaInicio = new JCalendar();
         cFechaFin = new JCalendar();
@@ -161,6 +162,22 @@ public class VistaCompeticiones extends JFrame {
 
     public void setcFechaFin(JCalendar cFechaFin) {
         this.cFechaFin = cFechaFin;
+    }
+
+    public JCheckBox getChkEstado() {
+        return chkEstado;
+    }
+
+    public void setChkEstado(JCheckBox chkEstado) {
+        this.chkEstado = chkEstado;
+    }
+
+    public JComboBox getCbJuego() {
+        return cbJuego;
+    }
+
+    public void setCbJuego(JComboBox cbJuego) {
+        this.cbJuego = cbJuego;
     }
 
     public void limpiar() {

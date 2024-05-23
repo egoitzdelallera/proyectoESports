@@ -1,10 +1,13 @@
+
 package controlador.controladorV;
 
 import modelo.Competicion;
 import modelo.Equipo;
+import modelo.Juego;
 import modelo.Participacion;
 import vista.VistaCompeticiones;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -15,8 +18,8 @@ public class ControladorVCompeticiones {
     private ControladorV cv;
     private Competicion comp;
     private List<Competicion> lista;
-    private List<Equipo> listaeq;
-    private List<Equipo> listaParticipantes;
+    private List<Juego> listaju;
+    private JComboBox cb;
     private int combo = 0;
     private int hola = 0;
 
@@ -39,12 +42,25 @@ public class ControladorVCompeticiones {
         vc.getPanelCrear().setVisible(false);
         vc.getPanelDatos().setVisible(false);
 
+        // Llenar la combo de las competiciones
         lista = cv.comboCompeticiones();
         lista.forEach(o->vc.getCbCompeticiones().addItem(o.getNombre()));
 
-        listaeq = cv.comboEquipos();
-
+        // Llenar la combo de los equipos que se van a inscribir en la competicion
+        List<Equipo> listaeq = cv.comboEquipos();
         listaeq.forEach(o->vc.getCbAnadirEquipos().addItem(o.getNombre()));
+
+        listaju = cv.comboJuegos();
+        listaju.forEach(o->vc.getCbJuego().addItem(o.getNombre()));
+    }
+
+    public void rellenarLista()
+    {
+       lista = cv.comboCompeticiones();
+       cb = vc.getCbCompeticiones();
+       cb.removeAllItems();
+       cb.addItem("Nuevo");
+       lista.forEach(o->cb.addItem(o.getNombre()));
     }
 
     public class BSalirAl implements ActionListener {
@@ -85,7 +101,7 @@ public class ControladorVCompeticiones {
                     // Llenar la combo de eliminar equipos, que esten dentro de esa competicion
                     vc.getCbEliminarEquipos().removeAllItems();
                     var idCompeticionParaParticipaciones = comp.getIdCompeticion();
-                    listaParticipantes = cv.comboParticipaciones(idCompeticionParaParticipaciones);
+                    List<Equipo> listaParticipantes = cv.comboParticipaciones(idCompeticionParaParticipaciones);
                     listaParticipantes.forEach(o->vc.getCbEliminarEquipos().addItem(o.getNombre()));
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
@@ -100,14 +116,11 @@ public class ControladorVCompeticiones {
             hola = vc.getCbAnadirEquipos().getSelectedIndex();
             try{
                 Equipo eq = cv.buscarEquipo(vc.getCbEliminarEquipos().getItemAt(hola).toString());
-                var idCompeticionParaParticipaciones = comp.getIdCompeticion();
-                Participacion par = new Participacion();
-                par.setCompeticionesByIdCompeticion(comp);
-                par.setEquiposByIdEquipo(eq);
-                par.setIdCompeticion(idCompeticionParaParticipaciones);
-                par.setIdCompeticion(comp.getIdCompeticion());
-                cv.borrarParticipacion(par);
-                System.out.println("Participacion Borrada");
+                Participacion part = cv.buscarParticipacion(comp.getIdCompeticion(), eq.getIdEquipo());
+                if (part != null) {
+                    cv.borrarParticipacion(part);
+                    System.out.println("Participacion borrada correctamente");
+                }
             }catch (Exception ex){
                 throw new RuntimeException(ex);
             }
@@ -130,6 +143,7 @@ public class ControladorVCompeticiones {
     }
 
     public class BAceptarAl implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
@@ -141,14 +155,14 @@ public class ControladorVCompeticiones {
                 comp.setFechaInicio(fechaInicio);
                 java.sql.Date fechaFin = new java.sql.Date(vc.getcFechaFin().getDate().getTime());
                 comp.setFechaFin(fechaFin);
+                comp.setEstado(false);
+                Juego j = listaju.get(vc.getCbJuego().getSelectedIndex());
+                comp.setJuegosByIdJuego(j);
                 cv.insertarCompeticion(comp);
                 System.out.println("Competición insertada");
                 vc.limpiar();
 
-                // Actualizar ComboBox
-                lista = cv.comboCompeticiones();
-                vc.getCbCompeticiones().removeAllItems();
-                lista.forEach(o -> vc.getCbCompeticiones().addItem(o.getNombre()));
+                rellenarLista();
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
@@ -168,17 +182,14 @@ public class ControladorVCompeticiones {
             hola = vc.getCbAnadirEquipos().getSelectedIndex();
             try{
                 Equipo eq = cv.buscarEquipo(vc.getCbAnadirEquipos().getItemAt(hola).toString());
-                var idCompeticionParaParticipaciones = comp.getIdCompeticion();
-                Participacion par = new Participacion();
-                par.setCompeticionesByIdCompeticion(comp);
-                par.setEquiposByIdEquipo(eq);
-                par.setIdCompeticion(idCompeticionParaParticipaciones);
-                par.setIdCompeticion(comp.getIdCompeticion());
-                cv.insertarParticipacion(par);
+
+                cv.insertarParticipacion(comp, eq);
                 System.out.println("Participacion insertada");
             }catch (Exception ex){
                 throw new RuntimeException(ex);
             }
+
+
         }
     }
 }
