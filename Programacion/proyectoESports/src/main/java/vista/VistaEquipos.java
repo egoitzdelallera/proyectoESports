@@ -115,6 +115,12 @@ public class VistaEquipos extends JFrame{
         taDatos.setText("");
         tfNombre.requestFocus();
     }
+    public void mostrarMensaje(String m)
+    {
+
+        JOptionPane.showMessageDialog(null, m);
+    }
+
 
 
 }

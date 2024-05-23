@@ -56,7 +56,7 @@ public class VistaJugadores extends JFrame{
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
     }
-    public void addCBEquiposAl(ActionListener al) {cbEquipos.addActionListener(al);}
+
 
     public void limpiar()
     {
@@ -67,7 +67,6 @@ public class VistaJugadores extends JFrame{
         tfSueldo.setText("");
         cbEquipos.setSelectedItem(0);
         taDatos.setText("");
-        dateChooser.setDate(new Date());
         tfNombre.requestFocus();
     }
 
