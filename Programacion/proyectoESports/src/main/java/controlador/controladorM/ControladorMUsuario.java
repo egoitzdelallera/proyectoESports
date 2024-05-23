@@ -7,6 +7,9 @@ import modelo.Usuario;
 
 import java.util.List;
 
+/**
+ * Controlador para gestionar operaciones relacionadas con usuarios.
+ */
 public class ControladorMUsuario {
 
     private EntityManagerFactory emf;
@@ -15,6 +18,11 @@ public class ControladorMUsuario {
     private ControladorM cm;
     private Usuario us;
 
+    /**
+     * Constructor de la clase ControladorMUsuario.
+     *
+     * @param cm El controlador  que instancia este controlador.
+     */
     public ControladorMUsuario(ControladorM cm) {
         this.cm = cm;
 
@@ -25,18 +33,37 @@ public class ControladorMUsuario {
         System.out.println("Controlador Modelo Usuario");
     }
 
+    /**
+     * Inserta un nuevo usuario en la base de datos.
+     *
+     * @param us El usuario a insertar.
+     * @throws Exception Si ocurre algún error durante la inserción.
+     */
     public void insertarUsuario (Usuario us) throws Exception {
         // Insertar
         transaction.begin();
         em.persist(us);
         transaction.commit();
     }
+
+    /**
+     * Borra un usuario existente en la base de datos.
+     *
+     * @throws Exception Si ocurre algún error durante la eliminación.
+     */
     public void borrarUsuario() throws Exception {
         transaction.begin();
         em.remove(us);
         transaction.commit();
     }
 
+    /**
+     * Busca un usuario por su nombre.
+     *
+     * @param nombre El nombre del usuario a buscar.
+     * @return El usuario encontrado.
+     * @throws Exception Si ocurre algún error durante la búsqueda.
+     */
     public Usuario buscarUsuario(String nombre) throws Exception {
         transaction.begin();
         TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.nombre = :nombre", Usuario.class);
@@ -45,6 +72,12 @@ public class ControladorMUsuario {
         transaction.commit();
         return us;
     }
+
+    /**
+     * Obtiene una lista de todos los usuarios.
+     *
+     * @return Una lista de usuarios.
+     */
     public List<Usuario> comboUsuarios(){
         transaction.begin();
         List<Usuario> lista =

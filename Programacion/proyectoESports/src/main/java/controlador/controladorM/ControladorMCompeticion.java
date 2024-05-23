@@ -9,12 +9,21 @@ import modelo.ParticipacionPK;
 
 import java.util.List;
 
+/**
+ * Controlador para gestionar operaciones relacionadas con competiciones.
+ */
 public class ControladorMCompeticion {
     private Competicion comp;
     private EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction transaction ;
     private ControladorM cm;
+
+    /**
+     * Constructor de la clase ControladorMCompeticion.
+     *
+     * @param cm El controlador  que instancia este controlador.
+     */
     public ControladorMCompeticion(ControladorM cm) {
         this.cm = cm;
         emf = Persistence.createEntityManagerFactory("default");
@@ -22,14 +31,24 @@ public class ControladorMCompeticion {
         transaction = em.getTransaction ();
     }
 
-    // Insertar una competición
+    /**
+     * Inserta una nueva competición en la base de datos.
+     *
+     * @param comp La competición a insertar.
+     * @throws Exception Si ocurre algún error durante la inserción.
+     */
     public void insertarCompeticion(Competicion comp) throws Exception {
         transaction.begin();
         em.persist(comp);
         transaction.commit();
     }
 
-    // Borrar una competición
+    /**
+     * Borra una competición existente en la base de datos.
+     *
+     * @param comp La competición a borrar.
+     * @throws Exception Si ocurre algún error durante la eliminación.
+     */
     public void borrarCompeticion(Competicion comp) throws Exception {
         transaction.begin();
         em.remove(em.merge(comp)); // Necesitas hacer merge antes de remove
@@ -37,7 +56,13 @@ public class ControladorMCompeticion {
         System.out.println("Competición Borrada");
     }
 
-    // Buscar una competición por nombre
+    /**
+     * Busca una competición por su nombre.
+     *
+     * @param nombre El nombre de la competición a buscar.
+     * @return La competición encontrada.
+     * @throws Exception Si ocurre algún error durante la búsqueda.
+     */
     public Competicion buscarCompeticion(String nombre) throws Exception {
         transaction.begin();
         TypedQuery<Competicion> query = em.createQuery("SELECT c FROM Competicion c WHERE c.nombre = :nombre", Competicion.class);
@@ -47,6 +72,11 @@ public class ControladorMCompeticion {
         return comp;
     }
 
+    /**
+     * Obtiene una lista de todas las competiciones.
+     *
+     * @return Una lista de competiciones.
+     */
     public List<Competicion> comboCompeticiones() {
         transaction.begin();
         List<Competicion> lista =
