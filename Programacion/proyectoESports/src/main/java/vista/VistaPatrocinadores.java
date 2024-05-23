@@ -16,6 +16,7 @@ public class VistaPatrocinadores extends JFrame{
     private JButton bSalir;
     private JComboBox cbEquipos;
     private JPanel panelPrincipal;
+    private JList lEquipos;
 
     public VistaPatrocinadores() {
         super("Patrocinadores");
@@ -110,5 +111,13 @@ public class VistaPatrocinadores extends JFrame{
 
     public void setPanelPrincipal(JPanel panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
+    }
+
+    public JList getlEquipos() {
+        return lEquipos;
+    }
+
+    public void setlEquipos(JList lEquipos) {
+        this.lEquipos = lEquipos;
     }
 }

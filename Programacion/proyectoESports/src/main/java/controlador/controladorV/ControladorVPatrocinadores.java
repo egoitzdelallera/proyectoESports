@@ -38,6 +38,15 @@ public class ControladorVPatrocinadores {
         JComboBox comboEquipos = vpt.getCbEquipos();
         comboEquipos.removeAllItems();
         listaEq.forEach(o -> comboEquipos.addItem(o.getNombre()));
+
+    }
+    public void jList(){
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for (Equipo item : listaEq) {
+            listModel.addElement(item.getNombre());
+            vpt.getlEquipos().setModel(listModel);
+            vpt.getlEquipos().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        }
     }
 
     public void mostrarPatrocinadores() {
@@ -57,6 +66,7 @@ public class ControladorVPatrocinadores {
         vpt.getTaDatos().setDisabledTextColor(Color.black);
 
         rellenarLista();
+        jList();
     }
 
     public class CbPatrocinadoresAl implements ActionListener {
