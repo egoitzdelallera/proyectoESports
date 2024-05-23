@@ -50,7 +50,8 @@ public class VistaJuegos extends JFrame {
     {
         tfNombre.setText("");
         tfEmpresa.setText("");
-        tfNombre.requestFocus();
+        taDatos.setText("");
+
     }
 
     public JPanel getPanelComboBox() {

@@ -1,26 +1,41 @@
 package controlador.controladorV;
 
 import modelo.Equipo;
-import modelo.Juego;
 import modelo.Patrocinador;
 import vista.VistaPatrocinadores;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Calendar;
 import java.util.List;
 
 public class ControladorVPatrocinadores {
     private VistaPatrocinadores vpt;
     private ControladorV cv;
-    private List<Patrocinador> listapt;
-
-    private List<Equipo> listaeq;
-    private int combo = 0;
     private Patrocinador pt;
+    private List<Patrocinador> listaPt;
+    private List<Equipo> listaEq;
+    private int combo = 0;
+    private JComboBox combobox;
+
     public ControladorVPatrocinadores(ControladorV cv) {
         this.cv = cv;
     }
+
+    public void rellenarLista() {
+        listaPt = cv.comboPatrocinadores();
+        combobox = vpt.getCbPatrocinadores();
+        combobox.removeAllItems();
+        combobox.addItem("Selecciona");
+        combobox.addItem("Nuevo");
+        listaPt.forEach(o -> combobox.addItem(o.getNombre()));
+
+        listaEq = cv.comboEquipos();
+        JComboBox comboEquipos = vpt.getCbEquipos();
+        comboEquipos.removeAllItems();
+        listaEq.forEach(o -> comboEquipos.addItem(o.getNombre()));
+    }
+
     public void mostrarPatrocinadores() {
         vpt = new VistaPatrocinadores();
 
@@ -35,70 +50,74 @@ public class ControladorVPatrocinadores {
         vpt.getPanelCrear().setVisible(false);
         vpt.getPanelDatos().setVisible(false);
 
-        listapt = cv.comboPatrocinadores();
-        listapt.forEach(o->vpt.getCbPatrocinadores().addItem(o.getNombre()));
-
-        listaeq = cv.comboEquipos();
-        listaeq.forEach(o->vpt.getCbEquipos().addItem(o.getNombre()));
-
-
+        rellenarLista();
     }
 
-    public class CbPatrocinadoresAl implements ActionListener{
+    public class CbPatrocinadoresAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            combo = vpt.getCbPatrocinadores().getSelectedIndex();
-            if (combo == 0){
-                vpt.getPanelCrear().setVisible(true);
-            }else{
-                vpt.getPanelDatos().setVisible(true);
+            combo = combobox.getSelectedIndex();
+            if (combo >= 1) {
+                if (combo == 1) {
+                    vpt.getPanelCrear().setVisible(true);
+                    vpt.getPanelDatos().setVisible(false);
+                    vpt.limpiar();
+                } else {
+                    vpt.getPanelDatos().setVisible(true);
+                    vpt.getPanelCrear().setVisible(false);
 
-                try {
-                    pt = cv.buscarPatrocinador(vpt.getCbPatrocinadores().getItemAt(combo).toString());
-                    vpt.getTaDatos().setText(pt.getNombre()+"\n"+pt.getPatrociniosByIdPatrocinador());
-                    vpt.getTfNombre().setText(pt.getNombre());
-
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
+                    try {
+                        pt = cv.buscarPatrocinador(combobox.getItemAt(combo).toString());
+                        vpt.getTaDatos().setText("Nombre: " + pt.getNombre() + "\nPatrocinios: " + pt.getPatrociniosByIdPatrocinador());
+                        vpt.getTfNombre().setText(pt.getNombre());
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
-
             }
         }
     }
-    public class BAceptarAl implements ActionListener{
+
+    public class BEditarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            vpt.getPanelCrear().setVisible(true);
+            vpt.getPanelDatos().setVisible(false);
+        }
+    }
+
+    public class BAceptarAl implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            combobox = vpt.getCbPatrocinadores();
             try {
-                if (combo == 0) {
+                if (combo == 1) {
                     pt = new Patrocinador();
                 }
                 pt.setNombre(vpt.getTfNombre().getText());
                 cv.insertarPatrocinador(pt);
                 System.out.println("Patrocinador insertado");
                 vpt.limpiar();
-
-                // Actualizar ComboBox
-                listapt = cv.comboPatrocinadores();
-                vpt.getCbPatrocinadores().removeAllItems();
-                listapt.forEach(o -> vpt.getCbPatrocinadores().addItem(o.getNombre()));
+                rellenarLista();
+                vpt.getPanelDatos().setVisible(false);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         }
     }
 
-
-    public class BEditarAl implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            vpt.getPanelCrear().setVisible(true);
-        }
-    }
-    public class BBorrarAl implements ActionListener{
+    public class BBorrarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                cv.borrarPatrocinador();
+                if (combo > 1) {
+                    cv.borrarPatrocinador();
+                    vpt.limpiar();
+                    rellenarLista();
+                    vpt.getPanelDatos().setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(vpt, "Seleccione un patrocinador válido para borrar.");
+                }
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }

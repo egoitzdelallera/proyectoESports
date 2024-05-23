@@ -1,5 +1,6 @@
 package controlador.controladorV;
 
+import jakarta.persistence.RollbackException;
 import modelo.Equipo;
 import modelo.Jugador;
 import modelo.Staff;
@@ -8,6 +9,7 @@ import vista.VistaEquipos;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -20,6 +22,8 @@ public class ControladorVEquipos {
     private List<Equipo> listaEq;
     private List<Jugador> listaJd;
     private List<Staff> listaSt;
+    private StringBuilder nombresJugadores;
+    private StringBuilder nombresStaff;
     private int combo = 0;
     private JComboBox combobox;
     public ControladorVEquipos(ControladorV cv) {
@@ -36,7 +40,7 @@ public class ControladorVEquipos {
     public void setListaJd(){
         listaJd = (List<Jugador>) eq.getJugadoresByIdEquipo();
         // Construir una cadena con los nombres de los jugadores
-        StringBuilder nombresJugadores = new StringBuilder();
+        nombresJugadores = new StringBuilder();
         for (Jugador jugador : listaJd) {
             nombresJugadores.append(jugador.getNombre()).append("\n");
         }
@@ -45,7 +49,7 @@ public class ControladorVEquipos {
     public void setListaSt(){
         listaSt = (List<Staff>) eq.getStaffByIdEquipo();
         // Construir una cadena con los nombres de los jugadores
-        StringBuilder nombresStaff = new StringBuilder();
+        nombresStaff = new StringBuilder();
         for (Staff staff : listaSt) {
             nombresStaff.append(staff.getNombre()).append("\n");
         }
@@ -87,7 +91,8 @@ public class ControladorVEquipos {
                         eq = cv.buscarEquipo(combobox.getItemAt(combo).toString());
                         setListaJd();
                         setListaSt();
-                        ve.getTaDatos().setText("Nombre: "+eq.getNombre() + "\nFecha de fundacion: " + eq.getFechaFundacion() + "\nJugadores: " + listaJd+ "\nStaff:" + listaSt);
+                        ve.getTaDatos().setText("Nombre: "+eq.getNombre() + "\nFecha de fundacion: "
+                                + eq.getFechaFundacion() + "\nJugadores: " +nombresJugadores+ "\nStaff:" + nombresStaff);
                         ve.getTfNombre().setText(eq.getNombre());
 
                         //Hay que cambiar el tipo de dato
@@ -98,7 +103,6 @@ public class ControladorVEquipos {
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
-
                 }
              }
         }
@@ -107,6 +111,7 @@ public class ControladorVEquipos {
         @Override
         public void actionPerformed(ActionEvent e) {
             ve.getPanelCrear().setVisible(true);
+            ve.getPanelDatos().setVisible(false);
         }
     }
 
@@ -123,12 +128,14 @@ public class ControladorVEquipos {
                 java.sql.Date fecha = new java.sql.Date(ve.getcFecha().getDate().getTime());
                 eq.setFechaFundacion(fecha);
                 cv.insertarEquipo(eq);
-                System.out.println("Equipo insertado");
+                System.out.println("Equipo guardado");
                 ve.limpiar();
-
                 rellenarLista();
+                ve.getPanelCrear().setVisible(false);
             } catch (Exception ex) {
+
                 throw new RuntimeException(ex);
+
             }
         }
     }
@@ -137,8 +144,11 @@ public class ControladorVEquipos {
         public void actionPerformed(ActionEvent e) {
             try {
                 cv.borrarEquipo();
+                ve.limpiar();
                 rellenarLista();
+                ve.getPanelDatos().setVisible(false);
             } catch (Exception ex) {
+                ve.mostrarMensaje("Este equipo tiene jugadores o staff, cambialos de equipo antes de borrarlo");
                 throw new RuntimeException(ex);
             }
         }
