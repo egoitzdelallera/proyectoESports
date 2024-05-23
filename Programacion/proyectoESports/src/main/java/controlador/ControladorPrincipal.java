@@ -27,6 +27,19 @@ public class ControladorPrincipal {
         System.exit(0);
     }
 
+
+    public void truncarTabla(String query) throws Exception {
+        cm.truncarTabla(query);
+    }
+
+    public void llamarProcedimiento(String query) throws Exception {
+        cm.llamarProcedimiento(query);
+    }
+
+    public String obtenerXml(String query) throws Exception {
+        return cm.obtenerXml(query);
+    }
+
     // Parte del Usuario
 
     public Usuario buscarUsuario(String nombre) throws Exception
@@ -116,6 +129,9 @@ public class ControladorPrincipal {
     public void insertarCompeticion(Competicion comp) throws Exception {
         cm.insertarCompeticion(comp);
     }
+    public List<Competicion> listaCompeticionesCerradas() {
+        return cm.listaCompeticionesCerradas();
+    }
 
     // Parte de las participaciones
 
@@ -145,6 +161,15 @@ public class ControladorPrincipal {
     }
     public List<Staff> comboStaff() {
         return cm.comboStaff();
+    }
+
+    // Parte del calendario
+    public List<Jornada> listaJornadas(Competicion c) {
+        return cm.listaJornadas(c);
+    }
+
+    public List<Enfrentamiento> listaEnfrentamientos() {
+        return cm.listaEnfrentamientos();
     }
 
 

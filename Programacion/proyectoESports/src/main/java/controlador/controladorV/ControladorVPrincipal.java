@@ -2,6 +2,7 @@ package controlador.controladorV;
 
 import vista.PaginaPrincipal;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,8 +24,10 @@ public class ControladorVPrincipal {
         pp.addBJugadoresAl(new BJugadoresAl());
         pp.addBUsuariosAl(new BUsuariosAl());
         pp.addBStaffAl(new BStaffAl());
-        /*pp.addBClasificacionAl(new BClasificacionAl());
-        pp.addBResultadosAl(new BResultadosAl());*/
+        pp.addBCalendarioAl(new BCalendarioAl());
+        pp.addBClasificacionesAl(new BClasificacionesAl());
+        pp.addBResultadosAl(new BRTJornadasAl());
+        pp.addBResultadosUJAl(new BRUJornadaAl());
         pp.addBSalirAl(new BSalirAl());
 
         pp.setVisible(true);
@@ -32,35 +35,70 @@ public class ControladorVPrincipal {
         switch (rolusuario){
             case "ADMINISTRADOR":
                 pp.getbCompeticiones().setVisible(true);
-                pp.getbClasificacion().setVisible(true);
                 pp.getbEquipos().setVisible(true);
                 pp.getbJuegos().setVisible(true);
                 pp.getbPatrocinadores().setVisible(true);
                 pp.getbJugadores().setVisible(true);
                 pp.getbStaff().setVisible(true);
                 pp.getbUsuarios().setVisible(true);
+                pp.getbCalendario().setVisible(true);
                 pp.getbResultados().setVisible(true);
+                pp.getbResultadosUJ().setVisible(true);
                 pp.getbSalir().setVisible(true);
                 break;
             case "USUARIO":
                 pp.getbCompeticiones().setVisible(false);
-                pp.getbClasificacion().setVisible(true);
                 pp.getbEquipos().setVisible(false);
                 pp.getbJuegos().setVisible(false);
                 pp.getbPatrocinadores().setVisible(false);
                 pp.getbJugadores().setVisible(false);
                 pp.getbStaff().setVisible(false);
                 pp.getbUsuarios().setVisible(false);
-                pp.getbResultados().setVisible(true);
+                pp.getbCalendario().setVisible(true);
+                pp.getbResultados().setVisible(false);
+                pp.getbResultadosUJ().setVisible(true);
                 pp.getbSalir().setVisible(true);
                 break;
             default:
                 break;
 
         }
-
-         
     }
+
+    public class BRUJornadaAl implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                cv.mostrarRUJornada();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
+
+    public class BRTJornadasAl implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                cv.mostrarRTJornadas();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
+    public class BClasificacionesAl implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                cv.mostrarClasificaciones();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
+
     public class BEquiposAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -108,6 +146,14 @@ public class ControladorVPrincipal {
         public void actionPerformed(ActionEvent e) {
 
             cv.mostrarPatrocinadores();
+        }
+    }
+
+    public class BCalendarioAl implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            cv.mostrarCalendario();
         }
     }
     public class BSalirAl implements ActionListener {

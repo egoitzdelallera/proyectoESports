@@ -20,6 +20,10 @@ public class ControladorV {
     private ControladorVJuegos cvjg;
     private ControladorVPatrocinadores cvpt;
     private ControladorVCompeticiones cvc;
+    private ControladorVCalendario cvcal;
+    private ControladorVClasificaciones cvcf;
+    private ControladorVRTJornadas cvrtj;
+    private ControladorVRUJornada cvruj;
     private Equipo eq;
     private Usuario us;
 
@@ -39,6 +43,10 @@ public class ControladorV {
         cvjg = new ControladorVJuegos(this);
         cvpt = new ControladorVPatrocinadores(this);
         cvc = new ControladorVCompeticiones(this);
+        cvcal = new ControladorVCalendario(this);
+        cvcf = new ControladorVClasificaciones(this);
+        cvrtj = new ControladorVRTJornadas(this);
+        cvruj = new ControladorVRUJornada(this);
 
         cl.mostrarLogin();
     }
@@ -102,7 +110,28 @@ public class ControladorV {
     public void mostrarUsuarios() {
         cvu.mostrarUsuarios();
     }
+    public void mostrarCalendario() {
+        cvcal.mostrarCalendario();
+    }
 
+    public void mostrarClasificaciones() throws Exception{cvcf.mostrarClasificaciones();}
+
+    public void mostrarRTJornadas() throws Exception{cvrtj.mostrarRTJornadas();}
+    public void mostrarRUJornada()throws Exception {
+        cvruj.mostrarRUJornada();
+    }
+
+    public void truncarTabla(String query) throws Exception {
+        cp.truncarTabla(query);
+    }
+
+    public void llamarProcedimiento(String query) throws Exception {
+        cp.llamarProcedimiento(query);
+    }
+
+    public String obtenerXml(String query) throws Exception {
+        return cp.obtenerXml(query);
+    }
 
     // Métodos relacionados con usuarios
 
@@ -366,6 +395,13 @@ public class ControladorV {
     }
 
 
+    public List<Competicion> listaCompeticionesCerradas() {
+        return cp.listaCompeticionesCerradas();
+    }
+    // Parte de las participaciones
+
+
+
     // Métodos relacionados con participaciones
 
     /**
@@ -454,4 +490,17 @@ public class ControladorV {
     }
 }
 
+    // Parte del Calendario
+    public List<Jornada> listaJornadas(Competicion c) {
+        return cp.listaJornadas(c);
+    }
+
+    public List<Enfrentamiento> listaEnfrentamientos() {
+        return cp.listaEnfrentamientos();
+    }
+
+    public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
+        return cp.buscarParticipacion(idCompeticion, idEquipo);
+    }
+}
 
