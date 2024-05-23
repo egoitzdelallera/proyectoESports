@@ -132,11 +132,5 @@ public class VistaStaff extends JFrame {
     public void setCbEquipos(JComboBox cbEquipos) {
         this.cbEquipos = cbEquipos;
     }
-    public void limpiar()
-    {
-        tfNombre.setText("");
-        tfPuesto.setText("");
-        tfSueldo.setText("");
-        tfNombre.requestFocus();
-    }
+
 }
