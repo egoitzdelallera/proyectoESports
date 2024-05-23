@@ -116,6 +116,9 @@ public class ControladorPrincipal {
     public void insertarCompeticion(Competicion comp) throws Exception {
         cm.insertarCompeticion(comp);
     }
+    public List<Competicion> listaCompeticionesCerradas() {
+        return cm.listaCompeticionesCerradas();
+    }
 
     // Parte de las participaciones
 
@@ -145,6 +148,15 @@ public class ControladorPrincipal {
     }
     public List<Staff> comboStaff() {
         return cm.comboStaff();
+    }
+
+    // Parte del calendario
+    public List<Jornada> listaJornadas(Competicion c) {
+        return cm.listaJornadas(c);
+    }
+
+    public List<Enfrentamiento> listaEnfrentamientos() {
+        return cm.listaEnfrentamientos();
     }
 
 

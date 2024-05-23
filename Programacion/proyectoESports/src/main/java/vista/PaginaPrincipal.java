@@ -13,8 +13,7 @@ public class PaginaPrincipal extends JFrame {
     private JButton bEquipos;
     private JButton bCompeticiones;
     private JButton bSalir;
-    private JButton bClasificacion;
-    private JButton bResultados;
+    private JButton bCalendario;
 
     public PaginaPrincipal() {
         super("Ventana Principal");
@@ -43,11 +42,8 @@ public class PaginaPrincipal extends JFrame {
     public void addBUsuariosAl (ActionListener al){
         bUsuarios.addActionListener(al);
     }
-    public void addBClasificacionAl (ActionListener al){
-        bClasificacion.addActionListener(al);
-    }
-    public void addBResultadosAl (ActionListener al){
-        bResultados.addActionListener(al);
+    public void addBCalendarioAl (ActionListener al){
+        bCalendario.addActionListener(al);
     }
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
@@ -118,19 +114,11 @@ public class PaginaPrincipal extends JFrame {
         this.bSalir = bSalir;
     }
 
-    public JButton getbClasificacion() {
-        return bClasificacion;
+    public JButton getbCalendario() {
+        return bCalendario;
     }
 
-    public void setbClasificacion(JButton bClasificacion) {
-        this.bClasificacion = bClasificacion;
-    }
-
-    public JButton getbResultados() {
-        return bResultados;
-    }
-
-    public void setbResultados(JButton bResultados) {
-        this.bResultados = bResultados;
+    public void setbCalendario(JButton bCalendario) {
+        this.bCalendario = bCalendario;
     }
 }

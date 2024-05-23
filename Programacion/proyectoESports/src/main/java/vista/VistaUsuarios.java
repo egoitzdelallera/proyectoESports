@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 package vista;
 
 import javax.swing.*;
@@ -130,5 +129,3 @@ public class VistaUsuarios extends JFrame {
         if(rbAdministrador.isSelected()) rbAdministrador.setSelected(false);
     }
 }
-=======
->>>>>>> Stashed changes

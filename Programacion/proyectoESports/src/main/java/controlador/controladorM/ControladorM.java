@@ -18,9 +18,7 @@ public class ControladorM {
     private ControladorMCompeticion cmcomp;
     private ControladorMParticipacion cmpart;
     private ControladorMStaff cms;
-=======
-    private ControladorMParticipacion cmpart;
->>>>>>> Stashed changes
+    private ControladorMCalendario cmcal;
     private EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction t;
@@ -35,9 +33,7 @@ public class ControladorM {
         cmcomp = new ControladorMCompeticion(this);
         cmpart = new ControladorMParticipacion(this);
         cms = new ControladorMStaff(this);
-=======
-
->>>>>>> Stashed changes
+        cmcal = new ControladorMCalendario(this);
     }
 
     public void terminar() throws Exception{
@@ -139,6 +135,9 @@ public class ControladorM {
     public void insertarCompeticion(Competicion comp) throws Exception {
         cmcomp.insertarCompeticion(comp);
     }
+    public List<Competicion> listaCompeticionesCerradas() {
+        return cmcomp.listaCompeticionesCerradas();
+    }
     // Parte de las participaciones
 
     public List<Equipo> comboParticipaciones(int idCompeticion) throws Exception {
@@ -151,10 +150,6 @@ public class ControladorM {
     public void borrarParticipacion(Participacion par) throws Exception {
         cmpart.borrarParticipacion(par);
     }
-    public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
-        return cmpart.buscarParticipacion(idCompeticion, idEquipo);
-    }
-
     public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
         return cmpart.buscarParticipacion(idCompeticion, idEquipo);
     }
@@ -172,6 +167,15 @@ public class ControladorM {
     }
     public List<Staff> comboStaff() {
         return cms.comboStaff();
+    }
+
+    // Parte del calendario
+    public List<Jornada> listaJornadas(Competicion c) {
+        return cmcal.listaJornadas(c);
+    }
+
+    public List<Enfrentamiento> listaEnfrentamientos() {
+        return cmcal.listaEnfrentamientos();
     }
 
 

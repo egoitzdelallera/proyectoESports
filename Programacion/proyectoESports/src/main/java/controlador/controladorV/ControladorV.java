@@ -17,6 +17,7 @@ public class ControladorV{
     private ControladorVJuegos cvjg;
     private ControladorVPatrocinadores cvpt;
     private ControladorVCompeticiones cvc;
+    private ControladorVCalendario cvcal;
     private Equipo eq;
     private Usuario us;
 
@@ -31,6 +32,7 @@ public class ControladorV{
         cvjg = new ControladorVJuegos(this);
         cvpt = new ControladorVPatrocinadores(this);
         cvc = new ControladorVCompeticiones(this);
+        cvcal = new ControladorVCalendario(this);
 
         cl.mostrarLogin();
     }
@@ -58,6 +60,9 @@ public class ControladorV{
     }
     public void mostrarUsuarios(){
         cvu.mostrarUsuarios();
+    }
+    public void mostrarCalendario() {
+        cvcal.mostrarCalendario();
     }
 
 
@@ -153,6 +158,10 @@ public class ControladorV{
     public void insertarCompeticion(Competicion comp) throws Exception {
         cp.insertarCompeticion(comp);
     }
+
+    public List<Competicion> listaCompeticionesCerradas() {
+        return cp.listaCompeticionesCerradas();
+    }
     // Parte de las participaciones
 
     public List<Equipo> comboParticipaciones(int idCompeticion) throws Exception {
@@ -184,12 +193,15 @@ public class ControladorV{
         return cp.comboStaff();
     }
 
-
-
-=======
-    public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
-        return cp.buscarParticipacion(idCompeticion, idEquipo);
+    // Parte del Calendario
+    public List<Jornada> listaJornadas(Competicion c) {
+        return cp.listaJornadas(c);
     }
->>>>>>> Stashed changes
+
+    public List<Enfrentamiento> listaEnfrentamientos() {
+        return cp.listaEnfrentamientos();
+    }
+
+
 }
 
