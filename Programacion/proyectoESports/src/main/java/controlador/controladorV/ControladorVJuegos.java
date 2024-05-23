@@ -4,6 +4,7 @@ import modelo.Juego;
 import vista.VistaJuegos;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -43,6 +44,8 @@ public class ControladorVJuegos {
         vjg.getPanelComboBox().setVisible(true);
         vjg.getPanelCrear().setVisible(false);
         vjg.getPanelDatos().setVisible(false);
+        vjg.getTaDatos().setEnabled(false);
+        vjg.getTaDatos().setDisabledTextColor(Color.black);
 
         rellenarLista();
     }

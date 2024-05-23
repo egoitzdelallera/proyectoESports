@@ -4,6 +4,7 @@ import modelo.Usuario;
 import vista.VistaUsuarios;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -42,6 +43,8 @@ public class ControladorVUsuarios {
         vu.getPanelComboBox().setVisible(true);
         vu.getPanelCrear().setVisible(false);
         vu.getPanelDatos().setVisible(false);
+        vu.getTaDatos().setEnabled(false);
+        vu.getTaDatos().setDisabledTextColor(Color.black);
 
         rellenarLista();
     }

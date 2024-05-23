@@ -56,7 +56,7 @@ public class VistaJugadores extends JFrame{
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
     }
-    public void addCBEquiposAl(ActionListener al) {cbEquipos.addActionListener(al);}
+
 
     public void limpiar()
     {

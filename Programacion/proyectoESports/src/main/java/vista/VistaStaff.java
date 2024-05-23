@@ -44,7 +44,14 @@ public class VistaStaff extends JFrame {
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
     }
-
+    public void limpiar()
+    {
+        tfNombre.setText("");
+        tfSueldo.setText("");
+        cbEquipos.setSelectedItem(0);
+        taDatos.setText("");
+        tfNombre.requestFocus();
+    }
     public JPanel getPanelComboBox() {
         return panelComboBox;
     }

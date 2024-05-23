@@ -2,9 +2,11 @@ package controlador.controladorV;
 
 import modelo.Equipo;
 import modelo.Patrocinador;
+import modelo.Patrocinio;
 import vista.VistaPatrocinadores;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -15,6 +17,8 @@ public class ControladorVPatrocinadores {
     private Patrocinador pt;
     private List<Patrocinador> listaPt;
     private List<Equipo> listaEq;
+    private Patrocinio pc;
+    private Equipo eq;
     private int combo = 0;
     private JComboBox combobox;
 
@@ -49,6 +53,8 @@ public class ControladorVPatrocinadores {
         vpt.getPanelComboBox().setVisible(true);
         vpt.getPanelCrear().setVisible(false);
         vpt.getPanelDatos().setVisible(false);
+        vpt.getTaDatos().setEnabled(false);
+        vpt.getTaDatos().setDisabledTextColor(Color.black);
 
         rellenarLista();
     }
@@ -93,7 +99,10 @@ public class ControladorVPatrocinadores {
             try {
                 if (combo == 1) {
                     pt = new Patrocinador();
+                    pc = new Patrocinio();
                 }
+                pc.setIdPatrocinador(pt.getIdPatrocinador());
+                pc.setIdEquipo(eq.getIdEquipo());
                 pt.setNombre(vpt.getTfNombre().getText());
                 cv.insertarPatrocinador(pt);
                 System.out.println("Patrocinador insertado");

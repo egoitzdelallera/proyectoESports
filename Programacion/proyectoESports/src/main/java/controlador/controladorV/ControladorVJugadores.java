@@ -6,6 +6,7 @@ import modelo.Jugador;
 import vista.VistaJugadores;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -54,6 +55,8 @@ public class ControladorVJugadores {
         vjd.getPanelComboBox().setVisible(true);
         vjd.getPanelDatos().setVisible(false);
         vjd.getPanelCrear().setVisible(false);
+        vjd.getTaDatos().setEnabled(false);
+        vjd.getTaDatos().setDisabledTextColor(Color.black);
 
 
         rellenarLista();
@@ -76,8 +79,8 @@ public class ControladorVJugadores {
                     try {
                         jd = cv.buscarJugador(vjd.getCbJugadores().getItemAt(combo).toString());
 
-                        vjd.getTaDatos().setText(jd.getNickname()+"\n"+jd.getNombre()+"\n"+ jd.getNacionalidad()+
-                                "\n"+ jd.getRol()+"\n"+ jd.getFechaNacimiento()+"\n"+ jd.getSueldo()+"\n"+jd.getEquiposByIdEquipo().getNombre());
+                        vjd.getTaDatos().setText("Nickname: "+jd.getNickname()+"\nNombre: "+jd.getNombre()+"\nNacionalidad: "+ jd.getNacionalidad()+
+                                "\nRol: "+ jd.getRol()+"\nFecha de Nacimiento: "+ jd.getFechaNacimiento()+"\nSalario: "+ jd.getSueldo()+"\nEquipo: "+jd.getEquiposByIdEquipo().getNombre());
 
                         vjd.getTfNombre().setText(jd.getNombre());
                         vjd.getTfNacionalidad().setText(jd.getNacionalidad());
@@ -104,7 +107,7 @@ public class ControladorVJugadores {
         @Override
         public void actionPerformed(ActionEvent e) {
             vjd.getPanelCrear().setVisible(true);
-
+            vjd.getPanelDatos().setVisible(false);
         }
     }
 
@@ -126,9 +129,9 @@ public class ControladorVJugadores {
                 java.sql.Date fecha = new java.sql.Date(vjd.getcFecha().getDate().getTime());
                 jd.setFechaNacimiento(fecha);
 
-                int nEq = vjd.getCbEquipos().getSelectedIndex();
 
-                eq = cv.buscarEquipo(vjd.getCbEquipos().getItemAt(nEq).toString());
+
+                eq = cv.buscarEquipo(vjd.getCbEquipos().getItemAt(vjd.getCbEquipos().getSelectedIndex()).toString());
                 jd.setEquiposByIdEquipo(eq);
 
 

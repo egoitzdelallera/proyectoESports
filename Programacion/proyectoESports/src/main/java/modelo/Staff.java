@@ -19,11 +19,9 @@ public class Staff {
     @Basic
     @Column(name = "SUELDO", nullable = true, precision = 0)
     private Integer sueldo;
-    @Basic
-    @Column(name = "ID_EQUIPO", nullable = true, precision = 0)
-    private Byte idEquipo;
+
     @ManyToOne
-    @JoinColumn(name = "ID_EQUIPO", referencedColumnName = "ID_EQUIPO", insertable = false, updatable = false)
+    @JoinColumn(name = "ID_EQUIPO", referencedColumnName = "ID_EQUIPO")
     private Equipo equiposByIdEquipo;
 
     public int getIdStaff() {
@@ -58,13 +56,6 @@ public class Staff {
         this.sueldo = sueldo;
     }
 
-    public Byte getIdEquipo() {
-        return idEquipo;
-    }
-
-    public void setIdEquipo(Byte idEquipo) {
-        this.idEquipo = idEquipo;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -77,7 +68,7 @@ public class Staff {
         if (puesto != null ? !puesto.equals(staff.puesto) : staff.puesto != null) return false;
         if (nombre != null ? !nombre.equals(staff.nombre) : staff.nombre != null) return false;
         if (sueldo != null ? !sueldo.equals(staff.sueldo) : staff.sueldo != null) return false;
-        if (idEquipo != null ? !idEquipo.equals(staff.idEquipo) : staff.idEquipo != null) return false;
+
 
         return true;
     }
@@ -88,7 +79,7 @@ public class Staff {
         result = 31 * result + (puesto != null ? puesto.hashCode() : 0);
         result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
         result = 31 * result + (sueldo != null ? sueldo.hashCode() : 0);
-        result = 31 * result + (idEquipo != null ? idEquipo.hashCode() : 0);
+
         return result;
     }
 

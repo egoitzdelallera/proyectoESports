@@ -7,6 +7,7 @@ import modelo.Staff;
 import vista.VistaEquipos;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -39,16 +40,14 @@ public class ControladorVEquipos {
     }
     public void setListaJd(){
         listaJd = (List<Jugador>) eq.getJugadoresByIdEquipo();
-        // Construir una cadena con los nombres de los jugadores
         nombresJugadores = new StringBuilder();
         for (Jugador jugador : listaJd) {
-            nombresJugadores.append(jugador.getNombre()).append("\n");
+            nombresJugadores.append(jugador.getNickname()).append("\n");
         }
 
     }
     public void setListaSt(){
         listaSt = (List<Staff>) eq.getStaffByIdEquipo();
-        // Construir una cadena con los nombres de los jugadores
         nombresStaff = new StringBuilder();
         for (Staff staff : listaSt) {
             nombresStaff.append(staff.getNombre()).append("\n");
@@ -68,6 +67,8 @@ public class ControladorVEquipos {
         ve.getPanelComboBox().setVisible(true);
         ve.getPanelCrear().setVisible(false);
         ve.getPanelDatos().setVisible(false);
+        ve.getTaDatos().setEnabled(false);
+        ve.getTaDatos().setDisabledTextColor(Color.black);
 
         rellenarLista();
     }
