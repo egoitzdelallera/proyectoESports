@@ -83,6 +83,7 @@ public class ControladorVJuegos {
         @Override
         public void actionPerformed(ActionEvent e) {
             vjg.getPanelCrear().setVisible(true);
+            vjg.getPanelDatos().setVisible(false);
         }
     }
 
@@ -98,12 +99,11 @@ public class ControladorVJuegos {
                 jg.setEmpresa(vjg.getTfEmpresa().getText());
                 java.sql.Date fecha = new java.sql.Date(vjg.getcFecha().getDate().getTime());
                 jg.setFechaLanzamiento(fecha);
-                
                 cv.insertarJuego(jg);
-
-                System.out.println("Juego insertado/actualizado");
+                System.out.println("Juego guardado");
                 vjg.limpiar();
                 rellenarLista();
+                vjg.getPanelDatos().setVisible(false);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
@@ -118,6 +118,7 @@ public class ControladorVJuegos {
                     cv.borrarJuego();
                     vjg.limpiar();
                     rellenarLista();
+                    vjg.getPanelDatos().setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(vjg, "Seleccione un juego válido para borrar.");
                 }

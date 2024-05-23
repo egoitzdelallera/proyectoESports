@@ -126,6 +126,7 @@ public class VistaUsuarios extends JFrame {
     public void limpiar() {
         tfNombre.setText("");
         tfContrasena.setText("");
+        taDatos.setText("");
         if(rbUsuario.isSelected()) rbUsuario.setSelected(false);
         if(rbAdministrador.isSelected()) rbAdministrador.setSelected(false);
     }

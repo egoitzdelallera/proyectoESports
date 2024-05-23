@@ -67,7 +67,6 @@ public class VistaJugadores extends JFrame{
         tfSueldo.setText("");
         cbEquipos.setSelectedItem(0);
         taDatos.setText("");
-        dateChooser.setDate(new Date());
         tfNombre.requestFocus();
     }
 
