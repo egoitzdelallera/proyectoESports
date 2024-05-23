@@ -7,11 +7,20 @@ import modelo.Participacion;
 
 import java.util.List;
 
+/**
+ * Controlador para gestionar operaciones relacionadas con participaciones.
+ */
 public class ControladorMParticipacion {
     private ControladorM cm;
     private EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction transaction ;
+
+    /**
+     * Constructor de la clase ControladorMParticipacion.
+     *
+     * @param cm El controlador  que instancia este controlador.
+     */
     public ControladorMParticipacion(ControladorM cm) {
         this.cm = cm;
         emf = Persistence.createEntityManagerFactory("default");
@@ -19,6 +28,12 @@ public class ControladorMParticipacion {
         transaction = em.getTransaction ();
     }
 
+    /**
+     * Obtiene una lista de todas las participaciones.
+     *
+     * @param idCompeticion El ID de la competición de la lista de participaciones que queremos.
+     * @return Una lista de participaciones.
+     */
     public List<Equipo> comboParticipaciones(int idCompeticion) throws Exception {
         transaction.begin();
         TypedQuery<Equipo> query = em.createQuery(
@@ -31,6 +46,13 @@ public class ControladorMParticipacion {
         return lista;
     }
 
+    /**
+     * Inserta una nueva participación en la base de datos.
+     *
+     * @param comp La competicion en la que compite el equipo de la participación que se quiere insertar.
+     * @param eq El equipo correspondiente a la participación que queremos insertar.
+     * @throws Exception Si ocurre algún error durante la inserción.
+     */
     public void insertarParticipacion(Competicion comp, Equipo eq) throws Exception {
         Participacion participacion = new Participacion();
         participacion.setIdCompeticion(comp.getIdCompeticion());
@@ -43,6 +65,14 @@ public class ControladorMParticipacion {
         transaction.commit();
     }
 
+    /**
+     * Busca una participación por su idCompeticion e idEquipo.
+     *
+     * @param idCompeticion El ID de la competición en la que compite el equipo de la participación que se quiere buscar.
+     * @param idEquipo El ID del equipo correspondiente a la participación que queremos buscar.
+     * @return La competición encontrada.
+     * @throws Exception Si ocurre algún error durante la búsqueda.
+     */
     public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
         transaction.begin();
         try {
@@ -63,6 +93,12 @@ public class ControladorMParticipacion {
         }
     }
 
+    /**
+     * Borra una participación existente en la base de datos.
+     *
+     * @param par La participación a borrar.
+     * @throws Exception Si ocurre algún error durante la eliminación.
+     */
     public void borrarParticipacion(Participacion par) throws Exception {
         transaction.begin();
         em.remove(em.merge(par));
