@@ -13,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Controlador para la vista de competiciones.
+ */
 public class ControladorVCompeticiones {
     private VistaCompeticiones vc;
     private ControladorV cv;
@@ -23,9 +26,18 @@ public class ControladorVCompeticiones {
     private int combo = 0;
     private int hola = 0;
 
+    /**
+     * Constructor del controlador de competiciones.
+     *
+     * @param cv El controlador principal de la vista.
+     */
     public ControladorVCompeticiones(ControladorV cv) {
         this.cv = cv;
     }
+
+    /**
+     * Muestra la interfaz de usuario para administrar competiciones.
+     */
     public void mostrarCompeticiones() {
         vc = new VistaCompeticiones();
 
