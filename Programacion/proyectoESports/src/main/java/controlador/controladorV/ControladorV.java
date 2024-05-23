@@ -17,6 +17,9 @@ public class ControladorV {
     private ControladorVJuegos cvjg;
     private ControladorVPatrocinadores cvpt;
     private ControladorVCompeticiones cvc;
+    private ControladorVClasificaciones cvcf;
+    private ControladorVRTJornadas cvrtj;
+    private ControladorVRUJornada cvruj;
     private Equipo eq;
     private Usuario us;
 
@@ -31,6 +34,9 @@ public class ControladorV {
         cvjg = new ControladorVJuegos(this);
         cvpt = new ControladorVPatrocinadores(this);
         cvc = new ControladorVCompeticiones(this);
+        cvcf = new ControladorVClasificaciones(this);
+        cvrtj = new ControladorVRTJornadas(this);
+        cvruj = new ControladorVRUJornada(this);
 
         cl.mostrarLogin();
     }
@@ -67,6 +73,24 @@ public class ControladorV {
         cvu.mostrarUsuarios();
     }
 
+    public void mostrarClasificaciones() throws Exception{cvcf.mostrarClasificaciones();}
+
+    public void mostrarRTJornadas() throws Exception{cvrtj.mostrarRTJornadas();}
+    public void mostrarRUJornada()throws Exception {
+        cvruj.mostrarRUJornada();
+    }
+
+    public void truncarTabla(String query) throws Exception {
+        cp.truncarTabla(query);
+    }
+
+    public void llamarProcedimiento(String query) throws Exception {
+        cp.llamarProcedimiento(query);
+    }
+
+    public String obtenerXml(String query) throws Exception {
+        return cp.obtenerXml(query);
+    }
 
     //Parte del Usuario
     public Usuario buscarUsuario(String nombre) throws Exception {

@@ -25,6 +25,7 @@ public class ControladorM {
     private ControladorMCompeticion cmcomp;
     private ControladorMParticipacion cmpart;
     private ControladorMStaff cms;
+    private ControladorMXml cmx;
 
     private EntityManagerFactory emf;
     private EntityManager em;
@@ -47,6 +48,8 @@ public class ControladorM {
         cmcomp = new ControladorMCompeticion(this);
         cmpart = new ControladorMParticipacion(this);
         cms = new ControladorMStaff(this);
+        cmx = new ControladorMXml(this);
+
     }
 
 
@@ -60,6 +63,18 @@ public class ControladorM {
         emf.close();
     }
 
+
+    public void truncarTabla(String query) throws Exception {
+        cmx.truncarTabla(query);
+    }
+
+    public void llamarProcedimiento(String query) throws Exception {
+        cmx.llamarProcedimiento(query);
+    }
+
+    public String obtenerXml(String query) throws Exception{
+        return cmx.obtenerXml(query);
+    }
 
     //Parte del Equipo
 

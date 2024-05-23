@@ -27,6 +27,19 @@ public class ControladorPrincipal {
         System.exit(0);
     }
 
+
+    public void truncarTabla(String query) throws Exception {
+        cm.truncarTabla(query);
+    }
+
+    public void llamarProcedimiento(String query) throws Exception {
+        cm.llamarProcedimiento(query);
+    }
+
+    public String obtenerXml(String query) throws Exception {
+        return cm.obtenerXml(query);
+    }
+
     // Parte del Usuario
 
     public Usuario buscarUsuario(String nombre) throws Exception
