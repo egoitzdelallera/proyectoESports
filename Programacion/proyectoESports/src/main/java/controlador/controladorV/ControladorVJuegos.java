@@ -1,9 +1,10 @@
 package controlador.controladorV;
 
-
 import modelo.Juego;
 import vista.VistaJuegos;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -12,12 +13,24 @@ import java.util.List;
 public class ControladorVJuegos {
     private VistaJuegos vjg;
     private ControladorV cv;
-    private List<Juego> lista;
-    private int combo = 0;
     private Juego jg;
+    private List<Juego> listaJg;
+    private int combo = 0;
+    private JComboBox combobox;
+
     public ControladorVJuegos(ControladorV cv) {
         this.cv = cv;
     }
+
+    public void rellenarLista() {
+        listaJg = cv.comboJuegos();
+        combobox = vjg.getCbJuegos();
+        combobox.removeAllItems();
+        combobox.addItem("Selecciona");
+        combobox.addItem("Nuevo");
+        listaJg.forEach(o -> combobox.addItem(o.getNombre()));
+    }
+
     public void mostrarJuegos() {
         vjg = new VistaJuegos();
 
@@ -31,42 +44,58 @@ public class ControladorVJuegos {
         vjg.getPanelComboBox().setVisible(true);
         vjg.getPanelCrear().setVisible(false);
         vjg.getPanelDatos().setVisible(false);
+        vjg.getTaDatos().setEnabled(false);
+        vjg.getTaDatos().setDisabledTextColor(Color.black);
 
-        lista = cv.comboJuegos();
-        lista.forEach(o->vjg.getCbJuegos().addItem(o.getNombre()));
-
+        rellenarLista();
     }
-    public class CbJuegosAl implements ActionListener{
+
+    public class CbJuegosAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            combo = vjg.getCbJuegos().getSelectedIndex();
-            if (combo == 0){
-                vjg.getPanelCrear().setVisible(true);
-            }else {
-                vjg.getPanelDatos().setVisible(true);
+            combo = combobox.getSelectedIndex();
+            if (combo >= 1) {
+                if (combo == 1) {
+                    vjg.getPanelCrear().setVisible(true);
+                    vjg.getPanelDatos().setVisible(false);
+                    vjg.limpiar();
+                } else {
+                    vjg.getPanelDatos().setVisible(true);
+                    vjg.getPanelCrear().setVisible(false);
 
-                try {
-                    jg = cv.buscarJuego(vjg.getCbJuegos().getItemAt(combo).toString());
-                    vjg.getTaDatos().setText(jg.getNombre()+"\n"+jg.getEmpresa()+"\n"+jg.getFechaLanzamiento());
-                    vjg.getTfNombre().setText(jg.getNombre());
-                    vjg.getTfEmpresa().setText(jg.getEmpresa());
+                    try {
+                        jg = cv.buscarJuego(combobox.getItemAt(combo).toString());
+                        vjg.getTaDatos().setText("Nombre: " + jg.getNombre() + "\nEmpresa: " + jg.getEmpresa() + "\nFecha de Lanzamiento: " + jg.getFechaLanzamiento());
+                        vjg.getTfNombre().setText(jg.getNombre());
+                        vjg.getTfEmpresa().setText(jg.getEmpresa());
 
-                    //Hay que cambiar el tipo de dato
-                    java.util.Date fechaFundacion = jg.getFechaLanzamiento();
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(fechaFundacion);
-                    vjg.getcFecha().setCalendar(calendar);
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
+                        // Convertir la fecha de lanzamiento a Calendar y establecer en JDateChooser
+                        java.util.Date fechaLanzamiento = jg.getFechaLanzamiento();
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(fechaLanzamiento);
+                        vjg.getcFecha().setCalendar(calendar);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
-            }
+        }
     }
-    public class BAceptarAl implements ActionListener{
+
+    public class BEditarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            vjg.getPanelCrear().setVisible(true);
+            vjg.getPanelDatos().setVisible(false);
+        }
+    }
+
+    public class BAceptarAl implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            combobox = vjg.getCbJuegos();
             try {
-                if (combo == 0) {
+                if (combo == 1) {
                     jg = new Juego();
                 }
                 jg.setNombre(vjg.getTfNombre().getText());
@@ -74,30 +103,34 @@ public class ControladorVJuegos {
                 java.sql.Date fecha = new java.sql.Date(vjg.getcFecha().getDate().getTime());
                 jg.setFechaLanzamiento(fecha);
                 cv.insertarJuego(jg);
-                System.out.println("Juego insertado");
+                System.out.println("Juego guardado");
                 vjg.limpiar();
+                rellenarLista();
+                vjg.getPanelDatos().setVisible(false);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
-
         }
     }
-    public class BBorrarAl implements ActionListener{
+
+    public class BBorrarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                cv.borrarJuego();
+                if (combo > 1) {
+                    cv.borrarJuego();
+                    vjg.limpiar();
+                    rellenarLista();
+                    vjg.getPanelDatos().setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(vjg, "Seleccione un juego válido para borrar.");
+                }
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         }
     }
-    public class BEditarAl implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            vjg.getPanelCrear().setVisible(true);
-        }
-    }
+
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

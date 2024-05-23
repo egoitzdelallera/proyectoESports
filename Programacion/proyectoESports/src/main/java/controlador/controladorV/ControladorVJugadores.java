@@ -6,6 +6,7 @@ import modelo.Jugador;
 import vista.VistaJugadores;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -26,11 +27,18 @@ public class ControladorVJugadores {
     }
 
     public void rellenarLista(){
+        listaJd = cv.comboJugadores();
+        combobox = vjd.getCbJugadores();
+        combobox.removeAllItems();
+        combobox.addItem("Selecciona");
+        combobox.addItem("Nuevo");
+        listaJd.forEach(o->combobox.addItem(o.getNickname()));
+    }
+    public void setListaEq(){
         listaEq = cv.comboEquipos();
         combobox = vjd.getCbEquipos();
         combobox.removeAllItems();
         combobox.addItem("Selecciona");
-        combobox.addItem("Nuevo");
         listaEq.forEach(o->combobox.addItem(o.getNombre()));
     }
 
@@ -47,9 +55,12 @@ public class ControladorVJugadores {
         vjd.getPanelComboBox().setVisible(true);
         vjd.getPanelDatos().setVisible(false);
         vjd.getPanelCrear().setVisible(false);
+        vjd.getTaDatos().setEnabled(false);
+        vjd.getTaDatos().setDisabledTextColor(Color.black);
 
 
         rellenarLista();
+        setListaEq();
     }
 
     public class CbJugadoresAl implements ActionListener {
@@ -59,27 +70,24 @@ public class ControladorVJugadores {
             if(combo>=1) {
                 if (combo == 1  ) {
                     vjd.getPanelCrear().setVisible(true);
+                    vjd.getPanelDatos().setVisible(false);
+                    vjd.limpiar();
                 } else {
                     vjd.getPanelDatos().setVisible(true);
+                    vjd.getPanelCrear().setVisible(false);
 
                     try {
                         jd = cv.buscarJugador(vjd.getCbJugadores().getItemAt(combo).toString());
 
-                        vjd.getTaDatos().setText(jd.getNombre()+"\n"+jd.getNacionalidad()+"\n"+ jd.getNickname()+
-                                "\n"+ jd.getRol()+"\n"+ jd.getFechaNacimiento()+"\n"+ jd.getSueldo());
+                        vjd.getTaDatos().setText("Nickname: "+jd.getNickname()+"\nNombre: "+jd.getNombre()+"\nNacionalidad: "+ jd.getNacionalidad()+
+                                "\nRol: "+ jd.getRol()+"\nFecha de Nacimiento: "+ jd.getFechaNacimiento()+"\nSalario: "+ jd.getSueldo()+"\nEquipo: "+jd.getEquiposByIdEquipo().getNombre());
 
                         vjd.getTfNombre().setText(jd.getNombre());
                         vjd.getTfNacionalidad().setText(jd.getNacionalidad());
                         vjd.getTfNickname().setText(jd.getNickname());
                         vjd.getTfRol().setText(jd.getRol());
                         vjd.getTfSueldo().setText(String.valueOf(jd.getSueldo()));
-
-                        listaEq = cv.comboEquipos();
-                        listaEq.forEach(o->vjd.getCbEquipos().addItem(o.getNombre()));
-
-
-
-
+                        vjd.getCbEquipos().setSelectedItem(jd.getEquiposByIdEquipo().getNombre());
 
                         //Hay que cambiar el tipo de dato
                         java.util.Date fechaFundacion = jd.getFechaNacimiento();
@@ -99,7 +107,7 @@ public class ControladorVJugadores {
         @Override
         public void actionPerformed(ActionEvent e) {
             vjd.getPanelCrear().setVisible(true);
-
+            vjd.getPanelDatos().setVisible(false);
         }
     }
 
@@ -108,7 +116,7 @@ public class ControladorVJugadores {
         public void actionPerformed(ActionEvent e) {
 
             try {
-                if (combo == 0) {
+                if (combo == 1) {
                     jd = new Jugador();
                 }
                 jd.setNombre(vjd.getTfNombre().getText());
@@ -121,17 +129,21 @@ public class ControladorVJugadores {
                 java.sql.Date fecha = new java.sql.Date(vjd.getcFecha().getDate().getTime());
                 jd.setFechaNacimiento(fecha);
 
-                eq = listaEq.get(vjd.getCbEquipos().getSelectedIndex());
+
+
+                eq = cv.buscarEquipo(vjd.getCbEquipos().getItemAt(vjd.getCbEquipos().getSelectedIndex()).toString());
                 jd.setEquiposByIdEquipo(eq);
 
-                cv.insertarJugador(jd);
-                System.out.println("Jugador insertado");
-                vjd.limpiar();
 
-                // Actualizar ComboBox
-                listaJd = cv.comboJugadores();
-                vjd.getCbJugadores().removeAllItems();
-                listaJd.forEach(o -> vjd.getCbJugadores().addItem(o.getNickname()));
+
+                cv.insertarJugador(jd);
+                System.out.println("Jugador guardado");
+                vjd.getPanelDatos().setVisible(false);
+                vjd.getPanelCrear().setVisible(false);
+                vjd.limpiar();
+                setListaEq();
+                rellenarLista();
+
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
@@ -143,11 +155,8 @@ public class ControladorVJugadores {
         public void actionPerformed(ActionEvent e) {
             try {
                 cv.borrarJugador();
-
-                //Actualizar ComboBox
-                listaJd = cv.comboJugadores();
-                vjd.getCbJugadores().removeAllItems();
-                listaJd.forEach(o -> vjd.getCbJugadores().addItem(o.getNombre()));
+                vjd.limpiar();
+                rellenarLista();
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }

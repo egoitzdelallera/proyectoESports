@@ -1,4 +1,6 @@
 package vista;
+import com.toedter.calendar.JCalendar;
+
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -50,7 +52,8 @@ public class VistaJuegos extends JFrame {
     {
         tfNombre.setText("");
         tfEmpresa.setText("");
-        tfNombre.requestFocus();
+        taDatos.setText("");
+
     }
 
     public JPanel getPanelComboBox() {

@@ -3,6 +3,7 @@ package vista;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
+
 public class VistaStaff extends JFrame {
     private JPanel panelComboBox;
     private JComboBox cbStaff;
@@ -44,7 +45,14 @@ public class VistaStaff extends JFrame {
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
     }
-
+    public void limpiar()
+    {
+        tfNombre.setText("");
+        tfSueldo.setText("");
+        cbEquipos.setSelectedItem(0);
+        taDatos.setText("");
+        tfNombre.requestFocus();
+    }
     public JPanel getPanelComboBox() {
         return panelComboBox;
     }
@@ -123,5 +131,12 @@ public class VistaStaff extends JFrame {
 
     public void setCbEquipos(JComboBox cbEquipos) {
         this.cbEquipos = cbEquipos;
+    }
+    public void limpiar()
+    {
+        tfNombre.setText("");
+        tfPuesto.setText("");
+        tfSueldo.setText("");
+        tfNombre.requestFocus();
     }
 }

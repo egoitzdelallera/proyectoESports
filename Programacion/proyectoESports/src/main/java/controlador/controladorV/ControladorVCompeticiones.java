@@ -7,6 +7,7 @@ import modelo.Participacion;
 import vista.VistaCompeticiones;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -40,6 +41,8 @@ public class ControladorVCompeticiones {
         vc.getPanelComboBox().setVisible(true);
         vc.getPanelCrear().setVisible(false);
         vc.getPanelDatos().setVisible(false);
+        vc.getTaDatos().setEnabled(false);
+        vc.getTaDatos().setDisabledTextColor(Color.black);
 
         // Llenar la combo de las competiciones
         lista = cv.comboCompeticiones();
