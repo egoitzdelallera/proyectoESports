@@ -3,6 +3,9 @@ package vista;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase que representa la página principal de la aplicación.
+ */
 public class PaginaPrincipal extends JFrame {
     private JPanel panelPrincipal;
     private JButton bJugadores;
@@ -17,6 +20,9 @@ public class PaginaPrincipal extends JFrame {
     private JButton bResultadosUJ;
     private JButton bCalendario;
 
+    /**
+     * Constructor de la clase. Configura la ventana principal.
+     */
     public PaginaPrincipal() {
         super("Ventana Principal");
         setContentPane(panelPrincipal);
@@ -24,7 +30,12 @@ public class PaginaPrincipal extends JFrame {
         setLocationRelativeTo(null);
     }
 
+
+    // Métodos para añadir listeners a los botones
+  
+
     public void addBCompeticionesAl(ActionListener al) {
+
         bCompeticiones.addActionListener(al);
     }
 
@@ -54,6 +65,12 @@ public class PaginaPrincipal extends JFrame {
 
     public void addBCalendarioAl(ActionListener al) {
         bCalendario.addActionListener(al);
+
+    }
+    public void addBClasificacionesAl (ActionListener al){
+        bClasificacion.addActionListener(al);
+
+
     }
     public void addBResultadosAl (ActionListener al){
             bResultados.addActionListener(al);
@@ -66,9 +83,14 @@ public class PaginaPrincipal extends JFrame {
         }
 
 
+
+    // Getters y setters para los botones
+   
+
         public JButton getbJugadores () {
             return bJugadores;
         }
+
 
         public void setbJugadores (JButton bJugadores){
             this.bJugadores = bJugadores;

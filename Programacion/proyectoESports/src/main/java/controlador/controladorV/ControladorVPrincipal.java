@@ -2,17 +2,31 @@ package controlador.controladorV;
 
 import vista.PaginaPrincipal;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controlador para la vista principal.
+ */
 public class ControladorVPrincipal {
 
     private PaginaPrincipal pp;
     private ControladorV cv;
+
+    /**
+     * Constructor del controlador principal de la vista.
+     *
+     * @param cv El controlador principal.
+     */
     public ControladorVPrincipal(ControladorV cv) {
         this.cv = cv;
     }
+
+    /**
+     * Muestra la página principal según el rol del usuario.
+     *
+     * @param rolusuario El rol del usuario.
+     */
     public void mostrarPrincipal(String rolusuario) {
         // Crea, muestra y pone a escuchar la ventana principal.
         pp = new PaginaPrincipal();
@@ -31,6 +45,7 @@ public class ControladorVPrincipal {
 
         pp.setVisible(true);
 
+        // Se muestran u ocultan los botones según el rol del usuario
         switch (rolusuario){
             case "ADMINISTRADOR":
                 pp.getbCompeticiones().setVisible(true);
@@ -64,6 +79,9 @@ public class ControladorVPrincipal {
         }
     }
 
+    /**
+     * ActionListener para el botón de mostrar la página de resultados de una jornada.
+     */
     public class BRUJornadaAl implements ActionListener {
 
         @Override
@@ -76,6 +94,9 @@ public class ControladorVPrincipal {
         }
     }
 
+    /**
+     * ActionListener para el botón de mostrar la página de resultados de todas las jornadas.
+     */
     public class BRTJornadasAl implements ActionListener {
 
         @Override
@@ -87,6 +108,10 @@ public class ControladorVPrincipal {
             }
         }
     }
+
+    /**
+     * ActionListener para el botón de mostrar las clasificaciones.
+     */
     public class BClasificacionesAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -98,6 +123,9 @@ public class ControladorVPrincipal {
         }
     }
 
+    /**
+     * ActionListener para el botón de mostrar los equipos.
+     */
     public class BEquiposAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -105,6 +133,10 @@ public class ControladorVPrincipal {
             cv.mostrarEquipos();
         }
     }
+
+    /**
+     * ActionListener para el botón de mostrar las competiciones.
+     */
     public class BCompeticionesAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -112,6 +144,10 @@ public class ControladorVPrincipal {
             cv.mostrarCompeticiones();
         }
     }
+
+    /**
+     * ActionListener para el botón de mostrar los juegos.
+     */
     public class BJuegosAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -119,6 +155,10 @@ public class ControladorVPrincipal {
             cv.mostrarJuegos();
         }
     }
+
+    /**
+     * ActionListener para el botón de mostrar los jugadores.
+     */
     public class BJugadoresAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -127,6 +167,9 @@ public class ControladorVPrincipal {
         }
     }
 
+    /**
+     * ActionListener para el botón de mostrar los usuarios.
+     */
     public class BUsuariosAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -134,12 +177,20 @@ public class ControladorVPrincipal {
             cv.mostrarUsuarios();
         }
     }
+
+    /**
+     * ActionListener para el botón de mostrar el staff.
+     */
     public class BStaffAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             cv.mostrarStaff();
         }
     }
+
+    /**
+     * ActionListener para el botón de mostrar los patrocinadores.
+     */
     public class BPatrocinadoresAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -148,6 +199,9 @@ public class ControladorVPrincipal {
         }
     }
 
+    /**
+     * ActionListener para el botón de mostrar el calendario.
+     */
     public class BCalendarioAl implements ActionListener {
 
         @Override
@@ -155,6 +209,10 @@ public class ControladorVPrincipal {
             cv.mostrarCalendario();
         }
     }
+
+    /**
+     * ActionListener para el botón de salir.
+     */
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

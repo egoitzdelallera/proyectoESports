@@ -495,6 +495,10 @@ public class ControladorV {
         return cp.comboStaff();
     }
 
+
+
+
+
     // Parte del Calendario
     public List<Jornada> listaJornadas(Competicion c) {
         return cp.listaJornadas(c);
@@ -503,5 +507,10 @@ public class ControladorV {
     public List<Enfrentamiento> listaEnfrentamientos() {
         return cp.listaEnfrentamientos();
     }
+
+
+
+
+
 }
 

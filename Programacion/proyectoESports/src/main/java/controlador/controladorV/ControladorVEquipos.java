@@ -14,6 +14,9 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Controlador para la vista de equipos.
+ */
 public class ControladorVEquipos {
 
     private VistaEquipos ve;
@@ -27,9 +30,19 @@ public class ControladorVEquipos {
     private StringBuilder nombresStaff;
     private int combo = 0;
     private JComboBox combobox;
+
+    /**
+     * Constructor del controlador de equipos.
+     *
+     * @param cv El controlador principal de la vista.
+     */
     public ControladorVEquipos(ControladorV cv) {
         this.cv = cv;
     }
+
+    /**
+     * Rellena la lista de equipos en el ComboBox.
+     */
     public void rellenarLista(){
         listaEq = cv.comboEquipos();
         combobox = ve.getCbEquipos();
@@ -38,6 +51,11 @@ public class ControladorVEquipos {
         combobox.addItem("Nuevo");
         listaEq.forEach(o->combobox.addItem(o.getNombre()));
     }
+
+    /**
+     * Establece la lista de jugadores del equipo actual.
+     */
+
     public void setListaJd(){
         listaJd = (List<Jugador>) eq.getJugadoresByIdEquipo();
         nombresJugadores = new StringBuilder();
@@ -46,6 +64,10 @@ public class ControladorVEquipos {
         }
 
     }
+
+    /**
+     * Establece la lista de staff del equipo actual.
+     */
     public void setListaSt(){
         listaSt = (List<Staff>) eq.getStaffByIdEquipo();
         nombresStaff = new StringBuilder();
@@ -54,6 +76,10 @@ public class ControladorVEquipos {
         }
 
     }
+
+    /**
+     * Muestra la interfaz de usuario para administrar equipos.
+     */
     public void mostrarEquipos() {
         ve = new VistaEquipos();
 
@@ -73,7 +99,9 @@ public class ControladorVEquipos {
         rellenarLista();
     }
 
-
+    /**
+     * ActionListener para la selección en el ComboBox de equipos.
+     */
     public class CbEquiposAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -108,6 +136,10 @@ public class ControladorVEquipos {
              }
         }
     }
+
+    /**
+     * ActionListener para el botón de editar.
+     */
     public class BEditarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -116,7 +148,9 @@ public class ControladorVEquipos {
         }
     }
 
-
+    /**
+     * ActionListener para el botón de aceptar.
+     */
     public class BAceptarAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -140,6 +174,10 @@ public class ControladorVEquipos {
             }
         }
     }
+
+    /**
+     * ActionListener para el botón de borrar.
+     */
     public class BBorrarAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -155,6 +193,9 @@ public class ControladorVEquipos {
         }
     }
 
+    /**
+     * ActionListener para el botón de salir.
+     */
     public class BSalirAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
