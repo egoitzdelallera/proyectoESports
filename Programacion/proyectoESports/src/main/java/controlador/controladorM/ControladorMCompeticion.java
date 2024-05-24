@@ -13,7 +13,6 @@ import java.util.List;
  * Controlador para gestionar operaciones relacionadas con competiciones.
  */
 public class ControladorMCompeticion {
-    private Competicion comp;
     private EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction transaction ;
@@ -81,6 +80,14 @@ public class ControladorMCompeticion {
         transaction.begin();
         List<Competicion> lista =
                 em.createQuery("SELECT comp FROM Competicion comp", Competicion.class).getResultList();
+        transaction.commit();
+        return lista;
+    }
+
+    public List<Competicion> listaCompeticionesCerradas() {
+        transaction.begin();
+        List<Competicion> lista =
+                em.createQuery("SELECT comp FROM Competicion comp where estado = true", Competicion.class).getResultList();
         transaction.commit();
         return lista;
     }

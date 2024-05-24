@@ -26,6 +26,8 @@ public class ControladorM {
     private ControladorMParticipacion cmpart;
     private ControladorMStaff cms;
     private ControladorMPatrocinio cmpc;
+    private ControladorMXml cmx;
+    private ControladorMCalendario cmcal;
 
     private EntityManagerFactory emf;
     private EntityManager em;
@@ -48,7 +50,6 @@ public class ControladorM {
         cmcomp = new ControladorMCompeticion(this);
         cmpart = new ControladorMParticipacion(this);
         cms = new ControladorMStaff(this);
-        cmpc = new ControladorMPatrocinio(this);
     }
 
 
@@ -62,6 +63,18 @@ public class ControladorM {
         emf.close();
     }
 
+
+    public void truncarTabla(String query) throws Exception {
+        cmx.truncarTabla(query);
+    }
+
+    public void llamarProcedimiento(String query) throws Exception {
+        cmx.llamarProcedimiento(query);
+    }
+
+    public String obtenerXml(String query) throws Exception{
+        return cmx.obtenerXml(query);
+    }
 
     //Parte del Equipo
 
@@ -315,8 +328,9 @@ public class ControladorM {
     public void insertarCompeticion(Competicion comp) throws Exception {
         cmcomp.insertarCompeticion(comp);
     }
-
-
+    public List<Competicion> listaCompeticionesCerradas() {
+        return cmcomp.listaCompeticionesCerradas();
+    }
     // Parte de las participaciones
 
     /**
@@ -405,11 +419,11 @@ public class ControladorM {
         return cms.comboStaff();
     }
 
-    //Parte del Patrocinio
 
+    public List<Enfrentamiento> listaEnfrentamientos() {
+        return cmcal.listaEnfrentamientos();
+    }
 
-    public Patrocinio buscarPatrocinio(int idEquipo) throws Exception{
-        return cmpc.buscarPatrocinio(idEquipo);
     }
 
 
