@@ -333,7 +333,12 @@ public class ControladorM {
     public List<Competicion> listaCompeticionesCerradas() {
         return cmcomp.listaCompeticionesCerradas();
     }
-    // Parte de las participaciones
+
+    public void actualizarCompeticion(Competicion comp) throws Exception {
+        cmcomp.actualizarCompeticion(comp);
+    }
+
+        // Parte de las participaciones
 
     /**
      * Obtiene una lista de equipos que participan en una competición.

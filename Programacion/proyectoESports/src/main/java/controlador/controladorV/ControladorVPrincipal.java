@@ -25,7 +25,6 @@ public class ControladorVPrincipal {
         pp.addBUsuariosAl(new BUsuariosAl());
         pp.addBStaffAl(new BStaffAl());
         pp.addBCalendarioAl(new BCalendarioAl());
-        pp.addBClasificacionesAl(new BClasificacionesAl());
         pp.addBResultadosAl(new BRTJornadasAl());
         pp.addBResultadosUJAl(new BRUJornadaAl());
         pp.addBSalirAl(new BSalirAl());

@@ -59,6 +59,7 @@ public class VistaCompeticiones extends JFrame {
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
     }
+    public void addBChkEstado (ActionListener al){chkEstado.addActionListener(al);}
 
     public JPanel getPanelPrincipal() {
         return panelPrincipal;

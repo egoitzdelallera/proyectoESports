@@ -133,7 +133,12 @@ public class ControladorPrincipal {
         return cm.listaCompeticionesCerradas();
     }
 
-    // Parte de las participaciones
+    public void actualizarCompeticion(Competicion comp) throws Exception {
+        cm.actualizarCompeticion(comp);
+    }
+
+
+        // Parte de las participaciones
 
     public List<Equipo> comboParticipaciones(int idCompeticion) throws Exception {
         return cm.comboParticipaciones(idCompeticion);
