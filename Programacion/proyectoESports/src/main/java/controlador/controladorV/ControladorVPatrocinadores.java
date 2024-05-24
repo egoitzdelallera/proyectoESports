@@ -9,24 +9,38 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controlador para la vista de patrocinadores.
+ */
 public class ControladorVPatrocinadores {
     private VistaPatrocinadores vpt;
     private ControladorV cv;
     private Patrocinador pt;
     private List<Patrocinador> listaPt;
     private List<Equipo> listaEq;
-    private String[] selec;
+    private List<Patrocinio> listaPc;
+    private List<Equipo> listaEqPc = new ArrayList<>();
+    private List<Integer> posiciones = new ArrayList<>();
     private Patrocinio pc;
     private Equipo eq;
     private int combo = 0;
     private JComboBox combobox;
 
+    /**
+     * Constructor del controlador de patrocinadores.
+     *
+     * @param cv El controlador principal de la vista.
+     */
     public ControladorVPatrocinadores(ControladorV cv) {
         this.cv = cv;
     }
 
+    /**
+     * Rellena las listas de patrocinadores y equipos.
+     */
     public void rellenarLista() {
         listaPt = cv.comboPatrocinadores();
         combobox = vpt.getCbPatrocinadores();
@@ -36,6 +50,10 @@ public class ControladorVPatrocinadores {
         listaPt.forEach(o -> combobox.addItem(o.getNombre()));
 
     }
+
+    /**
+     * Rellena el componente de lista de equipos.
+     */
     public void jList(){
         listaEq = cv.comboEquipos();
         DefaultListModel<String> listModel = new DefaultListModel<>();
@@ -46,6 +64,9 @@ public class ControladorVPatrocinadores {
         }
     }
 
+    /**
+     * Muestra la interfaz de usuario para administrar patrocinadores.
+     */
     public void mostrarPatrocinadores() {
         vpt = new VistaPatrocinadores();
 
@@ -66,6 +87,9 @@ public class ControladorVPatrocinadores {
         jList();
     }
 
+    /**
+     * ActionListener para el ComboBox de patrocinadores.
+     */
     public class CbPatrocinadoresAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -81,10 +105,20 @@ public class ControladorVPatrocinadores {
 
                     try {
                         pt = cv.buscarPatrocinador(combobox.getItemAt(combo).toString());
-                        cv.buscarPatrocinio(pt.getIdPatrocinador());
-                        vpt.getTaDatos().setText("Nombre: " + pt.getNombre() + "\nPatrocinios: " + pt.getPatrociniosByIdPatrocinador());
+                        listaPc= (List<Patrocinio>) pt.getPatrociniosByIdPatrocinador();
+                        listaPc.forEach(o->listaEqPc.add(o.getEquiposByIdEquipo()));
+                        for(int i=0; i<listaEq.size(); i++){
+                            for(int x=0; x<listaEqPc.size(); x++) {
+                                if (listaEq.get(i).equals(listaEqPc.get(x))) {
+                                    posiciones.add(i);
+                                }
+                            }
+                        }
+                        int[] posicionesArray = posiciones.stream().mapToInt(Integer::intValue).toArray();
+                        vpt.getlEquipos().setSelectedIndices(posicionesArray);
+                        vpt.getTaDatos().setText("Nombre: " + pt.getNombre() + "\nPatrocinios: " + listaEqPc.toString());
                         vpt.getTfNombre().setText(pt.getNombre());
-                        
+
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -93,6 +127,9 @@ public class ControladorVPatrocinadores {
         }
     }
 
+    /**
+     * ActionListener para el botón de editar.
+     */
     public class BEditarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -101,6 +138,9 @@ public class ControladorVPatrocinadores {
         }
     }
 
+    /**
+     * ActionListener para el botón de aceptar.
+     */
     public class BAceptarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -108,18 +148,28 @@ public class ControladorVPatrocinadores {
             try {
                 if (combo == 1) {
                     pt = new Patrocinador();
+                    pt.setNombre(vpt.getTfNombre().getText());
+                    cv.insertarPatrocinador(pt);
+                    pt = cv.buscarPatrocinador(vpt.getTfNombre().getText());
                 }
+
+
+
+
                 List<String> selectedValues = vpt.getlEquipos().getSelectedValuesList();
                 System.out.println("Elementos seleccionados: " + selectedValues);
                 selectedValues.forEach(o-> {
                     try {
+                        System.out.println(0);
                         eq= cv.buscarEquipo(o);
                         pc = new Patrocinio();
 
                         pc.setIdPatrocinador(pt.getIdPatrocinador());
                         pc.setIdEquipo(eq.getIdEquipo());
+                        pc.setPatrocinadoresByIdPatrocinador(pt);
+                        pc.setEquiposByIdEquipo(eq);
                         cv.insertarPatrocinio(pc);
-
+                        System.out.println("Patrocinio insertado");
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -127,9 +177,6 @@ public class ControladorVPatrocinadores {
 
 
 
-                pt.setNombre(vpt.getTfNombre().getText());
-                cv.insertarPatrocinador(pt);
-                System.out.println("Patrocinador insertado");
                 vpt.limpiar();
                 rellenarLista();
                 vpt.getPanelDatos().setVisible(false);
@@ -139,6 +186,9 @@ public class ControladorVPatrocinadores {
         }
     }
 
+    /**
+     * ActionListener para el botón de borrar.
+     */
     public class BBorrarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -157,6 +207,9 @@ public class ControladorVPatrocinadores {
         }
     }
 
+    /**
+     * ActionListener para el botón de salir.
+     */
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
