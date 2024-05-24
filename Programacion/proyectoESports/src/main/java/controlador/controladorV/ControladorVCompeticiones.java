@@ -47,7 +47,6 @@ public class ControladorVCompeticiones {
         vc.addBEditarAl(new BEditarAl());
         vc.addBAnadirEquipoAl(new BAnadirEquipoAl());
         vc.addBEliminarEquipoAl(new BEliminarEquipoAl());
-        vc.addBChkEstado(new BCambiarEstadoAl());
         vc.addBSalirAl(new BSalirAl());
 
         vc.setVisible(true);
@@ -69,9 +68,6 @@ public class ControladorVCompeticiones {
         listaju.forEach(o->vc.getCbJuego().addItem(o.getNombre()));
     }
 
-    /**
-     * Rellena la lista de competiciones.
-     */
     public void rellenarLista()
     {
        lista = cv.comboCompeticiones();
@@ -81,9 +77,6 @@ public class ControladorVCompeticiones {
        lista.forEach(o->cb.addItem(o.getNombre()));
     }
 
-    /**
-     * ActionListener para el botón de salir.
-     */
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -91,9 +84,6 @@ public class ControladorVCompeticiones {
         }
     }
 
-    /**
-     * ActionListener para la selección en el ComboBox de competiciones.
-     */
     public class CbCompeticionesAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -127,12 +117,6 @@ public class ControladorVCompeticiones {
                     var idCompeticionParaParticipaciones = comp.getIdCompeticion();
                     List<Equipo> listaParticipantes = cv.comboParticipaciones(idCompeticionParaParticipaciones);
                     listaParticipantes.forEach(o->vc.getCbEliminarEquipos().addItem(o.getNombre()));
-
-                    if (!comp.getEstado()){
-                        vc.getPanelCrear().setEnabled(false);
-                    }else
-                        vc.getPanelCrear().setEnabled(false);
-
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -140,9 +124,6 @@ public class ControladorVCompeticiones {
         }
     }
 
-    /**
-     * ActionListener para el botón de eliminar equipo.
-     */
     public class BEliminarEquipoAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -160,9 +141,6 @@ public class ControladorVCompeticiones {
         }
     }
 
-    /**
-     * ActionListener para el botón de borrar competición.
-     */
     public class BBorrarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -177,22 +155,7 @@ public class ControladorVCompeticiones {
             }
         }
     }
-    public class BCambiarEstadoAl implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (vc.getChkEstado().isSelected()){
-                try {
-                    cv.actualizarCompeticion(comp);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }
-    }
 
-    /**
-     * ActionListener para el botón de aceptar.
-     */
     public class BAceptarAl implements ActionListener {
 
         @Override
@@ -213,12 +176,6 @@ public class ControladorVCompeticiones {
                 System.out.println("Competición insertada");
                 vc.limpiar();
 
-                if (!comp.getEstado()){
-                    vc.getPanelCrear().setEnabled(false);
-                }else
-                    vc.getPanelCrear().setEnabled(false);
-
-
                 rellenarLista();
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
@@ -226,9 +183,6 @@ public class ControladorVCompeticiones {
         }
     }
 
-    /**
-     * ActionListener para el botón de editar.
-     */
     private class BEditarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -236,9 +190,6 @@ public class ControladorVCompeticiones {
         }
     }
 
-    /**
-     * ActionListener para el botón de añadir equipo.
-     */
     private class BAnadirEquipoAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

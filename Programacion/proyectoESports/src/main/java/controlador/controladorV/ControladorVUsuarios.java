@@ -9,9 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-/**
- * Controlador para la vista de usuarios.
- */
 public class ControladorVUsuarios {
     private VistaUsuarios vu;
     private ControladorV cv;
@@ -20,18 +17,10 @@ public class ControladorVUsuarios {
     private int combo = 0;
     private JComboBox combobox;
 
-    /**
-     * Constructor del controlador de usuarios.
-     *
-     * @param cv El controlador principal de la vista.
-     */
     public ControladorVUsuarios(ControladorV cv) {
         this.cv = cv;
     }
 
-    /**
-     * Rellena la lista de usuarios.
-     */
     public void rellenarLista() {
         listaUs = cv.comboUsuarios();
         combobox = vu.getCbUsuarios();
@@ -41,9 +30,6 @@ public class ControladorVUsuarios {
         listaUs.forEach(o -> combobox.addItem(o.getNombre()));
     }
 
-    /**
-     * Muestra la interfaz de usuario para administrar usuarios.
-     */
     public void mostrarUsuarios() {
         vu = new VistaUsuarios();
 
@@ -63,9 +49,6 @@ public class ControladorVUsuarios {
         rellenarLista();
     }
 
-    /**
-     * ActionListener para la selección en el ComboBox de usuarios.
-     */
     public class CbUsuariosAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -80,9 +63,7 @@ public class ControladorVUsuarios {
                     vu.getPanelCrear().setVisible(false);
 
                     try {
-                        // Obtener el usuario seleccionado
                         us = cv.buscarUsuario(combobox.getItemAt(combo).toString());
-                        // Mostrar información del usuario
                         vu.getTaDatos().setText("Nombre: " + us.getNombre() + "\nContraseña: " + us.getContrasena() + "\nRol: " + us.getRol());
                         vu.getTfNombre().setText(us.getNombre());
                         vu.getTfContrasena().setText(us.getContrasena());
@@ -99,9 +80,6 @@ public class ControladorVUsuarios {
         }
     }
 
-    /**
-     * ActionListener para el botón de editar usuario.
-     */
     public class BEditarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -110,9 +88,6 @@ public class ControladorVUsuarios {
         }
     }
 
-    /**
-     * ActionListener para el botón de aceptar (insertar o actualizar) usuario.
-     */
     public class BAceptarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -139,9 +114,6 @@ public class ControladorVUsuarios {
         }
     }
 
-    /**
-     * ActionListener para el botón de borrar usuario.
-     */
     public class BBorrarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -160,9 +132,6 @@ public class ControladorVUsuarios {
         }
     }
 
-    /**
-     * ActionListener para el botón de salir.
-     */
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

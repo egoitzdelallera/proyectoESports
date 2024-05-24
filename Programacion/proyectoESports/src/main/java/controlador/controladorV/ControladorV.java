@@ -398,13 +398,7 @@ public class ControladorV {
     public List<Competicion> listaCompeticionesCerradas() {
         return cp.listaCompeticionesCerradas();
     }
-
-    public void actualizarCompeticion(Competicion comp) throws Exception {
-        cp.actualizarCompeticion(comp);
-    }
-
-
-        // Parte de las participaciones
+    // Parte de las participaciones
 
 
 
@@ -495,9 +489,21 @@ public class ControladorV {
         return cp.comboStaff();
     }
 
+    //Parte del Patrocinio
 
-
-
+    public Patrocinio buscarPatrocinio(int idEquipo) throws Exception{
+        return cp.buscarPatrocinio(idEquipo);
+    }
+    public void insertarPatrocinio(Patrocinio pc) throws Exception{
+        cp.insertarPatrocinio(pc);
+    }
+    public void borrarPatrocinio() throws Exception{
+        cp.borrarPatrocinio();
+    }
+    public List<Patrocinio> comboPatrocinios() {
+        return cp.comboPatrocinios();
+    }
+}
 
     // Parte del Calendario
     public List<Jornada> listaJornadas(Competicion c) {
@@ -508,9 +514,8 @@ public class ControladorV {
         return cp.listaEnfrentamientos();
     }
 
-
-
-
-
+    public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
+        return cp.buscarParticipacion(idCompeticion, idEquipo);
+    }
 }
 

@@ -13,21 +13,12 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.sql.Clob;
 
-/**
- * Controlador para la gestión de operaciones XML en la base de datos.
- */
 public class ControladorMXml {
     private ControladorM cm;
     private EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction transaction;
 
-
-    /**
-     * Constructor del controlador de XML.
-     *
-     * @param cm El controlador principal utilizado para la inicialización.
-     */
     public ControladorMXml(ControladorM cm) {
         this.cm = cm;
         emf = Persistence.createEntityManagerFactory("default");
@@ -35,12 +26,6 @@ public class ControladorMXml {
         transaction = em.getTransaction();
     }
 
-    /**
-     * Trunca una tabla en la base de datos utilizando una consulta.
-     *
-     * @param query La consulta SQL para truncar la tabla.
-     * @throws Exception Si ocurre un error durante la operación.
-     */
     public void truncarTabla(String query) throws Exception {
         try {
             transaction.begin();
@@ -53,12 +38,6 @@ public class ControladorMXml {
         }
     }
 
-    /**
-     * Llama a un procedimiento almacenado en la base de datos utilizando una consulta.
-     *
-     * @param query La consulta SQL para llamar al procedimiento almacenado.
-     * @throws Exception Si ocurre un error durante la operación.
-     */
     public void llamarProcedimiento(String query) throws Exception {
         try {
             transaction.begin();
@@ -71,13 +50,6 @@ public class ControladorMXml {
         }
     }
 
-    /**
-     * Obtiene un resultado XML desde la base de datos y lo formatea.
-     *
-     * @param query La consulta SQL para obtener el XML.
-     * @return El XML formateado como una string.
-     * @throws Exception Si ocurre un error durante la operación.
-     */
     public String obtenerXml(String query) throws Exception {
         try {
             transaction.begin();
@@ -93,13 +65,6 @@ public class ControladorMXml {
         }
     }
 
-    /**
-     * Convierte un CLOB a una cadena de texto.
-     *
-     * @param consulta El CLOB a convertir.
-     * @return El contenido del CLOB como un string.
-     * @throws Exception Si ocurre un error durante la conversión.
-     */
     public String parsearClob(Clob consulta) throws Exception {
         StringBuilder sb = new StringBuilder();
         Reader reader = consulta.getCharacterStream();
@@ -112,14 +77,6 @@ public class ControladorMXml {
         reader.close();
         return sb.toString();
     }
-
-    /**
-     * Formatea una cadena XML para que sea legible.
-     *
-     * @param xml La cadena XML a formatear.
-     * @return El XML formateado como una cadena.
-     * @throws Exception Si ocurre un error durante el formateo.
-     */
 
     public String formatearXml(String xml) throws Exception {
         TransformerFactory tf = TransformerFactory.newInstance();

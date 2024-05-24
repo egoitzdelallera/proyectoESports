@@ -71,15 +71,6 @@ public class ControladorMCompeticion {
         return comp;
     }
 
-    public void actualizarCompeticion(Competicion comp) throws Exception {
-        transaction.begin();
-        Query query = em.createQuery(
-                "UPDATE Competicion c SET c.estado = true WHERE c.idCompeticion = :idCompeticion");
-        query.setParameter("idCompeticion", comp.getIdCompeticion());
-        query.executeUpdate();
-        transaction.commit();
-    }
-
     /**
      * Obtiene una lista de todas las competiciones.
      *

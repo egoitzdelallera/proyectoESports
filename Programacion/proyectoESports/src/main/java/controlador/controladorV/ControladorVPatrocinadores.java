@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +21,9 @@ public class ControladorVPatrocinadores {
     private Patrocinador pt;
     private List<Patrocinador> listaPt;
     private List<Equipo> listaEq;
+    private List<Patrocinio> listaPc;
+    private List<Equipo> listaEqPc = new ArrayList<>();
+    private List<Integer> posiciones = new ArrayList<>();
     private Patrocinio pc;
     private Equipo eq;
     private int combo = 0;
@@ -45,17 +49,13 @@ public class ControladorVPatrocinadores {
         combobox.addItem("Nuevo");
         listaPt.forEach(o -> combobox.addItem(o.getNombre()));
 
-        listaEq = cv.comboEquipos();
-        JComboBox comboEquipos = vpt.getCbEquipos();
-        comboEquipos.removeAllItems();
-        listaEq.forEach(o -> comboEquipos.addItem(o.getNombre()));
-
     }
 
     /**
      * Rellena el componente de lista de equipos.
      */
     public void jList(){
+        listaEq = cv.comboEquipos();
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (Equipo item : listaEq) {
             listModel.addElement(item.getNombre());
@@ -105,8 +105,20 @@ public class ControladorVPatrocinadores {
 
                     try {
                         pt = cv.buscarPatrocinador(combobox.getItemAt(combo).toString());
-                        vpt.getTaDatos().setText("Nombre: " + pt.getNombre() + "\nPatrocinios: " + pt.getPatrociniosByIdPatrocinador());
+                        listaPc= (List<Patrocinio>) pt.getPatrociniosByIdPatrocinador();
+                        listaPc.forEach(o->listaEqPc.add(o.getEquiposByIdEquipo()));
+                        for(int i=0; i<listaEq.size(); i++){
+                            for(int x=0; x<listaEqPc.size(); x++) {
+                                if (listaEq.get(i).equals(listaEqPc.get(x))) {
+                                    posiciones.add(i);
+                                }
+                            }
+                        }
+                        int[] posicionesArray = posiciones.stream().mapToInt(Integer::intValue).toArray();
+                        vpt.getlEquipos().setSelectedIndices(posicionesArray);
+                        vpt.getTaDatos().setText("Nombre: " + pt.getNombre() + "\nPatrocinios: " + listaEqPc.toString());
                         vpt.getTfNombre().setText(pt.getNombre());
+
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -136,13 +148,35 @@ public class ControladorVPatrocinadores {
             try {
                 if (combo == 1) {
                     pt = new Patrocinador();
-                    pc = new Patrocinio();
+                    pt.setNombre(vpt.getTfNombre().getText());
+                    cv.insertarPatrocinador(pt);
+                    pt = cv.buscarPatrocinador(vpt.getTfNombre().getText());
                 }
-                pc.setIdPatrocinador(pt.getIdPatrocinador());
-                pc.setIdEquipo(eq.getIdEquipo());
-                pt.setNombre(vpt.getTfNombre().getText());
-                cv.insertarPatrocinador(pt);
-                System.out.println("Patrocinador insertado");
+
+
+
+
+                List<String> selectedValues = vpt.getlEquipos().getSelectedValuesList();
+                System.out.println("Elementos seleccionados: " + selectedValues);
+                selectedValues.forEach(o-> {
+                    try {
+                        System.out.println(0);
+                        eq= cv.buscarEquipo(o);
+                        pc = new Patrocinio();
+
+                        pc.setIdPatrocinador(pt.getIdPatrocinador());
+                        pc.setIdEquipo(eq.getIdEquipo());
+                        pc.setPatrocinadoresByIdPatrocinador(pt);
+                        pc.setEquiposByIdEquipo(eq);
+                        cv.insertarPatrocinio(pc);
+                        System.out.println("Patrocinio insertado");
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+
+
+
                 vpt.limpiar();
                 rellenarLista();
                 vpt.getPanelDatos().setVisible(false);
