@@ -176,6 +176,12 @@ public class ControladorVCompeticiones {
                 System.out.println("Competición insertada");
                 vc.limpiar();
 
+                if (!comp.getEstado()){
+                    vc.getPanelCrear().setEnabled(false);
+                }else
+                    vc.getPanelCrear().setEnabled(false);
+
+
                 rellenarLista();
             } catch (Exception ex) {
                 throw new RuntimeException(ex);

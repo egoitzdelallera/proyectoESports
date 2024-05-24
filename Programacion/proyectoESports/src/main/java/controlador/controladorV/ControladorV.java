@@ -488,7 +488,6 @@ public class ControladorV {
     public List<Staff> comboStaff() {
         return cp.comboStaff();
     }
-}
 
     // Parte del Calendario
     public List<Jornada> listaJornadas(Competicion c) {
