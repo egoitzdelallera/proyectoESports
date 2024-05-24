@@ -11,6 +11,9 @@ import vista.VistaLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controlador para la vista de inicio de sesión.
+ */
 public class ControladorVLogin {
     private ControladorV cv;
     private VistaLogin vl;
@@ -18,9 +21,18 @@ public class ControladorVLogin {
     private boolean usuarioCorrecto = false;
 
 
+    /**
+     * Constructor del controlador de inicio de sesión.
+     *
+     * @param cv El controlador principal de la vista.
+     */
     public ControladorVLogin(ControladorV cv){
         this.cv = cv;
     }
+
+    /**
+     * Muestra la interfaz de usuario para iniciar sesión.
+     */
     public void mostrarLogin()
     {
         // Area De login
@@ -32,6 +44,9 @@ public class ControladorVLogin {
         vl.setVisible(true);
     }
 
+    /**
+     * ActionListener para el botón de inicio de sesión.
+     */
     public class BLoginAl implements ActionListener{
 
         @Override
@@ -66,6 +81,9 @@ public class ControladorVLogin {
         }
     }
 
+    /**
+     * ActionListener para el botón de salir.
+     */
     public class BSalirAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {

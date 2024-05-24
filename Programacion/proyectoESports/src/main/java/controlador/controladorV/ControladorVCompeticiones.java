@@ -69,6 +69,9 @@ public class ControladorVCompeticiones {
         listaju.forEach(o->vc.getCbJuego().addItem(o.getNombre()));
     }
 
+    /**
+     * Rellena la lista de competiciones.
+     */
     public void rellenarLista()
     {
        lista = cv.comboCompeticiones();
@@ -78,6 +81,9 @@ public class ControladorVCompeticiones {
        lista.forEach(o->cb.addItem(o.getNombre()));
     }
 
+    /**
+     * ActionListener para el botón de salir.
+     */
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -85,6 +91,9 @@ public class ControladorVCompeticiones {
         }
     }
 
+    /**
+     * ActionListener para la selección en el ComboBox de competiciones.
+     */
     public class CbCompeticionesAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -131,6 +140,9 @@ public class ControladorVCompeticiones {
         }
     }
 
+    /**
+     * ActionListener para el botón de eliminar equipo.
+     */
     public class BEliminarEquipoAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -148,6 +160,9 @@ public class ControladorVCompeticiones {
         }
     }
 
+    /**
+     * ActionListener para el botón de borrar competición.
+     */
     public class BBorrarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -175,6 +190,9 @@ public class ControladorVCompeticiones {
         }
     }
 
+    /**
+     * ActionListener para el botón de aceptar.
+     */
     public class BAceptarAl implements ActionListener {
 
         @Override
@@ -208,6 +226,9 @@ public class ControladorVCompeticiones {
         }
     }
 
+    /**
+     * ActionListener para el botón de editar.
+     */
     private class BEditarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -215,6 +236,9 @@ public class ControladorVCompeticiones {
         }
     }
 
+    /**
+     * ActionListener para el botón de añadir equipo.
+     */
     private class BAnadirEquipoAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
