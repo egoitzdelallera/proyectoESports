@@ -10,6 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+
+/**
+ * Controlador para la vista de gestión de staff.
+ */
 public class ControladorVStaff {
     private VistaStaff vs;
     private ControladorV cv;
@@ -20,10 +24,18 @@ public class ControladorVStaff {
     private Staff st;
     private Equipo eq;
 
+    /**
+     * Constructor del controlador de personal.
+     *
+     * @param cv El controlador principal de la vista.
+     */
     public ControladorVStaff(ControladorV cv) {
         this.cv = cv;
     }
 
+    /**
+     * Rellena la lista de personal.
+     */
     public void rellenarLista() {
         listaSt = cv.comboStaff();
         combobox = vs.getCbStaff();
@@ -32,6 +44,10 @@ public class ControladorVStaff {
         combobox.addItem("Nuevo");
         listaSt.forEach(o -> combobox.addItem(o.getNombre()));
     }
+
+    /**
+     * Establece la lista de equipos en el ComboBox correspondiente.
+     */
     public void setListaEq(){
         listaEq = cv.comboEquipos();
         combobox = vs.getCbEquipos();
@@ -40,6 +56,9 @@ public class ControladorVStaff {
         listaEq.forEach(o->combobox.addItem(o.getNombre()));
     }
 
+    /**
+     * Muestra la interfaz de usuario para gestionar el personal.
+     */
     public void mostrarStaff() {
         vs = new VistaStaff();
 
@@ -61,6 +80,9 @@ public class ControladorVStaff {
         setListaEq();
     }
 
+    /**
+     * ActionListener para el ComboBox de personal.
+     */
     public class CbStaffAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -72,7 +94,9 @@ public class ControladorVStaff {
                     vs.getPanelDatos().setVisible(true);
 
                     try {
+                        // Buscar el personal seleccionado
                         st = cv.buscarStaff(vs.getCbStaff().getItemAt(combo).toString());
+                        // Mostrar los datos del personal
                         vs.getTaDatos().setText("Nombre: "+st.getNombre() + "\nPuesto: "
                                 + st.getPuesto() + "\nSalario: " + st.getSueldo()+"\nEquipo: "+st.getEquiposByIdEquipo().getNombre());
                         vs.getTfNombre().setText(st.getNombre());
@@ -89,6 +113,9 @@ public class ControladorVStaff {
         }
     }
 
+    /**
+     * ActionListener para el botón de editar.
+     */
     public class BEditarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -97,6 +124,9 @@ public class ControladorVStaff {
         }
     }
 
+    /**
+     * ActionListener para el botón de aceptar.
+     */
     public class BAceptarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -108,8 +138,7 @@ public class ControladorVStaff {
                 st.setPuesto(vs.getTfPuesto().getText());
                 st.setSueldo(Integer.valueOf(vs.getTfSueldo().getText()));
 
-
-
+                // Obtener el equipo seleccionado
                 eq = cv.buscarEquipo(vs.getCbEquipos().getItemAt(vs.getCbEquipos().getSelectedIndex()).toString());
                 st.setEquiposByIdEquipo(eq);
 
@@ -127,6 +156,9 @@ public class ControladorVStaff {
         }
     }
 
+    /**
+     * ActionListener para el botón de borrar.
+     */
     public class BBorrarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -141,6 +173,9 @@ public class ControladorVStaff {
         }
     }
 
+    /**
+     * ActionListener para el botón de salir.
+     */
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

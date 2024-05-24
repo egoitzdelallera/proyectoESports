@@ -11,6 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * Controlador para la vista de patrocinadores.
+ */
 public class ControladorVPatrocinadores {
     private VistaPatrocinadores vpt;
     private ControladorV cv;
@@ -22,10 +25,18 @@ public class ControladorVPatrocinadores {
     private int combo = 0;
     private JComboBox combobox;
 
+    /**
+     * Constructor del controlador de patrocinadores.
+     *
+     * @param cv El controlador principal de la vista.
+     */
     public ControladorVPatrocinadores(ControladorV cv) {
         this.cv = cv;
     }
 
+    /**
+     * Rellena las listas de patrocinadores y equipos.
+     */
     public void rellenarLista() {
         listaPt = cv.comboPatrocinadores();
         combobox = vpt.getCbPatrocinadores();
@@ -40,6 +51,10 @@ public class ControladorVPatrocinadores {
         listaEq.forEach(o -> comboEquipos.addItem(o.getNombre()));
 
     }
+
+    /**
+     * Rellena el componente de lista de equipos.
+     */
     public void jList(){
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (Equipo item : listaEq) {
@@ -49,6 +64,9 @@ public class ControladorVPatrocinadores {
         }
     }
 
+    /**
+     * Muestra la interfaz de usuario para administrar patrocinadores.
+     */
     public void mostrarPatrocinadores() {
         vpt = new VistaPatrocinadores();
 
@@ -69,6 +87,9 @@ public class ControladorVPatrocinadores {
         jList();
     }
 
+    /**
+     * ActionListener para el ComboBox de patrocinadores.
+     */
     public class CbPatrocinadoresAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -94,6 +115,9 @@ public class ControladorVPatrocinadores {
         }
     }
 
+    /**
+     * ActionListener para el botón de editar.
+     */
     public class BEditarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -102,6 +126,9 @@ public class ControladorVPatrocinadores {
         }
     }
 
+    /**
+     * ActionListener para el botón de aceptar.
+     */
     public class BAceptarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -125,6 +152,9 @@ public class ControladorVPatrocinadores {
         }
     }
 
+    /**
+     * ActionListener para el botón de borrar.
+     */
     public class BBorrarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -143,6 +173,9 @@ public class ControladorVPatrocinadores {
         }
     }
 
+    /**
+     * ActionListener para el botón de salir.
+     */
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

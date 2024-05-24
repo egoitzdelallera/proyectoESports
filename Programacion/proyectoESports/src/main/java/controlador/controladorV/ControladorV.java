@@ -488,7 +488,7 @@ public class ControladorV {
     public List<Staff> comboStaff() {
         return cp.comboStaff();
     }
-}
+
 
     // Parte del Calendario
     public List<Jornada> listaJornadas(Competicion c) {
@@ -499,8 +499,6 @@ public class ControladorV {
         return cp.listaEnfrentamientos();
     }
 
-    public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
-        return cp.buscarParticipacion(idCompeticion, idEquipo);
-    }
+
 }
 

@@ -333,6 +333,8 @@ public class ControladorM {
     public List<Competicion> listaCompeticionesCerradas() {
         return cmcomp.listaCompeticionesCerradas();
     }
+
+
     // Parte de las participaciones
 
     /**
