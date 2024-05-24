@@ -17,6 +17,7 @@ public class ControladorVPatrocinadores {
     private Patrocinador pt;
     private List<Patrocinador> listaPt;
     private List<Equipo> listaEq;
+    private String[] selec;
     private Patrocinio pc;
     private Equipo eq;
     private int combo = 0;
@@ -34,13 +35,9 @@ public class ControladorVPatrocinadores {
         combobox.addItem("Nuevo");
         listaPt.forEach(o -> combobox.addItem(o.getNombre()));
 
-        listaEq = cv.comboEquipos();
-        JComboBox comboEquipos = vpt.getCbEquipos();
-        comboEquipos.removeAllItems();
-        listaEq.forEach(o -> comboEquipos.addItem(o.getNombre()));
-
     }
     public void jList(){
+        listaEq = cv.comboEquipos();
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (Equipo item : listaEq) {
             listModel.addElement(item.getNombre());
@@ -84,8 +81,10 @@ public class ControladorVPatrocinadores {
 
                     try {
                         pt = cv.buscarPatrocinador(combobox.getItemAt(combo).toString());
+                        cv.buscarPatrocinio(pt.getIdPatrocinador());
                         vpt.getTaDatos().setText("Nombre: " + pt.getNombre() + "\nPatrocinios: " + pt.getPatrociniosByIdPatrocinador());
                         vpt.getTfNombre().setText(pt.getNombre());
+                        
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -109,10 +108,25 @@ public class ControladorVPatrocinadores {
             try {
                 if (combo == 1) {
                     pt = new Patrocinador();
-                    pc = new Patrocinio();
                 }
-                pc.setIdPatrocinador(pt.getIdPatrocinador());
-                pc.setIdEquipo(eq.getIdEquipo());
+                List<String> selectedValues = vpt.getlEquipos().getSelectedValuesList();
+                System.out.println("Elementos seleccionados: " + selectedValues);
+                selectedValues.forEach(o-> {
+                    try {
+                        eq= cv.buscarEquipo(o);
+                        pc = new Patrocinio();
+
+                        pc.setIdPatrocinador(pt.getIdPatrocinador());
+                        pc.setIdEquipo(eq.getIdEquipo());
+                        cv.insertarPatrocinio(pc);
+
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+
+
+
                 pt.setNombre(vpt.getTfNombre().getText());
                 cv.insertarPatrocinador(pt);
                 System.out.println("Patrocinador insertado");

@@ -77,7 +77,7 @@ public class ControladorMPatrocinador {
     public List<Patrocinador> comboPatrocinadores(){
         transaction.begin();
         List<Patrocinador> lista =
-                em.createQuery("SELECT jg FROM Patrocinador jg", Patrocinador.class).getResultList();
+                em.createQuery("SELECT pt FROM Patrocinador pt", Patrocinador.class).getResultList();
         transaction.commit();
         return lista;
     }

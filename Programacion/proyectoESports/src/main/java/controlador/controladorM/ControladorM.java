@@ -25,6 +25,7 @@ public class ControladorM {
     private ControladorMCompeticion cmcomp;
     private ControladorMParticipacion cmpart;
     private ControladorMStaff cms;
+    private ControladorMPatrocinio cmpc;
 
     private EntityManagerFactory emf;
     private EntityManager em;
@@ -47,6 +48,7 @@ public class ControladorM {
         cmcomp = new ControladorMCompeticion(this);
         cmpart = new ControladorMParticipacion(this);
         cms = new ControladorMStaff(this);
+        cmpc = new ControladorMPatrocinio(this);
     }
 
 
@@ -246,11 +248,11 @@ public class ControladorM {
     /**
      * Inserta un nuevo patrocinador.
      *
-     * @param jg El patrocinador a insertar.
+     * @param pt El patrocinador a insertar.
      * @throws Exception Si ocurre algún error durante la inserción.
      */
-    public void insertarPatrocinador(Patrocinador jg) throws Exception{
-        cmpt.insertarPatrocinador(jg);
+    public void insertarPatrocinador(Patrocinador pt) throws Exception{
+        cmpt.insertarPatrocinador(pt);
     }
 
     /**
@@ -401,6 +403,28 @@ public class ControladorM {
      */
     public List<Staff> comboStaff() {
         return cms.comboStaff();
+    }
+
+    //Parte del Patrocinio
+
+
+    public Patrocinio buscarPatrocinio(int idEquipo) throws Exception{
+        return cmpc.buscarPatrocinio(idEquipo);
+    }
+
+
+    public void insertarPatrocinio(Patrocinio pc) throws Exception{
+        cmpc.insertarPatrocinio(pc);
+    }
+
+
+    public void borrarPatrocinio() throws Exception{
+        cmpc.borrarPatrocinio();
+    }
+
+
+    public List<Patrocinio> comboPatrocinios() {
+        return cmpc.comboPatrocinios();
     }
 
 

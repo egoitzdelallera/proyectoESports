@@ -212,6 +212,21 @@ public class ControladorV {
     public List<Staff> comboStaff() {
         return cp.comboStaff();
     }
+
+    //Parte del Patrocinio
+
+    public Patrocinio buscarPatrocinio(int idEquipo) throws Exception{
+        return cp.buscarPatrocinio(idEquipo);
+    }
+    public void insertarPatrocinio(Patrocinio pc) throws Exception{
+        cp.insertarPatrocinio(pc);
+    }
+    public void borrarPatrocinio() throws Exception{
+        cp.borrarPatrocinio();
+    }
+    public List<Patrocinio> comboPatrocinios() {
+        return cp.comboPatrocinios();
+    }
 }
 
 

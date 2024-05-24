@@ -10,10 +10,6 @@ import java.util.List;
 public class ControladorPrincipal {
     private ControladorV cv;
     private ControladorM cm;
-    private Equipo eq;
-    private Jugador jd;
-    private Juego jg;
-    private Staff st;
 
     public ControladorPrincipal() {
         cm = new ControladorM(this);
@@ -145,6 +141,22 @@ public class ControladorPrincipal {
     }
     public List<Staff> comboStaff() {
         return cm.comboStaff();
+    }
+
+
+    //Parte del Patrocinio
+
+    public Patrocinio buscarPatrocinio(int idEquipo) throws Exception{
+        return cm.buscarPatrocinio(idEquipo);
+    }
+    public void insertarPatrocinio(Patrocinio pc) throws Exception{
+        cm.insertarPatrocinio(pc);
+    }
+    public void borrarPatrocinio() throws Exception{
+        cm.borrarPatrocinio();
+    }
+    public List<Patrocinio> comboPatrocinios() {
+        return cm.comboPatrocinios();
     }
 
 
