@@ -47,6 +47,7 @@ public class ControladorVCompeticiones {
         vc.addBEditarAl(new BEditarAl());
         vc.addBAnadirEquipoAl(new BAnadirEquipoAl());
         vc.addBEliminarEquipoAl(new BEliminarEquipoAl());
+        vc.addBChkEstado(new BCambiarEstadoAl());
         vc.addBSalirAl(new BSalirAl());
 
         vc.setVisible(true);
@@ -126,6 +127,12 @@ public class ControladorVCompeticiones {
                     var idCompeticionParaParticipaciones = comp.getIdCompeticion();
                     List<Equipo> listaParticipantes = cv.comboParticipaciones(idCompeticionParaParticipaciones);
                     listaParticipantes.forEach(o->vc.getCbEliminarEquipos().addItem(o.getNombre()));
+
+                    if (!comp.getEstado()){
+                        vc.getPanelCrear().setEnabled(false);
+                    }else
+                        vc.getPanelCrear().setEnabled(false);
+
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -170,6 +177,18 @@ public class ControladorVCompeticiones {
             }
         }
     }
+    public class BCambiarEstadoAl implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (vc.getChkEstado().isSelected()){
+                try {
+                    cv.actualizarCompeticion(comp);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
 
     /**
      * ActionListener para el botón de aceptar.
@@ -193,6 +212,12 @@ public class ControladorVCompeticiones {
                 cv.insertarCompeticion(comp);
                 System.out.println("Competición insertada");
                 vc.limpiar();
+
+                if (!comp.getEstado()){
+                    vc.getPanelCrear().setEnabled(false);
+                }else
+                    vc.getPanelCrear().setEnabled(false);
+
 
                 rellenarLista();
             } catch (Exception ex) {

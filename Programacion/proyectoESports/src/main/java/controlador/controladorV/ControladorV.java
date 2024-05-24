@@ -398,7 +398,13 @@ public class ControladorV {
     public List<Competicion> listaCompeticionesCerradas() {
         return cp.listaCompeticionesCerradas();
     }
-    // Parte de las participaciones
+
+    public void actualizarCompeticion(Competicion comp) throws Exception {
+        cp.actualizarCompeticion(comp);
+    }
+
+
+        // Parte de las participaciones
 
 
 
@@ -490,6 +496,9 @@ public class ControladorV {
     }
 
 
+
+
+
     // Parte del Calendario
     public List<Jornada> listaJornadas(Competicion c) {
         return cp.listaJornadas(c);
@@ -498,6 +507,9 @@ public class ControladorV {
     public List<Enfrentamiento> listaEnfrentamientos() {
         return cp.listaEnfrentamientos();
     }
+
+
+
 
 
 }
