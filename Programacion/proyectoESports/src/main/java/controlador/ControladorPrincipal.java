@@ -171,14 +171,12 @@ public class ControladorPrincipal {
 
     //Parte del Patrocinio
 
-    public Patrocinio buscarPatrocinio(int idEquipo) throws Exception{
-        return cm.buscarPatrocinio(idEquipo);
-    }
+
     public void insertarPatrocinio(Patrocinio pc) throws Exception{
         cm.insertarPatrocinio(pc);
     }
-    public void borrarPatrocinio() throws Exception{
-        cm.borrarPatrocinio();
+    public void borrarPatrocinio(int idPatrocinador) throws Exception{
+        cm.borrarPatrocinio(idPatrocinador);
     }
     public List<Patrocinio> comboPatrocinios() {
         return cm.comboPatrocinios();

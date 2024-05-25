@@ -1,9 +1,7 @@
 package controlador.controladorV;
 
 import jakarta.persistence.RollbackException;
-import modelo.Equipo;
-import modelo.Jugador;
-import modelo.Staff;
+import modelo.*;
 import vista.VistaEquipos;
 
 import javax.swing.*;
@@ -23,6 +21,9 @@ public class ControladorVEquipos {
     private List<Equipo> listaEq;
     private List<Jugador> listaJd;
     private List<Staff> listaSt;
+    private List<Patrocinio> listaPc;
+    private List<Patrocinador> listaPt;
+    private StringBuilder nombresPatrocinadores;
     private StringBuilder nombresJugadores;
     private StringBuilder nombresStaff;
     private int combo = 0;
@@ -51,6 +52,15 @@ public class ControladorVEquipos {
         nombresStaff = new StringBuilder();
         for (Staff staff : listaSt) {
             nombresStaff.append(staff.getNombre()).append("\n");
+        }
+
+    }
+    public void setListaPt(){
+        listaPc= (List<Patrocinio>) eq.getPatrociniosByIdEquipo();
+        listaPc.forEach(o->listaPt.add(o.getPatrocinadoresByIdPatrocinador()));
+        nombresPatrocinadores = new StringBuilder();
+        for (Patrocinador patrocinador : listaPt) {
+            nombresPatrocinadores.append(patrocinador.getNombre()).append("\n");
         }
 
     }
@@ -92,8 +102,9 @@ public class ControladorVEquipos {
                         eq = cv.buscarEquipo(combobox.getItemAt(combo).toString());
                         setListaJd();
                         setListaSt();
+                        setListaPt();
                         ve.getTaDatos().setText("Nombre: "+eq.getNombre() + "\nFecha de fundacion: "
-                                + eq.getFechaFundacion() + "\nJugadores: " +nombresJugadores+ "\nStaff:" + nombresStaff);
+                                + eq.getFechaFundacion() + "\nJugadores: " +nombresJugadores+ "\nStaff:" + nombresStaff+"\nPatrocinadores: "+nombresPatrocinadores);
                         ve.getTfNombre().setText(eq.getNombre());
 
                         //Hay que cambiar el tipo de dato

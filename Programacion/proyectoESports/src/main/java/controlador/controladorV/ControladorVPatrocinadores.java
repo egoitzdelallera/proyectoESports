@@ -1,6 +1,7 @@
 package controlador.controladorV;
 
 import modelo.Equipo;
+import modelo.Jugador;
 import modelo.Patrocinador;
 import modelo.Patrocinio;
 import vista.VistaPatrocinadores;
@@ -22,6 +23,7 @@ public class ControladorVPatrocinadores {
     private List<Patrocinador> listaPt;
     private List<Equipo> listaEq;
     private List<Patrocinio> listaPc;
+    private StringBuilder lEquiposPatrocinados;
     private List<Equipo> listaEqPc = new ArrayList<>();
     private List<Integer> posiciones = new ArrayList<>();
     private Patrocinio pc;
@@ -48,6 +50,15 @@ public class ControladorVPatrocinadores {
         combobox.addItem("Selecciona");
         combobox.addItem("Nuevo");
         listaPt.forEach(o -> combobox.addItem(o.getNombre()));
+
+    }
+    public void equiposPatrocinados(){
+        listaPc= (List<Patrocinio>) pt.getPatrociniosByIdPatrocinador();
+        listaPc.forEach(o->listaEqPc.add(o.getEquiposByIdEquipo()));
+        lEquiposPatrocinados = new StringBuilder();
+        for (Equipo equipo : listaEqPc) {
+            lEquiposPatrocinados.append(equipo.getNombre()).append("\n");
+        }
 
     }
 
@@ -105,8 +116,8 @@ public class ControladorVPatrocinadores {
 
                     try {
                         pt = cv.buscarPatrocinador(combobox.getItemAt(combo).toString());
-                        listaPc= (List<Patrocinio>) pt.getPatrociniosByIdPatrocinador();
-                        listaPc.forEach(o->listaEqPc.add(o.getEquiposByIdEquipo()));
+
+                        equiposPatrocinados();
                         for(int i=0; i<listaEq.size(); i++){
                             for(int x=0; x<listaEqPc.size(); x++) {
                                 if (listaEq.get(i).equals(listaEqPc.get(x))) {
@@ -116,7 +127,7 @@ public class ControladorVPatrocinadores {
                         }
                         int[] posicionesArray = posiciones.stream().mapToInt(Integer::intValue).toArray();
                         vpt.getlEquipos().setSelectedIndices(posicionesArray);
-                        vpt.getTaDatos().setText("Nombre: " + pt.getNombre() + "\nPatrocinios: " + listaEqPc.toString());
+                        vpt.getTaDatos().setText("Nombre: " + pt.getNombre() + "\nPatrocinios: " + lEquiposPatrocinados);
                         vpt.getTfNombre().setText(pt.getNombre());
 
                     } catch (Exception ex) {
@@ -145,7 +156,9 @@ public class ControladorVPatrocinadores {
         @Override
         public void actionPerformed(ActionEvent e) {
             combobox = vpt.getCbPatrocinadores();
+
             try {
+                cv.borrarPatrocinio(pt.getIdPatrocinador());
                 if (combo == 1) {
                     pt = new Patrocinador();
                     pt.setNombre(vpt.getTfNombre().getText());
