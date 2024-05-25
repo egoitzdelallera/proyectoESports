@@ -51,10 +51,10 @@ public class ControladorVCalendario {
                     List<Jornada> jornadas = cv.listaJornadas(comp);
 
                     // Mostrar las jornadas en el JTextArea taJornadas
-                    JTextArea taJornadas = vcal.getTaJornadas();
-                    taJornadas.setText("");
+
+                    vcal.getTaJornadas().setText("");
                     for (Jornada jornada : jornadas) {
-                        taJornadas.append(jornada.toString() + "\n"); // Ajusta según el método toString() de Jornada
+                        vcal.getTaJornadas().append(jornada.toString() + "\n"); // Ajusta según el método toString() de Jornada
                     }
 
                     // Obtener y mostrar los enfrentamientos de la primera jornada
@@ -63,10 +63,10 @@ public class ControladorVCalendario {
                         List<Enfrentamiento> enfrentamientos = cv.listaEnfrentamientos();
 
                         // Mostrar los enfrentamientos en el JTextArea taEnfrentamientos
-                        JTextArea taEnfrentamientos = vcal.getTaEnfrentamientos();
-                        taEnfrentamientos.setText("");
+
+                        vcal.getTaEnfrentamientos().setText("");
                         for (Enfrentamiento enfrentamiento : enfrentamientos) {
-                            taEnfrentamientos.append(enfrentamiento.toString() + "\n"); // Ajusta según el método toString() de Enfrentamiento
+                            vcal.getTaEnfrentamientos().append(enfrentamiento.toString() + "\n"); // Ajusta según el método toString() de Enfrentamiento
                         }
                     }
                 }

@@ -512,8 +512,5 @@ public class ControladorV {
         return cp.listaEnfrentamientos();
     }
 
-    public Participacion buscarParticipacion(int idCompeticion, int idEquipo) throws Exception {
-        return cp.buscarParticipacion(idCompeticion, idEquipo);
-    }
 }
 

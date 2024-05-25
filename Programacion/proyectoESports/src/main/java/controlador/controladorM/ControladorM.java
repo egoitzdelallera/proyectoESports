@@ -424,8 +424,9 @@ public class ControladorM {
         return cmcal.listaEnfrentamientos();
     }
 
-
-
+    public List<Jornada> listaJornadas(Competicion c) {
+        return cmcal.listaJornadas(c);
+    }
 
     public void insertarPatrocinio(Patrocinio pc) throws Exception{
         cmpc.insertarPatrocinio(pc);
