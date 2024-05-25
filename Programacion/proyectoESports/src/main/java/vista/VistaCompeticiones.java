@@ -56,6 +56,9 @@ public class VistaCompeticiones extends JFrame {
     public void addCbCompeticionesAl (ActionListener al){
         cbCompeticiones.addActionListener(al);
     }
+    public void addBEstadoAl (ActionListener al){
+        chkEstado.addActionListener(al);
+    }
     public void addBSalirAl (ActionListener al){
         bSalir.addActionListener(al);
     }
