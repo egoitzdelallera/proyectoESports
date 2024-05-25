@@ -424,7 +424,7 @@ public class ControladorM {
         return cmcal.listaEnfrentamientos();
     }
 
-    }
+
 
 
     public void insertarPatrocinio(Patrocinio pc) throws Exception{
@@ -432,8 +432,8 @@ public class ControladorM {
     }
 
 
-    public void borrarPatrocinio() throws Exception{
-        cmpc.borrarPatrocinio();
+    public void borrarPatrocinio(int idPatrocinador) throws Exception{
+        cmpc.borrarPatrocinio(idPatrocinador);
     }
 
 

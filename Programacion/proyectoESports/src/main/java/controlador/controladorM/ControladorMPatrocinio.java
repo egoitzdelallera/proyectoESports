@@ -27,9 +27,11 @@ public class ControladorMPatrocinio {
     }
 
 
-    public void borrarPatrocinio() throws Exception {
+    public void borrarPatrocinio(int idPatrocinador) throws Exception {
         transaction.begin();
-        em.remove(pc);
+        int deletedCount = em.createQuery("DELETE FROM Patrocinio p WHERE p.idPatrocinador = :idPatrocinador")
+                .setParameter("idPatrocinador", idPatrocinador)
+                .executeUpdate();
         transaction.commit();
     }
 

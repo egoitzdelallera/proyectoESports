@@ -45,8 +45,9 @@ public class PaginaPrincipal extends JFrame {
     public void addBUsuariosAl (ActionListener al){
         bUsuarios.addActionListener(al);
     }
-    public void addBCalendarioAl (ActionListener al){
+    public void addBCalendarioAl (ActionListener al) {
         bCalendario.addActionListener(al);
+    }
     public void addBClasificacionesAl (ActionListener al){
         bClasificacion.addActionListener(al);
     }
