@@ -1,6 +1,7 @@
 package vista;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class VistaLogin extends JFrame {
@@ -15,6 +16,7 @@ public class VistaLogin extends JFrame {
         setSize(600, 200);
         getRootPane().setDefaultButton(bEntrar);
         setLocationRelativeTo(null);
+
     }
 
 

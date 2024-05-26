@@ -3,6 +3,7 @@ package vista;
 import com.toedter.calendar.JCalendar;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class VistaEquipos extends JFrame{
@@ -27,6 +28,27 @@ public class VistaEquipos extends JFrame{
         setLocationRelativeTo(null);
         cFecha = new JCalendar();
         pFecha.add(cFecha);
+        panelPrincipal.setBackground(Color.black);
+        panelComboBox.setOpaque(false);
+        panelCrear.setOpaque(false);
+        panelDatos.setOpaque(false );
+        taDatos.setEnabled(false);
+        taDatos.setDisabledTextColor(Color.white);
+        taDatos.setSelectedTextColor(Color.black);
+        taDatos.setSelectionColor(Color.white);
+        cbEquipos.setBackground(Color.black);
+        cbEquipos.setForeground(Color.black);
+        bEditar.setBackground(Color.black);
+        bEditar.setForeground(Color.white);
+        bAceptar.setForeground(Color.white);
+        bSalir.setBackground(Color.black);
+        tfNombre.setBackground(Color.black);
+        tfNombre.setForeground(Color.white);
+        pFecha.setOpaque(false);
+        pFecha.setBackground(Color.black);
+        pFecha.setForeground(Color.white);
+        
+
     }
     public void addBEditarAl (ActionListener al){
         bEditar.addActionListener(al);
