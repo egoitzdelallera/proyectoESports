@@ -1,6 +1,7 @@
 package vista;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class VistaCalendario extends JFrame{
@@ -16,6 +17,19 @@ public class VistaCalendario extends JFrame{
         setContentPane(panelPrincipal);
         setSize(800,600);
         setLocationRelativeTo(null);
+        panelPrincipal.setBackground(Color.black);
+        panelCombo.setOpaque(false);
+        panelCalendario.setOpaque(false);
+        cbCompeticion.setBackground(Color.black);
+        cbCompeticion.setForeground(Color.black);
+        taJornadas.setEnabled(false);
+        taJornadas.setDisabledTextColor(Color.white);
+        taJornadas.setSelectedTextColor(Color.black);
+        taJornadas.setSelectionColor(Color.white);
+        taEnfrentamientos.setEnabled(false);
+        taEnfrentamientos.setDisabledTextColor(Color.white);
+        taEnfrentamientos.setSelectedTextColor(Color.black);
+        taEnfrentamientos.setSelectionColor(Color.white);
     }
 
     public void addCbCompeticion(ActionListener al){

@@ -53,8 +53,6 @@ public class ControladorVCompeticiones {
         vc.getPanelComboBox().setVisible(true);
         vc.getPanelCrear().setVisible(false);
         vc.getPanelDatos().setVisible(false);
-        vc.getTaDatos().setEnabled(false);
-        vc.getTaDatos().setDisabledTextColor(Color.black);
 
         // Llenar la combo de las competiciones
         lista = cv.comboCompeticiones();

@@ -9,6 +9,7 @@ public class VistaResultadosJornadas extends JFrame {
     private JTextArea taConsulta;
     private JButton bSalir;
     private JScrollPane scrollPane;
+    private JPanel panelBoton;
 
     public VistaResultadosJornadas() {
         super("Resultados de todas las jornadas");
@@ -17,6 +18,15 @@ public class VistaResultadosJornadas extends JFrame {
         setLocationRelativeTo(null);
         taConsulta.setEnabled(false);
         taConsulta.setDisabledTextColor(Color.black);
+        panelPrincipal.setBackground(Color.black);
+        taConsulta.setEnabled(false);
+        taConsulta.setDisabledTextColor(Color.white);
+        taConsulta.setSelectedTextColor(Color.black);
+        taConsulta.setSelectionColor(Color.white);
+        bSalir.setForeground(Color.white);
+        bSalir.setBackground(Color.black);
+        scrollPane.setOpaque(false);
+        panelBoton.setOpaque(false);
 
     }
 
