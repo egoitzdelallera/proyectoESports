@@ -55,8 +55,6 @@ public class ControladorVJugadores {
         vjd.getPanelComboBox().setVisible(true);
         vjd.getPanelDatos().setVisible(false);
         vjd.getPanelCrear().setVisible(false);
-        vjd.getTaDatos().setEnabled(false);
-        vjd.getTaDatos().setDisabledTextColor(Color.black);
 
 
         rellenarLista();

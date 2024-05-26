@@ -9,6 +9,7 @@ public class VistaClasificacion extends JFrame{
     private JTextArea taConsulta;
     private JButton bSalir;
     private JScrollPane scrollPane;
+    private JPanel panelBoton;
 
     public VistaClasificacion() {
         super("Clasificaciones");
@@ -17,8 +18,17 @@ public class VistaClasificacion extends JFrame{
         setLocationRelativeTo(null);
         taConsulta.setEnabled(false);
         taConsulta.setDisabledTextColor(Color.black);
-        //scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        //scrollPane.getVerticalScrollBar().setValue(0);
+        taConsulta.setEnabled(false);
+        taConsulta.setDisabledTextColor(Color.black);
+        panelPrincipal.setBackground(Color.black);
+        taConsulta.setEnabled(false);
+        taConsulta.setDisabledTextColor(Color.white);
+        taConsulta.setSelectedTextColor(Color.black);
+        taConsulta.setSelectionColor(Color.white);
+        bSalir.setForeground(Color.white);
+        bSalir.setBackground(Color.black);
+        scrollPane.setOpaque(false);
+        panelBoton.setOpaque(false);
     }
 
     public void addBSalirAl(ActionListener al) {

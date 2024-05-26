@@ -91,8 +91,7 @@ public class ControladorVPatrocinadores {
         vpt.getPanelComboBox().setVisible(true);
         vpt.getPanelCrear().setVisible(false);
         vpt.getPanelDatos().setVisible(false);
-        vpt.getTaDatos().setEnabled(false);
-        vpt.getTaDatos().setDisabledTextColor(Color.black);
+
 
         rellenarLista();
         jList();

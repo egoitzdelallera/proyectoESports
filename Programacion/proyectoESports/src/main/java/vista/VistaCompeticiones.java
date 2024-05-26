@@ -3,6 +3,7 @@ package vista;
 import com.toedter.calendar.JCalendar;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class VistaCompeticiones extends JFrame {
@@ -38,6 +39,44 @@ public class VistaCompeticiones extends JFrame {
         cFechaFin = new JCalendar();
         pFechaInicio.add(cFechaInicio);
         pFechaFin.add(cFechaFin);
+        panelPrincipal.setBackground(Color.black);
+        panelComboBox.setOpaque(false);
+        panelCrear.setOpaque(false);
+        panelDatos.setOpaque(false );
+        taDatos.setEnabled(false);
+        taDatos.setDisabledTextColor(Color.white);
+        taDatos.setSelectedTextColor(Color.black);
+        taDatos.setSelectionColor(Color.white);
+        cbCompeticiones.setBackground(Color.black);
+        cbCompeticiones.setForeground(Color.black);
+        cbAnadirEquipos.setBackground(Color.black);
+        cbAnadirEquipos.setForeground(Color.black);
+        cbJuego.setBackground(Color.black);
+        cbJuego.setForeground(Color.black);
+        cbEliminarEquipos.setBackground(Color.black);
+        cbEliminarEquipos.setForeground(Color.black);
+        chkEstado.setOpaque(false);
+        chkEstado.setForeground(Color.white);
+        bEditar.setBackground(Color.black);
+        bEditar.setForeground(Color.white);
+        bAceptar.setForeground(Color.white);
+        bAceptar.setBackground(Color.black);
+        bSalir.setForeground(Color.white);
+        bSalir.setBackground(Color.black);
+        tfNombre.setBackground(Color.black);
+        tfNombre.setForeground(Color.white);
+        pFechaInicio.setOpaque(false);
+        pFechaInicio.setBackground(Color.black);
+        cFechaInicio.setBackground(Color.black);
+        cFechaInicio.setForeground(Color.white);
+        pFechaInicio.setForeground(Color.white);
+        pFechaFin.setOpaque(false);
+        pFechaFin.setBackground(Color.black);
+        cFechaFin.setBackground(Color.black);
+        cFechaFin.setForeground(Color.white);
+        pFechaFin.setForeground(Color.white);
+        tfNombre.setSelectionColor(Color.white);
+        tfNombre.setSelectedTextColor(Color.black);
     }
 
     public void addBEditarAl (ActionListener al){

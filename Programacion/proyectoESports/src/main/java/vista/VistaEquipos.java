@@ -41,13 +41,19 @@ public class VistaEquipos extends JFrame{
         bEditar.setBackground(Color.black);
         bEditar.setForeground(Color.white);
         bAceptar.setForeground(Color.white);
+        bAceptar.setBackground(Color.black);
+        bSalir.setForeground(Color.white);
         bSalir.setBackground(Color.black);
         tfNombre.setBackground(Color.black);
         tfNombre.setForeground(Color.white);
         pFecha.setOpaque(false);
         pFecha.setBackground(Color.black);
+        cFecha.setBackground(Color.black);
+        cFecha.setForeground(Color.white);
         pFecha.setForeground(Color.white);
-        
+        tfNombre.setSelectionColor(Color.white);
+        tfNombre.setSelectedTextColor(Color.black);
+
 
     }
     public void addBEditarAl (ActionListener al){

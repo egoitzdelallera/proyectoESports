@@ -1,6 +1,7 @@
 package vista;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class VistaPatrocinadores extends JFrame{
@@ -14,7 +15,6 @@ public class VistaPatrocinadores extends JFrame{
     private JTextField tfNombre;
     private JButton bAceptar;
     private JButton bSalir;
-    private JComboBox cbEquipos;
     private JPanel panelPrincipal;
     private JList lEquipos;
 
@@ -23,6 +23,31 @@ public class VistaPatrocinadores extends JFrame{
         setContentPane(panelPrincipal);
         setSize(500,500);
         setLocationRelativeTo(null);
+        panelPrincipal.setBackground(Color.black);
+        panelComboBox.setOpaque(false);
+        panelCrear.setOpaque(false);
+        panelDatos.setOpaque(false );
+        taDatos.setEnabled(false);
+        taDatos.setDisabledTextColor(Color.white);
+        taDatos.setSelectedTextColor(Color.black);
+        taDatos.setSelectionColor(Color.white);
+        cbPatrocinadores.setBackground(Color.black);
+        cbPatrocinadores.setForeground(Color.black);
+        bEditar.setBackground(Color.black);
+        bEditar.setForeground(Color.white);
+        bAceptar.setForeground(Color.white);
+        bAceptar.setBackground(Color.black);
+        bSalir.setForeground(Color.white);
+        bSalir.setBackground(Color.black);
+        tfNombre.setBackground(Color.black);
+        tfNombre.setForeground(Color.white);
+        tfNombre.setSelectionColor(Color.white);
+        tfNombre.setSelectedTextColor(Color.black);
+        lEquipos.setBackground(Color.black);
+        lEquipos.setForeground(Color.white);
+        lEquipos.setSelectionBackground(Color.white);
+        lEquipos.setSelectionForeground(Color.black);
+
     }
 
     public void addBEditarAl (ActionListener al){
@@ -34,9 +59,7 @@ public class VistaPatrocinadores extends JFrame{
     public void addBAceptarAl (ActionListener al){
         bAceptar.addActionListener(al);
     }
-    public void addCbEquiposAl (ActionListener al){
-        cbEquipos.addActionListener(al);
-    }
+
     public void addCbPatrocinadoresAl (ActionListener al){
         cbPatrocinadores.addActionListener(al);
     }
@@ -97,13 +120,9 @@ public class VistaPatrocinadores extends JFrame{
         this.tfNombre = tfNombre;
     }
 
-    public JComboBox getCbEquipos() {
-        return cbEquipos;
-    }
 
-    public void setCbEquipos(JComboBox cbEquipos) {
-        this.cbEquipos = cbEquipos;
-    }
+
+
 
     public JPanel getPanelPrincipal() {
         return panelPrincipal;

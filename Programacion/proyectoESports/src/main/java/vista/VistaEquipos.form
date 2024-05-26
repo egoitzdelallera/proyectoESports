@@ -23,6 +23,7 @@
             <properties>
               <enabled value="true"/>
               <font name="Press Start 2P"/>
+              <foreground color="-394241"/>
               <text value="Selecciona un equipo:"/>
             </properties>
           </component>
@@ -90,6 +91,7 @@
             </constraints>
             <properties>
               <font name="Press Start 2P"/>
+              <foreground color="-394241"/>
               <text value="Introduce los datos del equipo:"/>
             </properties>
           </component>
@@ -109,6 +111,7 @@
             </constraints>
             <properties>
               <font name="Press Start 2P"/>
+              <foreground color="-394241"/>
               <text value="Nombre:"/>
             </properties>
           </component>
@@ -128,6 +131,7 @@
             </constraints>
             <properties>
               <font name="Press Start 2P"/>
+              <foreground color="-394241"/>
               <text value="Fecha de Fundacion:"/>
             </properties>
           </component>
