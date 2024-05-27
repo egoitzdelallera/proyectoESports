@@ -5,12 +5,23 @@ import modelo.Patrocinio;
 
 import java.util.List;
 
+/**
+ * Controlador para gestionar operaciones relacionadas con la entidad Patrocinio en la base de datos.
+ * Proporciona métodos para insertar, borrar, buscar patrocinios y obtener una lista de todos los patrocinios.
+ */
 public class ControladorMPatrocinio {
     private Patrocinio pc;
     private EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction transaction ;
     private ControladorM cm;
+
+    /**
+     * Constructor que inicializa el controlador con una instancia de ControladorM.
+     * Crea las instancias de EntityManagerFactory, EntityManager y EntityTransaction.
+     *
+     * @param cm la instancia de ControladorM.
+     */
     public ControladorMPatrocinio(ControladorM cm) {
         this.cm = cm;
         emf = Persistence.createEntityManagerFactory ("default");
@@ -19,6 +30,12 @@ public class ControladorMPatrocinio {
     }
 
 
+    /**
+     * Inserta un nuevo patrocinio en la base de datos.
+     *
+     * @param pc el patrocinio a insertar.
+     * @throws Exception si ocurre un error durante la operación.
+     */
     public void insertarPatrocinio (Patrocinio pc) throws Exception {
         // Insertar
         transaction.begin();
@@ -27,15 +44,26 @@ public class ControladorMPatrocinio {
     }
 
 
-    public void borrarPatrocinio(int idPatrocinador) throws Exception {
+
+    /**
+     * Borra el patrocinio actual de la base de datos.
+     *
+     * @throws Exception si ocurre un error durante la operación.
+     */
+    public void borrarPatrocinio() throws Exception {
         transaction.begin();
-        int deletedCount = em.createQuery("DELETE FROM Patrocinio p WHERE p.idPatrocinador = :idPatrocinador")
-                .setParameter("idPatrocinador", idPatrocinador)
-                .executeUpdate();
+        em.remove(pc);
         transaction.commit();
     }
 
 
+    /**
+     * Busca un patrocinio en la base de datos por su ID.
+     *
+     * @param idPatrocinador el ID del patrocinador a buscar.
+     * @return el patrocinio encontrado.
+     * @throws Exception si ocurre un error durante la operación.
+     */
     public Patrocinio buscarPatrocinio(int idPatrocinador) throws Exception
     {
         transaction.begin();
@@ -47,6 +75,11 @@ public class ControladorMPatrocinio {
     }
 
 
+    /**
+     * Obtiene una lista de todos los patrocinios en la base de datos.
+     *
+     * @return la lista de todos los patrocinios.
+     */
     public List<Patrocinio> comboPatrocinios(){
         transaction.begin();
         List<Patrocinio> lista =

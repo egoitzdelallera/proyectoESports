@@ -1,7 +1,9 @@
 package controlador.controladorV;
 
 import jakarta.persistence.RollbackException;
-import modelo.*;
+import modelo.Equipo;
+import modelo.Jugador;
+import modelo.Staff;
 import vista.VistaEquipos;
 
 import javax.swing.*;
@@ -12,6 +14,9 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Controlador para la vista de equipos.
+ */
 public class ControladorVEquipos {
 
     private VistaEquipos ve;
@@ -21,16 +26,23 @@ public class ControladorVEquipos {
     private List<Equipo> listaEq;
     private List<Jugador> listaJd;
     private List<Staff> listaSt;
-    private List<Patrocinio> listaPc;
-    private List<Patrocinador> listaPt;
-    private StringBuilder nombresPatrocinadores;
     private StringBuilder nombresJugadores;
     private StringBuilder nombresStaff;
     private int combo = 0;
     private JComboBox combobox;
+
+    /**
+     * Constructor del controlador de equipos.
+     *
+     * @param cv El controlador principal de la vista.
+     */
     public ControladorVEquipos(ControladorV cv) {
         this.cv = cv;
     }
+
+    /**
+     * Rellena la lista de equipos en el ComboBox.
+     */
     public void rellenarLista(){
         listaEq = cv.comboEquipos();
         combobox = ve.getCbEquipos();
@@ -39,6 +51,11 @@ public class ControladorVEquipos {
         combobox.addItem("Nuevo");
         listaEq.forEach(o->combobox.addItem(o.getNombre()));
     }
+
+    /**
+     * Establece la lista de jugadores del equipo actual.
+     */
+
     public void setListaJd(){
         listaJd = (List<Jugador>) eq.getJugadoresByIdEquipo();
         nombresJugadores = new StringBuilder();
@@ -47,6 +64,10 @@ public class ControladorVEquipos {
         }
 
     }
+
+    /**
+     * Establece la lista de staff del equipo actual.
+     */
     public void setListaSt(){
         listaSt = (List<Staff>) eq.getStaffByIdEquipo();
         nombresStaff = new StringBuilder();
@@ -55,6 +76,12 @@ public class ControladorVEquipos {
         }
 
     }
+
+
+    /**
+     * Muestra la interfaz de usuario para administrar equipos.
+     */
+
     /*public void setListaPt(){
         listaPc= (List<Patrocinio>) eq.getPatrociniosByIdEquipo();
         listaPc.forEach(o->listaPt.add(o.getPatrocinadoresByIdPatrocinador()));
@@ -64,6 +91,7 @@ public class ControladorVEquipos {
         }
 
     }*/
+
     public void mostrarEquipos() {
         ve = new VistaEquipos();
 
@@ -77,19 +105,21 @@ public class ControladorVEquipos {
         ve.getPanelComboBox().setVisible(true);
         ve.getPanelCrear().setVisible(false);
         ve.getPanelDatos().setVisible(false);
-
-
+        ve.getTaDatos().setEnabled(false);
+        ve.getTaDatos().setDisabledTextColor(Color.black);
 
         rellenarLista();
     }
 
-
+    /**
+     * ActionListener para la selección en el ComboBox de equipos.
+     */
     public class CbEquiposAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-             combo = combobox.getSelectedIndex();
-             if (combo>=1)
-             {
+            combo = combobox.getSelectedIndex();
+            if (combo>=1)
+            {
                 if (combo == 1){
                     ve.getPanelCrear().setVisible(true);
                     ve.getPanelDatos().setVisible(false);
@@ -102,9 +132,12 @@ public class ControladorVEquipos {
                         eq = cv.buscarEquipo(combobox.getItemAt(combo).toString());
                         setListaJd();
                         setListaSt();
+
+
                         //setListaPt();
+
                         ve.getTaDatos().setText("Nombre: "+eq.getNombre() + "\nFecha de fundacion: "
-                                + eq.getFechaFundacion() + "\nJugadores: " +nombresJugadores+ "\nStaff:" + nombresStaff+"\nPatrocinadores: "+nombresPatrocinadores);
+                                + eq.getFechaFundacion() + "\nJugadores: " +nombresJugadores+ "\nStaff:" + nombresStaff);
                         ve.getTfNombre().setText(eq.getNombre());
 
                         //Hay que cambiar el tipo de dato
@@ -116,9 +149,13 @@ public class ControladorVEquipos {
                         throw new RuntimeException(ex);
                     }
                 }
-             }
+            }
         }
     }
+
+    /**
+     * ActionListener para el botón de editar.
+     */
     public class BEditarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -127,7 +164,9 @@ public class ControladorVEquipos {
         }
     }
 
-
+    /**
+     * ActionListener para el botón de aceptar.
+     */
     public class BAceptarAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -151,6 +190,10 @@ public class ControladorVEquipos {
             }
         }
     }
+
+    /**
+     * ActionListener para el botón de borrar.
+     */
     public class BBorrarAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -166,6 +209,9 @@ public class ControladorVEquipos {
         }
     }
 
+    /**
+     * ActionListener para el botón de salir.
+     */
     public class BSalirAl implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
