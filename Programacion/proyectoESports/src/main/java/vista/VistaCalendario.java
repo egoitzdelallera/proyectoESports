@@ -21,13 +21,13 @@ public class VistaCalendario extends JFrame{
         panelCombo.setOpaque(false);
         panelCalendario.setOpaque(false);
         cbCompeticion.setBackground(Color.black);
-        cbCompeticion.setForeground(Color.black);
+        cbCompeticion.setForeground(Color.white);
         taJornadas.setEnabled(false);
-        taJornadas.setDisabledTextColor(Color.white);
+        taJornadas.setDisabledTextColor(Color.black);
         taJornadas.setSelectedTextColor(Color.black);
         taJornadas.setSelectionColor(Color.white);
         taEnfrentamientos.setEnabled(false);
-        taEnfrentamientos.setDisabledTextColor(Color.white);
+        taEnfrentamientos.setDisabledTextColor(Color.black);
         taEnfrentamientos.setSelectedTextColor(Color.black);
         taEnfrentamientos.setSelectionColor(Color.white);
     }

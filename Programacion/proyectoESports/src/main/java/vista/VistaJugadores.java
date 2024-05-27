@@ -44,15 +44,17 @@ public class VistaJugadores extends JFrame{
         panelCrear.setOpaque(false);
         panelDatos.setOpaque(false );
         taDatos.setEnabled(false);
-        taDatos.setDisabledTextColor(Color.white);
+        taDatos.setDisabledTextColor(Color.black);
         taDatos.setSelectedTextColor(Color.black);
         taDatos.setSelectionColor(Color.white);
         cbJugadores.setBackground(Color.black);
-        cbJugadores.setForeground(Color.black);
+        cbJugadores.setForeground(Color.white);
         bEditar.setBackground(Color.black);
         bEditar.setForeground(Color.white);
         bAceptar.setForeground(Color.white);
         bAceptar.setBackground(Color.black);
+        bBorrar.setForeground(Color.white);
+        bBorrar.setBackground(Color.black);
         bSalir.setForeground(Color.white);
         bSalir.setBackground(Color.black);
         tfNombre.setBackground(Color.black);
@@ -81,7 +83,7 @@ public class VistaJugadores extends JFrame{
         tfRol.setSelectionColor(Color.white);
         tfRol.setSelectedTextColor(Color.black);
         cbEquipos.setBackground(Color.black);
-        cbEquipos.setForeground(Color.black);
+        cbEquipos.setForeground(Color.white);
     }
 
     public void addBEditarAl (ActionListener al){
