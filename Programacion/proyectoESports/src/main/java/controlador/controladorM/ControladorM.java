@@ -50,6 +50,8 @@ public class ControladorM {
         cmcomp = new ControladorMCompeticion(this);
         cmpart = new ControladorMParticipacion(this);
         cms = new ControladorMStaff(this);
+        cmx = new ControladorMXml(this);
+        cmcal = new ControladorMCalendario(this);
     }
 
 

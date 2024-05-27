@@ -17,14 +17,11 @@ public class VistaClasificacion extends JFrame{
         setSize(600,600);
         setLocationRelativeTo(null);
         taConsulta.setEnabled(false);
-        taConsulta.setDisabledTextColor(Color.black);
-        taConsulta.setEnabled(false);
-        taConsulta.setDisabledTextColor(Color.black);
         panelPrincipal.setBackground(Color.black);
-        taConsulta.setEnabled(false);
-        taConsulta.setDisabledTextColor(Color.white);
+        taConsulta.setDisabledTextColor(Color.black);
         taConsulta.setSelectedTextColor(Color.black);
         taConsulta.setSelectionColor(Color.white);
+        taConsulta.setForeground(Color.black);
         bSalir.setForeground(Color.white);
         bSalir.setBackground(Color.black);
         scrollPane.setOpaque(false);

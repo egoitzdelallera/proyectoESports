@@ -31,15 +31,17 @@ public class VistaStaff extends JFrame {
         panelCrear.setOpaque(false);
         panelDatos.setOpaque(false );
         taDatos.setEnabled(false);
-        taDatos.setDisabledTextColor(Color.white);
+        taDatos.setDisabledTextColor(Color.black);
         taDatos.setSelectedTextColor(Color.black);
         taDatos.setSelectionColor(Color.white);
         cbStaff.setBackground(Color.black);
-        cbStaff.setForeground(Color.black);
+        cbStaff.setForeground(Color.white);
         bEditar.setBackground(Color.black);
         bEditar.setForeground(Color.white);
         bAceptar.setForeground(Color.white);
         bAceptar.setBackground(Color.black);
+        bBorrar.setForeground(Color.white);
+        bBorrar.setBackground(Color.black);
         bSalir.setForeground(Color.white);
         bSalir.setBackground(Color.black);
         tfNombre.setBackground(Color.black);
@@ -55,7 +57,7 @@ public class VistaStaff extends JFrame {
         tfPuesto.setSelectionColor(Color.white);
         tfPuesto.setSelectedTextColor(Color.black);
         cbEquipos.setBackground(Color.black);
-        cbEquipos.setForeground(Color.black);
+        cbEquipos.setForeground(Color.white);
     }
 
     public void addBEditarAl (ActionListener al){

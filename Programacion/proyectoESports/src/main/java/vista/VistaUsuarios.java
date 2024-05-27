@@ -30,11 +30,15 @@ public class VistaUsuarios extends JFrame {
         panelCrear.setOpaque(false);
         panelDatos.setOpaque(false );
         taDatos.setEnabled(false);
+        cbUsuarios.setBackground(Color.black);
+        cbUsuarios.setForeground(Color.white);
         taDatos.setDisabledTextColor(Color.white);
         taDatos.setSelectedTextColor(Color.black);
         taDatos.setSelectionColor(Color.white);
         bEditar.setBackground(Color.black);
         bEditar.setForeground(Color.white);
+        bBorrar.setBackground(Color.black);
+        bBorrar.setForeground(Color.white);
         bAceptar.setForeground(Color.white);
         bAceptar.setBackground(Color.black);
         bSalir.setForeground(Color.white);

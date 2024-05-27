@@ -17,15 +17,14 @@ public class VistaResultadosUJornada extends JFrame {
         setSize(600,600);
         setLocationRelativeTo(null);
         panelPrincipal.setBackground(Color.black);
-        taConsulta.setEnabled(false);
-        taConsulta.setDisabledTextColor(Color.white);
+        taConsulta.setDisabledTextColor(Color.black);
         taConsulta.setSelectedTextColor(Color.black);
         taConsulta.setSelectionColor(Color.white);
+        taConsulta.setForeground(Color.black);
         bSalir.setForeground(Color.white);
         bSalir.setBackground(Color.black);
         scrollPane.setOpaque(false);
         panelBoton.setOpaque(false);
-
 
     }
 

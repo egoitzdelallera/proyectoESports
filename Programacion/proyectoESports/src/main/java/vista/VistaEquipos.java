@@ -33,24 +33,22 @@ public class VistaEquipos extends JFrame{
         panelCrear.setOpaque(false);
         panelDatos.setOpaque(false );
         taDatos.setEnabled(false);
-        taDatos.setDisabledTextColor(Color.white);
+        taDatos.setDisabledTextColor(Color.black);
         taDatos.setSelectedTextColor(Color.black);
         taDatos.setSelectionColor(Color.white);
         cbEquipos.setBackground(Color.black);
-        cbEquipos.setForeground(Color.black);
+        cbEquipos.setForeground(Color.white);
         bEditar.setBackground(Color.black);
         bEditar.setForeground(Color.white);
         bAceptar.setForeground(Color.white);
         bAceptar.setBackground(Color.black);
         bSalir.setForeground(Color.white);
         bSalir.setBackground(Color.black);
+        bBorrar.setForeground(Color.white);
+        bBorrar.setBackground(Color.black);
         tfNombre.setBackground(Color.black);
         tfNombre.setForeground(Color.white);
         pFecha.setOpaque(false);
-        pFecha.setBackground(Color.black);
-        cFecha.setBackground(Color.black);
-        cFecha.setForeground(Color.white);
-        pFecha.setForeground(Color.white);
         tfNombre.setSelectionColor(Color.white);
         tfNombre.setSelectedTextColor(Color.black);
 
