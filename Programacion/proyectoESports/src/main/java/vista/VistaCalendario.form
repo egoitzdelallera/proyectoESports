@@ -30,6 +30,7 @@
             </constraints>
             <properties>
               <font name="Press Start 2P"/>
+              <foreground color="-1"/>
               <text value="Seleccione una competicion:"/>
             </properties>
           </component>
@@ -74,6 +75,7 @@
             </constraints>
             <properties>
               <font name="Press Start 2P"/>
+              <foreground color="-1"/>
               <text value="Jornadas:"/>
             </properties>
           </component>
@@ -83,6 +85,7 @@
             </constraints>
             <properties>
               <font name="Press Start 2P"/>
+              <foreground color="-1"/>
               <text value="Enfrentamientos:"/>
             </properties>
           </component>

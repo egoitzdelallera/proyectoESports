@@ -125,6 +125,7 @@
             </constraints>
             <properties>
               <font name="Press Start 2P"/>
+              <foreground color="-1"/>
               <opaque value="false"/>
             </properties>
           </component>

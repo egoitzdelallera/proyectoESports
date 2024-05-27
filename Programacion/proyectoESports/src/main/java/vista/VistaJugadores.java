@@ -45,7 +45,55 @@ public class VistaJugadores extends JFrame{
         setLocationRelativeTo(null);
         cFecha = new JCalendar();
         pFecha.add(cFecha);
+
         dateChooser = new JDateChooser();
+
+        panelPrincipal.setBackground(Color.black);
+        panelComboBox.setOpaque(false);
+        panelCrear.setOpaque(false);
+        panelDatos.setOpaque(false );
+        taDatos.setEnabled(false);
+        taDatos.setDisabledTextColor(Color.black);
+        taDatos.setSelectedTextColor(Color.black);
+        taDatos.setSelectionColor(Color.white);
+        cbJugadores.setBackground(Color.black);
+        cbJugadores.setForeground(Color.white);
+        bEditar.setBackground(Color.black);
+        bEditar.setForeground(Color.white);
+        bAceptar.setForeground(Color.white);
+        bAceptar.setBackground(Color.black);
+        bBorrar.setForeground(Color.white);
+        bBorrar.setBackground(Color.black);
+        bSalir.setForeground(Color.white);
+        bSalir.setBackground(Color.black);
+        tfNombre.setBackground(Color.black);
+        tfNombre.setForeground(Color.white);
+        pFecha.setOpaque(false);
+        pFecha.setBackground(Color.black);
+        cFecha.setBackground(Color.black);
+        cFecha.setForeground(Color.white);
+        pFecha.setForeground(Color.white);
+        tfNombre.setSelectionColor(Color.white);
+        tfNombre.setSelectedTextColor(Color.black);
+        tfNacionalidad.setBackground(Color.black);
+        tfNacionalidad.setForeground(Color.white);
+        tfNacionalidad.setSelectionColor(Color.white);
+        tfNacionalidad.setSelectedTextColor(Color.black);
+        tfNickname.setBackground(Color.black);
+        tfNickname.setForeground(Color.white);
+        tfNickname.setSelectionColor(Color.white);
+        tfNickname.setSelectedTextColor(Color.black);
+        tfSueldo.setBackground(Color.black);
+        tfSueldo.setForeground(Color.white);
+        tfSueldo.setSelectionColor(Color.white);
+        tfSueldo.setSelectedTextColor(Color.black);
+        tfRol.setBackground(Color.black);
+        tfRol.setForeground(Color.white);
+        tfRol.setSelectionColor(Color.white);
+        tfRol.setSelectedTextColor(Color.black);
+        cbEquipos.setBackground(Color.black);
+        cbEquipos.setForeground(Color.white);
+
     }
 
     /**

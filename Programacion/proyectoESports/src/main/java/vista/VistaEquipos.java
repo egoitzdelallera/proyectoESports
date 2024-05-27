@@ -34,6 +34,33 @@ public class VistaEquipos extends JFrame{
         setLocationRelativeTo(null);
         cFecha = new JCalendar();
         pFecha.add(cFecha);
+
+
+        panelPrincipal.setBackground(Color.black);
+        panelComboBox.setOpaque(false);
+        panelCrear.setOpaque(false);
+        panelDatos.setOpaque(false );
+        taDatos.setEnabled(false);
+        taDatos.setDisabledTextColor(Color.black);
+        taDatos.setSelectedTextColor(Color.black);
+        taDatos.setSelectionColor(Color.white);
+        cbEquipos.setBackground(Color.black);
+        cbEquipos.setForeground(Color.white);
+        bEditar.setBackground(Color.black);
+        bEditar.setForeground(Color.white);
+        bAceptar.setForeground(Color.white);
+        bAceptar.setBackground(Color.black);
+        bSalir.setForeground(Color.white);
+        bSalir.setBackground(Color.black);
+        bBorrar.setForeground(Color.white);
+        bBorrar.setBackground(Color.black);
+        tfNombre.setBackground(Color.black);
+        tfNombre.setForeground(Color.white);
+        pFecha.setOpaque(false);
+        tfNombre.setSelectionColor(Color.white);
+        tfNombre.setSelectedTextColor(Color.black);
+
+
     }
 
     /**

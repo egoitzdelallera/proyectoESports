@@ -32,6 +32,35 @@ public class VistaPatrocinadores extends JFrame{
         setContentPane(panelPrincipal);
         setSize(500,500);
         setLocationRelativeTo(null);
+
+        panelPrincipal.setBackground(Color.black);
+        panelComboBox.setOpaque(false);
+        panelCrear.setOpaque(false);
+        panelDatos.setOpaque(false );
+        taDatos.setEnabled(false);
+        taDatos.setDisabledTextColor(Color.black);
+        taDatos.setSelectedTextColor(Color.black);
+        taDatos.setSelectionColor(Color.white);
+        cbPatrocinadores.setBackground(Color.black);
+        cbPatrocinadores.setForeground(Color.white);
+        bEditar.setBackground(Color.black);
+        bEditar.setForeground(Color.white);
+        bAceptar.setForeground(Color.white);
+        bAceptar.setBackground(Color.black);
+        bBorrar.setForeground(Color.white);
+        bBorrar.setBackground(Color.black);
+        bSalir.setForeground(Color.white);
+        bSalir.setBackground(Color.black);
+        tfNombre.setBackground(Color.black);
+        tfNombre.setForeground(Color.white);
+        tfNombre.setSelectionColor(Color.white);
+        tfNombre.setSelectedTextColor(Color.black);
+        lEquipos.setBackground(Color.black);
+        lEquipos.setForeground(Color.white);
+        lEquipos.setSelectionBackground(Color.white);
+        lEquipos.setSelectionForeground(Color.black);
+
+
     }
 
     /**

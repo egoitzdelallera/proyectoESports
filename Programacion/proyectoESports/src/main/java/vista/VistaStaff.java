@@ -31,6 +31,41 @@ public class VistaStaff extends JFrame {
         setContentPane(panelPrincipal);
         setSize(600,500);
         setLocationRelativeTo(null);
+
+
+        panelPrincipal.setBackground(Color.black);
+        panelComboBox.setOpaque(false);
+        panelCrear.setOpaque(false);
+        panelDatos.setOpaque(false );
+        taDatos.setEnabled(false);
+        taDatos.setDisabledTextColor(Color.black);
+        taDatos.setSelectedTextColor(Color.black);
+        taDatos.setSelectionColor(Color.white);
+        cbStaff.setBackground(Color.black);
+        cbStaff.setForeground(Color.white);
+        bEditar.setBackground(Color.black);
+        bEditar.setForeground(Color.white);
+        bAceptar.setForeground(Color.white);
+        bAceptar.setBackground(Color.black);
+        bBorrar.setForeground(Color.white);
+        bBorrar.setBackground(Color.black);
+        bSalir.setForeground(Color.white);
+        bSalir.setBackground(Color.black);
+        tfNombre.setBackground(Color.black);
+        tfNombre.setForeground(Color.white);
+        tfNombre.setSelectionColor(Color.white);
+        tfNombre.setSelectedTextColor(Color.black);
+        tfSueldo.setBackground(Color.black);
+        tfSueldo.setForeground(Color.white);
+        tfSueldo.setSelectionColor(Color.white);
+        tfSueldo.setSelectedTextColor(Color.black);
+        tfPuesto.setBackground(Color.black);
+        tfPuesto.setForeground(Color.white);
+        tfPuesto.setSelectionColor(Color.white);
+        tfPuesto.setSelectedTextColor(Color.black);
+        cbEquipos.setBackground(Color.black);
+        cbEquipos.setForeground(Color.white);
+
     }
 
     /**

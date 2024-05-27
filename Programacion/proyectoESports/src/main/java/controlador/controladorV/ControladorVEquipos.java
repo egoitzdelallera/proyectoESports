@@ -77,9 +77,21 @@ public class ControladorVEquipos {
 
     }
 
+
     /**
      * Muestra la interfaz de usuario para administrar equipos.
      */
+
+    /*public void setListaPt(){
+        listaPc= (List<Patrocinio>) eq.getPatrociniosByIdEquipo();
+        listaPc.forEach(o->listaPt.add(o.getPatrocinadoresByIdPatrocinador()));
+        nombresPatrocinadores = new StringBuilder();
+        for (Patrocinador patrocinador : listaPt) {
+            nombresPatrocinadores.append(patrocinador.getNombre()).append("\n");
+        }
+
+    }*/
+
     public void mostrarEquipos() {
         ve = new VistaEquipos();
 
@@ -120,6 +132,10 @@ public class ControladorVEquipos {
                         eq = cv.buscarEquipo(combobox.getItemAt(combo).toString());
                         setListaJd();
                         setListaSt();
+
+
+                        //setListaPt();
+
                         ve.getTaDatos().setText("Nombre: "+eq.getNombre() + "\nFecha de fundacion: "
                                 + eq.getFechaFundacion() + "\nJugadores: " +nombresJugadores+ "\nStaff:" + nombresStaff);
                         ve.getTfNombre().setText(eq.getNombre());

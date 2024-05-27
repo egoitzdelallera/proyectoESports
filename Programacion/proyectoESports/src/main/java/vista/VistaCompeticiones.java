@@ -45,6 +45,51 @@ public class VistaCompeticiones extends JFrame {
         cFechaFin = new JCalendar();
         pFechaInicio.add(cFechaInicio);
         pFechaFin.add(cFechaFin);
+
+
+        panelPrincipal.setBackground(Color.black);
+        panelComboBox.setOpaque(false);
+        panelCrear.setOpaque(false);
+        panelDatos.setOpaque(false );
+        taDatos.setEnabled(false);
+        taDatos.setDisabledTextColor(Color.black);
+        taDatos.setSelectedTextColor(Color.black);
+        taDatos.setSelectionColor(Color.white);
+        cbCompeticiones.setBackground(Color.black);
+        cbCompeticiones.setForeground(Color.white);
+        cbAnadirEquipos.setBackground(Color.black);
+        cbAnadirEquipos.setForeground(Color.white);
+        cbJuego.setBackground(Color.black);
+        cbJuego.setForeground(Color.white);
+        cbEliminarEquipos.setBackground(Color.black);
+        cbEliminarEquipos.setForeground(Color.black);
+        chkEstado.setOpaque(false);
+        chkEstado.setForeground(Color.white);
+        bEditar.setBackground(Color.black);
+        bEditar.setForeground(Color.white);
+        bAnadirEquipo.setBackground(Color.black);
+        bAnadirEquipo.setForeground(Color.white);
+        bEliminarEquipo.setBackground(Color.black);
+        bEliminarEquipo.setForeground(Color.white);
+        bAceptar.setForeground(Color.white);
+        bAceptar.setBackground(Color.black);
+        bSalir.setForeground(Color.white);
+        bSalir.setBackground(Color.black);
+        tfNombre.setBackground(Color.black);
+        tfNombre.setForeground(Color.white);
+        pFechaInicio.setOpaque(false);
+        pFechaInicio.setBackground(Color.black);
+        cFechaInicio.setBackground(Color.black);
+        cFechaInicio.setForeground(Color.white);
+        pFechaInicio.setForeground(Color.white);
+        pFechaFin.setOpaque(false);
+        pFechaFin.setBackground(Color.black);
+        cFechaFin.setBackground(Color.black);
+        cFechaFin.setForeground(Color.black);
+        pFechaFin.setForeground(Color.black);
+        tfNombre.setSelectionColor(Color.white);
+        tfNombre.setSelectedTextColor(Color.black);
+
     }
 
     /**

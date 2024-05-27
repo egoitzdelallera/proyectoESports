@@ -92,7 +92,7 @@ public class ControladorVPatrocinadores {
         vpt.getPanelCrear().setVisible(false);
         vpt.getPanelDatos().setVisible(false);
 
-
+        listaEqPc.clear();
         rellenarLista();
         jList();
     }
