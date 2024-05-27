@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Controlador para la vista de juegos.
+ */
 public class ControladorVJuegos {
     private VistaJuegos vjg;
     private ControladorV cv;
@@ -18,10 +21,18 @@ public class ControladorVJuegos {
     private int combo = 0;
     private JComboBox combobox;
 
+    /**
+     * Constructor del controlador de juegos.
+     *
+     * @param cv El controlador principal de la vista.
+     */
     public ControladorVJuegos(ControladorV cv) {
         this.cv = cv;
     }
 
+    /**
+     * Rellena la lista de juegos en el ComboBox.
+     */
     public void rellenarLista() {
         listaJg = cv.comboJuegos();
         combobox = vjg.getCbJuegos();
@@ -31,23 +42,32 @@ public class ControladorVJuegos {
         listaJg.forEach(o -> combobox.addItem(o.getNombre()));
     }
 
+    /**
+     * Muestra la interfaz de usuario para administrar juegos.
+     */
     public void mostrarJuegos() {
+        // Se inicializa la vista y se agregan los listeners
         vjg = new VistaJuegos();
-
         vjg.addBAceptarAl(new BAceptarAl());
         vjg.addBBorrarAl(new BBorrarAl());
         vjg.addBEditarAl(new BEditarAl());
         vjg.addCbJuegosAl(new CbJuegosAl());
         vjg.addBSalirAl(new BSalirAl());
 
+        // Se configura la visibilidad de los paneles
         vjg.setVisible(true);
         vjg.getPanelComboBox().setVisible(true);
         vjg.getPanelCrear().setVisible(false);
         vjg.getPanelDatos().setVisible(false);
+        vjg.getTaDatos().setEnabled(false);
+        vjg.getTaDatos().setDisabledTextColor(Color.black);
 
         rellenarLista();
     }
 
+    /**
+     * ActionListener para la selección en el ComboBox de juegos.
+     */
     public class CbJuegosAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -80,6 +100,9 @@ public class ControladorVJuegos {
         }
     }
 
+    /**
+     * ActionListener para el botón de editar.
+     */
     public class BEditarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -88,6 +111,9 @@ public class ControladorVJuegos {
         }
     }
 
+    /**
+     * ActionListener para el botón de aceptar.
+     */
     public class BAceptarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -111,6 +137,9 @@ public class ControladorVJuegos {
         }
     }
 
+    /**
+     * ActionListener para el botón de borrar.
+     */
     public class BBorrarAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -129,6 +158,9 @@ public class ControladorVJuegos {
         }
     }
 
+    /**
+     * ActionListener para el botón de salir.
+     */
     public class BSalirAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

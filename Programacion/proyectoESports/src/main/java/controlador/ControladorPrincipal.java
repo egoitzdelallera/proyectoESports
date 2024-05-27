@@ -7,10 +7,18 @@ import modelo.*;
 
 import java.util.List;
 
-public class ControladorPrincipal {
+
+/**
+ * Controlador principal que gestiona la interacción entre los controladores de modelo y vista.
+ * Proporciona métodos para realizar operaciones CRUD en diversas entidades del modelo.
+ */
+public class    ControladorPrincipal {
     private ControladorV cv;
     private ControladorM cm;
 
+    /**
+     * Constructor que inicializa los controladores de modelo y vista.
+     */
     public ControladorPrincipal() {
         cm = new ControladorM(this);
         cv = new ControladorV(this);
@@ -18,6 +26,12 @@ public class ControladorPrincipal {
 
 
     }
+
+    /**
+     * Termina la aplicación.
+     *
+     * @throws Exception si ocurre un error al terminar la aplicación.
+     */
     public void terminar() throws Exception
     {
         System.exit(0);
@@ -171,12 +185,14 @@ public class ControladorPrincipal {
 
     //Parte del Patrocinio
 
-
+    public Patrocinio buscarPatrocinio(int idEquipo) throws Exception{
+        return cm.buscarPatrocinio(idEquipo);
+    }
     public void insertarPatrocinio(Patrocinio pc) throws Exception{
         cm.insertarPatrocinio(pc);
     }
-    public void borrarPatrocinio(int idPatrocinador) throws Exception{
-        cm.borrarPatrocinio(idPatrocinador);
+    public void borrarPatrocinio() throws Exception{
+        cm.borrarPatrocinio();
     }
     public List<Patrocinio> comboPatrocinios() {
         return cm.comboPatrocinios();

@@ -4,13 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+
+/**
+ * Clase que representa la vista de la clasificación.
+ */
 public class VistaClasificacion extends JFrame{
     private JPanel panelPrincipal;
     private JTextArea taConsulta;
     private JButton bSalir;
     private JScrollPane scrollPane;
-    private JPanel panelBoton;
 
+    /**
+     * Constructor de la clase VistaClasificacion.
+     * Crea una nueva instancia de la ventana de clasificación.
+     */
     public VistaClasificacion() {
         super("Clasificaciones");
         setContentPane(panelPrincipal);
@@ -18,23 +25,24 @@ public class VistaClasificacion extends JFrame{
         setLocationRelativeTo(null);
         taConsulta.setEnabled(false);
         taConsulta.setDisabledTextColor(Color.black);
-        taConsulta.setEnabled(false);
-        taConsulta.setDisabledTextColor(Color.black);
-        panelPrincipal.setBackground(Color.black);
-        taConsulta.setEnabled(false);
-        taConsulta.setDisabledTextColor(Color.white);
-        taConsulta.setSelectedTextColor(Color.black);
-        taConsulta.setSelectionColor(Color.white);
-        bSalir.setForeground(Color.white);
-        bSalir.setBackground(Color.black);
-        scrollPane.setOpaque(false);
-        panelBoton.setOpaque(false);
+        //scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        //scrollPane.getVerticalScrollBar().setValue(0);
     }
 
+    /**
+     * Agrega un ActionListener al botón de salir.
+     *
+     * @param al ActionListener a agregar.
+     */
     public void addBSalirAl(ActionListener al) {
         bSalir.addActionListener(al);
     }
 
+    /**
+     * Obtiene el JTextArea de la consulta.
+     *
+     * @return JTextArea de la consulta.
+     */
     public JTextArea getTaConsulta() {
         return taConsulta;
     }

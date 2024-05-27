@@ -10,6 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * El ControladorVCalendario es responsable de gestionar la lógica de la vista del calendario.
+ * Interactúa con la vista VistaCalendario y el modelo para mostrar las competiciones, jornadas y enfrentamientos.
+ */
 public class ControladorVCalendario {
 
     private ControladorV cv;
@@ -20,11 +24,18 @@ public class ControladorVCalendario {
     private Jornada jor;
     private Enfrentamiento enf;
 
+    /**
+     * Constructor que inicializa el controlador con una instancia de ControladorV.
+     * @param cv la instancia de ControladorV.
+     */
     public ControladorVCalendario(ControladorV cv)
     {
         this.cv = cv;
     }
 
+    /**
+     * Muestra la vista del calendario y carga las competiciones cerradas en el combo box.
+     */
     public void mostrarCalendario(){
         vcal = new VistaCalendario();
 
@@ -39,6 +50,10 @@ public class ControladorVCalendario {
         listaCompe.forEach(o->vcal.getCbCompeticion().addItem(o.getNombre()));
     }
 
+    /**
+     * Clase interna que maneja el evento de selección del combo box de competiciones.
+     * Al seleccionar una competición, se muestran las jornadas y los enfrentamientos correspondientes.
+     */
     public class BVisualizarJornadaYEnfrentamientosAl implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -51,10 +66,10 @@ public class ControladorVCalendario {
                     List<Jornada> jornadas = cv.listaJornadas(comp);
 
                     // Mostrar las jornadas en el JTextArea taJornadas
-
-                    vcal.getTaJornadas().setText("");
+                    JTextArea taJornadas = vcal.getTaJornadas();
+                    taJornadas.setText("");
                     for (Jornada jornada : jornadas) {
-                        vcal.getTaJornadas().append(jornada.toString() + "\n"); // Ajusta según el método toString() de Jornada
+                        taJornadas.append(jornada.toString() + "\n"); // Ajusta según el método toString() de Jornada
                     }
 
                     // Obtener y mostrar los enfrentamientos de la primera jornada
@@ -63,10 +78,10 @@ public class ControladorVCalendario {
                         List<Enfrentamiento> enfrentamientos = cv.listaEnfrentamientos();
 
                         // Mostrar los enfrentamientos en el JTextArea taEnfrentamientos
-
-                        vcal.getTaEnfrentamientos().setText("");
+                        JTextArea taEnfrentamientos = vcal.getTaEnfrentamientos();
+                        taEnfrentamientos.setText("");
                         for (Enfrentamiento enfrentamiento : enfrentamientos) {
-                            vcal.getTaEnfrentamientos().append(enfrentamiento.toString() + "\n"); // Ajusta según el método toString() de Enfrentamiento
+                            taEnfrentamientos.append(enfrentamiento.toString() + "\n"); // Ajusta según el método toString() de Enfrentamiento
                         }
                     }
                 }

@@ -13,12 +13,22 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.sql.Clob;
 
+/**
+ * Controlador para gestionar operaciones relacionadas con XML en la base de datos.
+ * Proporciona métodos para truncar tablas, llamar a procedimientos y obtener resultados en formato XML.
+ */
 public class ControladorMXml {
     private ControladorM cm;
     private EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction transaction;
 
+    /**
+     * Constructor que inicializa el controlador con una instancia de ControladorM.
+     * Crea las instancias de EntityManagerFactory, EntityManager y EntityTransaction.
+     *
+     * @param cm la instancia de ControladorM.
+     */
     public ControladorMXml(ControladorM cm) {
         this.cm = cm;
         emf = Persistence.createEntityManagerFactory("default");
@@ -26,6 +36,12 @@ public class ControladorMXml {
         transaction = em.getTransaction();
     }
 
+    /**
+     * Trunca una tabla en la base de datos utilizando la consulta SQL proporcionada.
+     *
+     * @param query la consulta SQL para truncar la tabla.
+     * @throws Exception si ocurre un error durante la operación.
+     */
     public void truncarTabla(String query) throws Exception {
         try {
             transaction.begin();
@@ -38,6 +54,12 @@ public class ControladorMXml {
         }
     }
 
+    /**
+     * Llama a un procedimiento almacenado en la base de datos utilizando la consulta SQL proporcionada.
+     *
+     * @param query la consulta SQL para llamar al procedimiento.
+     * @throws Exception si ocurre un error durante la operación.
+     */
     public void llamarProcedimiento(String query) throws Exception {
         try {
             transaction.begin();
@@ -50,6 +72,14 @@ public class ControladorMXml {
         }
     }
 
+    /**
+     * Obtiene un resultado en formato XML de la base de datos utilizando la consulta SQL proporcionada.
+     * Formatea el resultado XML antes de devolverlo.
+     *
+     * @param query la consulta SQL para obtener el resultado en formato XML.
+     * @return el resultado en formato XML.
+     * @throws Exception si ocurre un error durante la operación.
+     */
     public String obtenerXml(String query) throws Exception {
         try {
             transaction.begin();
@@ -65,6 +95,13 @@ public class ControladorMXml {
         }
     }
 
+    /**
+     * Convierte un objeto Clob a una cadena de texto.
+     *
+     * @param consulta el objeto Clob a convertir.
+     * @return la cadena de texto resultante.
+     * @throws Exception si ocurre un error durante la operación.
+     */
     public String parsearClob(Clob consulta) throws Exception {
         StringBuilder sb = new StringBuilder();
         Reader reader = consulta.getCharacterStream();
@@ -78,6 +115,13 @@ public class ControladorMXml {
         return sb.toString();
     }
 
+    /**
+     * Formatea una cadena de texto XML para que sea más legible.
+     *
+     * @param xml la cadena de texto XML a formatear.
+     * @return la cadena de texto XML formateada.
+     * @throws Exception si ocurre un error durante la operación.
+     */
     public String formatearXml(String xml) throws Exception {
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer t = tf.newTransformer();

@@ -8,6 +8,13 @@ import jakarta.persistence.Persistence;
 import modelo.*;
 import vista.PaginaPrincipal;
 
+/**
+ * @author Joseba
+ * @author Leire
+ * @author Egoitz
+ * @author Gorka
+ * @version 1.0
+ */
 public class Main {
     public static void main(String[] args) {
         ControladorPrincipal c = new ControladorPrincipal();
