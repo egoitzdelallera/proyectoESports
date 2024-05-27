@@ -426,7 +426,7 @@ public class VistaCompeticiones extends JFrame {
     }
 
     /**
-     * Método para limpiar los campos de entrada de la vista de competiciones.
+     * Metodo para limpiar los campos de entrada de la vista de competiciones.
      */
     public void limpiar() {
 
